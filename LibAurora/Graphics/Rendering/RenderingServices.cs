@@ -1,11 +1,9 @@
 ﻿using System;
-using LibAurora.Core;
 using LibAurora.Framework;
-using LibAurora.Utils;
 using Raylib_cs;
 namespace LibAurora.Graphics.Rendering;
 
-public class RenderingLoop
+public sealed class RenderingServices
 {
 	/// <summary>
 	/// The size of the application window.
@@ -19,7 +17,6 @@ public class RenderingLoop
 			if (Raylib.IsWindowReady()) Raylib.SetWindowSize(value.width, value.height);
 		}
 	} = (1280, 720);
-
 	/// <summary>
 	/// The title of the application window.
 	/// </summary>
@@ -32,7 +29,6 @@ public class RenderingLoop
 			if (Raylib.IsWindowReady()) Raylib.SetWindowTitle(value);
 		}
 	} = "Lib Aurora Application";
-
 	/// <summary>
 	/// The max rendering fps of the application
 	/// </summary>
@@ -45,17 +41,22 @@ public class RenderingLoop
 			Raylib.SetTargetFPS(value);
 		}
 	} = 120;
+	/// <summary>
+	/// Get the instance of Rendering services.
+	/// </summary>
+	/// <exception cref="InvalidOperationException">
+	/// Application is not running, so the instance has not been created.
+	/// </exception>
+	public static RenderingServices Instance =>
+		_instance ?? throw new InvalidOperationException("Rendering service not initialized");
 	
 	private bool _running;
 	private readonly IMainLoop _mainLoop;
 	
-	private static RenderingLoop? _instance;
-
-	public static RenderingLoop Instance =>
-		_instance ?? throw new InvalidOperationException("render service not exist");
-	public RenderingLoop(IMainLoop mainLoop)
+	private static RenderingServices? _instance;
+	internal RenderingServices(IMainLoop mainLoop)
 	{
-		if(_instance != null) throw new InvalidOperationException("Render service already been created");
+		if(_instance != null) throw new InvalidOperationException("Rendering service already been created");
 		_instance = this;
 		_mainLoop = mainLoop;
 	}

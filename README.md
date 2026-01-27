@@ -10,7 +10,7 @@ The following are list of features. Some of them might be still under developmen
 
 - [x] Independent Rendering Loop and Logic Loop
 - [x] Multifunctional and High-performance Sprite Batch Drawing (Contains shader functionlity)
-- [ ] Mapping of Input and Action
+- [x] Mapping of Input and Action
 - [ ] Space Querying (SpatialGrid/QuadTree)
 - [ ] Object Pool
 

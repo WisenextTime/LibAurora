@@ -2,29 +2,51 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
-using LibAurora.Graphics.Rendering;
+using LibAurora.Input;
 using LibAurora.Utils;
 namespace LibAurora.Framework;
 
 [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
-public class LogicLoop
+public sealed class LogicService
 {
-	private readonly IMainLoop _mainLoop;
 	/// <summary>
-	/// The target ups of logic loop.<br/>
+	/// The target ups(Update times per second) of logic loop.<br/>
 	/// Only available before application run.
 	/// </summary>
 	public int TargetUps = 60;
+	/// <summary>
+	/// The max seconds running of one frame.<br/>
+	/// Is should not usually be set to large.
+	/// Only available before application run.
+	/// </summary>
 	public double MaxFrameTime = 0.25;
+	/// <summary>
+	/// The max update times per frame
+	/// </summary>
 	public int MaxUpf = 3;
+	/// <summary>
+	/// Time scale of logic.
+	/// </summary>
 	public float TimeScale = 1.0f;
+	/// <summary>
+	/// Get current update times per second)
+	/// </summary>
 	public int CurrentUps { get; private set; }
+	/// <summary>
+	/// Get the current interpolation factor (used for interpolation operation)
+	/// </summary>
 	public double InterpolationFactor { get; private set; }
-	
-	public static LogicLoop Instance => _instance??throw new InvalidOperationException("Logic loop not exists");
+	/// <summary>
+	/// Get the instance of Logic services.
+	/// </summary>
+	/// <exception cref="InvalidOperationException">
+	/// Application is not running, so the instance has not been created.
+	/// </exception>
+	public static LogicService Instance => _instance??throw new InvalidOperationException("Logic service not initialized");
 
-	private static LogicLoop? _instance;
-		
+	private readonly IMainLoop _mainLoop;
+	private static LogicService? _instance;
+	
 	internal void Initialize()
 	{
 		_fixedTimeStep = 1.0f / TargetUps;
@@ -59,9 +81,9 @@ public class LogicLoop
 	private double _maxFrameTime;
 	private int _updateCount;
 	private double _upsTimer;
-	public LogicLoop(IMainLoop mainLoop)
+	internal LogicService(IMainLoop mainLoop)
 	{
-		if(_instance != null) throw new InvalidOperationException("Logic loop already been created");
+		if(_instance != null) throw new InvalidOperationException("Logic service already been created");
 		_instance = this;
 		_mainLoop = mainLoop;
 		_logicThread = new Thread(FixedLogicLoop)
@@ -133,6 +155,7 @@ public class LogicLoop
 
 	private void Update(double deltaTime)
 	{
+		InputService.Instance.Update(deltaTime);
 		_mainLoop.Update(deltaTime);
 	}
 }

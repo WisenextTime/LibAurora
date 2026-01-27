@@ -1,7 +1,8 @@
 ﻿namespace LibAurora.Framework;
 
-public interface IWorldManager
+public interface IMainLoop
 {
+	void Initialize();
 	void Update(double elapsedTime);
 	void Render();
 }
