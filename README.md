@@ -2,8 +2,14 @@
 This is just a self-developed engine based on Raylib_cs. But I welcome more interested developers to use it, why not? (Anyway, I wrote the complete XML document)
 
 ## How can I used it?
-- First, make sure your project is using DotNet 10 or above.
-- Second, just clone this repository and reference it in your project. (I will publish a nuget package after this lib is fully developed, but not right now.)
+First, make sure your project is using DotNet 10 or above.
+
+Then, you can just clone this repository and reference it in your project.
+
+You can also use nuget:
+```shell
+dotnet add package LibAurora --version 1.0.0
+```
 
 ## What features dose it have? What should I implement by myself?
 The following are list of features. Some of them might be still under development.
