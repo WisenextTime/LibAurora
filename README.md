@@ -22,7 +22,7 @@ The following are list of features. Some of them might be still under developmen
 - [x] Event Bus
 
 The folowing are of optional features. You can reference extra project of this sovlution.
-- [ ] ECS Management Based on [Arch](https://github.com/genaray/Arch)
+- [x] ECS Management Based on [Arch](https://github.com/genaray/Arch)
 - [ ] Simple UI Widgets
 - [ ] Resource Management (Async Loading)
 - [ ] Simple Physics

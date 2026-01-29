@@ -7,8 +7,8 @@ namespace LibAurora.Core;
 
 public sealed class Application(IMainLoop mainLoop)
 {
-	private readonly RenderingServices _renderingServices = new(mainLoop);
-	private readonly LogicService _logicService = new(mainLoop);
+	private readonly RenderingServices _renderingServices = new();
+	private readonly LogicService _logicService = new();
 	private readonly EventServices _eventServices = new();
 	private readonly InputService _inputService = new();
 	private readonly CollisionService _collisionService = new();
@@ -25,6 +25,9 @@ public sealed class Application(IMainLoop mainLoop)
 		
 		_logicService.Register(_inputService);
 		_logicService.Register(_collisionService);
+		_logicService.Register(mainLoop);
+		
+		_renderingServices.Register(mainLoop);
 		
 		mainLoop.Ready();
 		

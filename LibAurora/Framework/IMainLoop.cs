@@ -1,10 +1,8 @@
-﻿namespace LibAurora.Framework;
+﻿using LibAurora.Graphics;
+namespace LibAurora.Framework;
 
-public interface IMainLoop
+public interface IMainLoop : IUpdatable,IRenderable
 {
 	void Initialize();
-
 	void Ready();
-	void Update(double elapsedTime);
-	void Render();
 }

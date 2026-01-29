@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using LibAurora.Framework;
 using Raylib_cs;
 namespace LibAurora.Graphics.Rendering;
@@ -35,16 +36,19 @@ public sealed class RenderingServices
 	/// <exception cref="InvalidOperationException">RenderingService is not initialized.</exception>
 	public static RenderingServices Instance =>
 		_instance ?? throw new InvalidOperationException("Rendering service not initialized");
-	
+	public void Register(params IRenderable[] renderables)
+	{
+		_renderables.AddRange(renderables);
+	}
+
+	private readonly List<IRenderable> _renderables = [];
 	private bool _running;
-	private readonly IMainLoop _mainLoop;
 	
 	private static RenderingServices? _instance;
-	internal RenderingServices(IMainLoop mainLoop)
+	internal RenderingServices()
 	{
 		if(_instance != null) throw new InvalidOperationException("Rendering service already been created");
 		_instance = this;
-		_mainLoop = mainLoop;
 	}
 
 	internal void Initialize()
@@ -66,6 +70,9 @@ public sealed class RenderingServices
 
 	private void Draw()
 	{
-		_mainLoop.Render();
+		foreach (var renderable in _renderables)
+		{
+			renderable.Draw();
+		}
 	}
 }

@@ -45,7 +45,6 @@ public sealed class LogicService
 	{
 		_updatables.AddRange(updatables);
 	}
-	private readonly IMainLoop _mainLoop;
 	private static LogicService? _instance;
 
 	private readonly List<IUpdatable> _updatables = [];
@@ -84,11 +83,10 @@ public sealed class LogicService
 	private double _maxFrameTime;
 	private int _updateCount;
 	private double _upsTimer;
-	internal LogicService(IMainLoop mainLoop)
+	internal LogicService()
 	{
 		if(_instance != null) throw new InvalidOperationException("Logic service already been created");
 		_instance = this;
-		_mainLoop = mainLoop;
 		_logicThread = new Thread(FixedLogicLoop)
 		{
 			Name = "Logic Loop",
@@ -162,6 +160,5 @@ public sealed class LogicService
 		{
 			updatable.Update(deltaTime);
 		}
-		_mainLoop.Update(deltaTime);
 	}
 }
