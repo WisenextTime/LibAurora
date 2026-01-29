@@ -12,7 +12,6 @@
     <ItemGroup>
       <Folder Include="Audio\" />
       <Folder Include="Math\" />
-      <Folder Include="Physics\" />
       <Folder Include="Resources\" />
       <Folder Include="UI\" />
     </ItemGroup>

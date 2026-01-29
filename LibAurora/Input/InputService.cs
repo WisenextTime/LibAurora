@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using LibAurora.Framework;
 using Raylib_cs;
 namespace LibAurora.Input;
 
-public sealed class InputService
+public sealed class InputService : IUpdatable
 {
+	/// <summary>
+	/// Get the InputService singleton
+	/// </summary>
+	/// <exception cref="InvalidOperationException">InputService is not initialized.</exception>
 	public static InputService Instance => _instance ?? throw new InvalidOperationException("Input service is not initialized.");
 	internal InputService()
 	{
@@ -23,7 +29,7 @@ public sealed class InputService
 		public readonly List<InputSource> Inputs = [];
 	}
 	private Dictionary<string, ActionState> _actions = new();
-	internal void Update(double deltaTime)
+	public void Update(double deltaTime)
 	{
 		foreach (var action in _actions.Values)
 		{
@@ -122,5 +128,37 @@ public sealed class InputService
 	/// </summary>
 	/// <param name="action">Action name</param>
 	/// <returns></returns>
-	public float GetActionStrength(string action) => _actions.ContainsKey(action) ? _actions[action].Strength : 0; 
+	public float GetActionStrength(string action) => _actions.ContainsKey(action) ? _actions[action].Strength : 0;
+	/// <summary>
+	/// Get a vector2 with four directions
+	/// </summary>
+	/// <param name="up">up direction action</param>
+	/// <param name="down">down direction action</param>
+	/// <param name="left">left direction action</param>
+	/// <param name="right">right direction action</param>
+	/// <returns></returns>
+	public Vector2 GetAxisJoy(string up, string down, string left, string right)
+	{
+		var value = new Vector2
+		{
+			X = (IsActionDown(left) ? -1 : 0) + (IsActionDown(right) ? 1 : 0),
+			Y = (IsActionDown(up) ? -1 : 0) + (IsActionDown(down) ? 1 : 0),
+		};
+		return value;
+	}
+	/// <summary>
+	/// Get a vector2 with two axes.
+	/// </summary>
+	/// <param name="upDown">up-down direction axis</param>
+	/// <param name="leftRight">left-right direction axis</param>
+	/// <returns></returns>
+	public Vector2 GetAxisJoy(string upDown, string leftRight)
+	{
+		var value = new Vector2
+		{
+			X = GetActionStrength(upDown),
+			Y = GetActionStrength(leftRight),
+		};
+		return value;
+	}
 }

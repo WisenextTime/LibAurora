@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
-using LibAurora.Input;
 using LibAurora.Utils;
 namespace LibAurora.Framework;
 
@@ -37,15 +37,18 @@ public sealed class LogicService
 	/// </summary>
 	public double InterpolationFactor { get; private set; }
 	/// <summary>
-	/// Get the instance of Logic services.
+	/// Get the LogicService singleton
 	/// </summary>
-	/// <exception cref="InvalidOperationException">
-	/// Application is not running, so the instance has not been created.
-	/// </exception>
+	/// <exception cref="InvalidOperationException">LogicService is not initialized.</exception>
 	public static LogicService Instance => _instance??throw new InvalidOperationException("Logic service not initialized");
-
+	public void Register(params IUpdatable[] updatables)
+	{
+		_updatables.AddRange(updatables);
+	}
 	private readonly IMainLoop _mainLoop;
 	private static LogicService? _instance;
+
+	private readonly List<IUpdatable> _updatables = [];
 	
 	internal void Initialize()
 	{
@@ -155,7 +158,10 @@ public sealed class LogicService
 
 	private void Update(double deltaTime)
 	{
-		InputService.Instance.Update(deltaTime);
+		foreach (var updatable in _updatables)
+		{
+			updatable.Update(deltaTime);
+		}
 		_mainLoop.Update(deltaTime);
 	}
 }

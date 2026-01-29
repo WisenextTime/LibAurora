@@ -30,23 +30,9 @@ public sealed class RenderingServices
 		}
 	} = "Lib Aurora Application";
 	/// <summary>
-	/// The max rendering fps of the application
+	/// Get the RenderingService singleton
 	/// </summary>
-	public int TargetFps
-	{
-		get;
-		set
-		{
-			field = value;
-			Raylib.SetTargetFPS(value);
-		}
-	} = 120;
-	/// <summary>
-	/// Get the instance of Rendering services.
-	/// </summary>
-	/// <exception cref="InvalidOperationException">
-	/// Application is not running, so the instance has not been created.
-	/// </exception>
+	/// <exception cref="InvalidOperationException">RenderingService is not initialized.</exception>
 	public static RenderingServices Instance =>
 		_instance ?? throw new InvalidOperationException("Rendering service not initialized");
 	

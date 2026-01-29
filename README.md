@@ -11,14 +11,14 @@ The following are list of features. Some of them might be still under developmen
 - [x] Independent Rendering Loop and Logic Loop
 - [x] Multifunctional and High-performance Sprite Batch Drawing (Contains shader functionlity)
 - [x] Mapping of Input and Action
-- [ ] Space Querying (SpatialGrid/QuadTree)
-- [ ] Object Pool
+- [x] Space Querying (SpatialGrid/QuadTree)
+- [x] Object Pool
+- [x] Event Bus
 
 The folowing are of optional features. You can reference extra project of this sovlution.
 - [ ] ECS Management Based on [Arch](https://github.com/genaray/Arch)
 - [ ] Simple UI Widgets
 - [ ] Resource Management (Async Loading)
 - [ ] Simple Physics
-- [ ] Event Bus
 - [ ] Audio Bus
 - [ ] Tween
