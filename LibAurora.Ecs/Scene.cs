@@ -12,18 +12,18 @@ public class Scene(World world) : IUpdatable, IRenderable
 	public int Priority = 0;
 	
 	private readonly List<object> _systems = [];
-	private readonly List<IUpdatable> _updatables = [];
-	private readonly List<IRenderable> _renderables = [];
+	private readonly List<IUpdatableSystem> _updatables = [];
+	private readonly List<IRenderableSystem> _renderables = [];
 	
-	private FrozenSet<IUpdatable>? _frozenUpdatable;
-	private FrozenSet<IRenderable>? _frozenRenderable;
+	private FrozenSet<IUpdatableSystem>? _frozenUpdatable;
+	private FrozenSet<IRenderableSystem>? _frozenRenderable;
 
 	public Scene RegisterSystem(object system)
 	{
         ArgumentNullException.ThrowIfNull(system);
         _systems.Add(system);
-		if (system is IUpdatable updatable) _updatables.Add(updatable);
-		if (system is IRenderable renderable) _renderables.Add(renderable);
+		if (system is IUpdatableSystem updatable) _updatables.Add(updatable);
+		if (system is IRenderableSystem renderable) _renderables.Add(renderable);
 		_frozenUpdatable = null;
 		_frozenRenderable = null;
 		return this;
@@ -33,8 +33,8 @@ public class Scene(World world) : IUpdatable, IRenderable
 		ArgumentNullException.ThrowIfNull(system);
 		var remove = _systems.Remove(system);
 		if (!remove) return false;
-		if (system is IUpdatable updatable) _updatables.Remove(updatable);
-		if (system is IRenderable renderable) _renderables.Remove(renderable);
+		if (system is IUpdatableSystem updatable) _updatables.Remove(updatable);
+		if (system is IRenderableSystem renderable) _renderables.Remove(renderable);
 		_frozenUpdatable = null;
 		_frozenRenderable = null;
 		if (system is IDisposable disposable) disposable.Dispose();
@@ -44,24 +44,24 @@ public class Scene(World world) : IUpdatable, IRenderable
 	{
 		var updatables = GetFrozenUpdatables();
 		foreach (var system in updatables)
-			system.Update(delta);
+			system.Update(delta, SceneWorld);
 	}
 	public void Draw()
 	{
 		var renderables = GetFrozenRenderables();
 		foreach (var system in renderables)
-			system.Draw();
+			system.Draw(SceneWorld);
 	}
 	public T? GetSystem<T>() where T : class
 	{
 		return _systems.OfType<T>().FirstOrDefault();
 	}
-	private FrozenSet<IUpdatable> GetFrozenUpdatables()
+	private FrozenSet<IUpdatableSystem> GetFrozenUpdatables()
 	{
 		_frozenUpdatable ??= _updatables.ToFrozenSet();
 		return _frozenUpdatable;
 	}
-	private FrozenSet<IRenderable> GetFrozenRenderables()
+	private FrozenSet<IRenderableSystem> GetFrozenRenderables()
 	{
 		_frozenRenderable ??= _renderables.ToFrozenSet();
 		return _frozenRenderable;

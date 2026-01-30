@@ -1,8 +1,7 @@
 ﻿using LibAurora.Framework;
-using LibAurora.Graphics;
 namespace LibAurora.Ecs;
 
-public class EcsWorldManager : IUpdatable, IRenderable
+public class EcsWorldManager : IMainLoop
 {
 	public readonly List<Scene> Scenes = [];
 	public void Update(double delta)
@@ -64,5 +63,13 @@ public class EcsWorldManager : IUpdatable, IRenderable
 	public void ShowScene(Scene scene)
 	{
 		scene.Visible = true;
+	}
+	public virtual void Initialize()
+	{
+		
+	}
+	public virtual void Ready()
+	{
+		
 	}
 }
