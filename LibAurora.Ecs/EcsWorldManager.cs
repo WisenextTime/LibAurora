@@ -23,6 +23,7 @@ public class EcsWorldManager : IMainLoop
 	public void PushScene(Scene scene,bool pauseActiveScene = true)
 	{
 		if (pauseActiveScene && Scenes.Count > 0) Scenes[^1].Pause = true;
+		Scenes[^1].OnDeactivated?.Invoke();
 		Scenes.Add(scene);
 		scene.OnPushed?.Invoke();
 	}
@@ -33,6 +34,7 @@ public class EcsWorldManager : IMainLoop
 		Scenes.RemoveAt(Scenes.Count - 1);
 		if(unpauseActiveScene) Scenes[^1].Pause = false;
 		poppedScene.OnPopped?.Invoke();
+		Scenes[^1].OnActivated?.Invoke();
 		return poppedScene;
 	}
 	public void PopToScene(Scene scene)
@@ -48,7 +50,6 @@ public class EcsWorldManager : IMainLoop
 	{
 		if (Scenes.Contains(scene))
 			scene.Pause = true;
-		
 	}
     
 	public void ResumeScene(Scene scene)

@@ -71,4 +71,6 @@ public class Scene(World world) : IUpdatable, IRenderable
 	}
 	public Action? OnPushed;
 	public Action? OnPopped;
+	public Action? OnDeactivated;
+	public Action? OnActivated;
 }
