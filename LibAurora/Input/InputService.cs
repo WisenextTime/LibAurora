@@ -31,12 +31,15 @@ public sealed class InputService : IUpdatable
 	private Dictionary<string, ActionState> _actions = new();
 	public void Update(double deltaTime)
 	{
+		KeyboardInputs.Update();
+		MouseButtonInputs.Update();
+		GamepadInputs.Update();
 		foreach (var action in _actions.Values)
 		{
-			action.Pressed = action.Inputs.Any(input => input.Pressed());
-			action.Down = action.Inputs.Any(input => input.Down());
-			action.Released = action.Inputs.Any(input => input.Released());
-			action.Up = action.Inputs.Any(input => input.Up());
+			action.Pressed = action.Inputs.Any(input => input.JustPressed());
+			action.Down = action.Inputs.Any(input => input.Pressed());
+			action.Released = action.Inputs.Any(input => input.JustReleased());
+			action.Up = action.Inputs.Any(input => input.Released());
 			action.Strength = action.Inputs.Max(input => input.Strength());
 		}
 	}
@@ -46,7 +49,7 @@ public sealed class InputService : IUpdatable
 	/// <param name="action">Name of this action</param>
 	public void AddAction(string action) => _actions.TryAdd(action, new ActionState());
 	/// <summary>
-	/// Bind a input to an action.
+	/// Bind an input to an action.
 	/// </summary>
 	/// <param name="source">Input source</param>
 	/// <param name="action">Action name</param>
@@ -61,7 +64,7 @@ public sealed class InputService : IUpdatable
 	/// <param name="action">Name of this action</param>
 	public void RemoveAction(string action) => _actions.Remove(action);
 	/// <summary>
-	/// Debind a input from action
+	/// Debind an input from action
 	/// </summary>
 	/// <param name="source">input source</param>
 	/// <param name="action">Action Name</param>
@@ -95,10 +98,9 @@ public sealed class InputService : IUpdatable
 	/// </summary>
 	/// <param name="axis">Gamepad axis input</param>
 	/// <param name="action">Action name</param>
-	/// <param name="deadZone">Dead zone of this axis</param>
 	/// <param name="padId">Gamepad Id (default zero)</param>
-	public void BindPadAxisAction(GamepadAxis axis, string action, float deadZone = 0.2f, int padId = 0)
-		=> BindAction(new PadAxisSource(padId, axis, deadZone), action);
+	public void BindPadAxisAction(GamepadAxis axis, string action, int padId = 0)
+		=> BindAction(new PadAxisSource(padId, axis), action);
 	/// <summary>
 	/// Check whether an action is currently triggerred.
 	/// </summary>
@@ -161,4 +163,7 @@ public sealed class InputService : IUpdatable
 		};
 		return value;
 	}
+	
+	public bool RegisterGamePadId(GamepadInputs.GamepadConfig pad) => GamepadInputs.Register(pad);
+	public bool UnregisterGamePadId(GamepadInputs.GamepadConfig pad) => GamepadInputs.Unregister(pad);
 }

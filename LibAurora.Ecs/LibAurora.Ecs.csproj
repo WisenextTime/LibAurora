@@ -2,8 +2,19 @@
 
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <IsPackable>true</IsPackable>
+        <Title>LibAurora.Ecs</Title>
+        <Authors>WisenextTime</Authors>
+        <Description>A simple engine base on Raylib_cs</Description>
+        <Copyright>WisenextTime</Copyright>
+        <PackageProjectUrl>https://github.com/WisenextTime/LibAurora</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/WisenextTime/LibAurora?tab=MIT-1-ov-file</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/WisenextTime/LibAurora</RepositoryUrl>
+        <RepositoryType>GitHub</RepositoryType>
+        <PackageTags>Engine, Raylib</PackageTags>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>

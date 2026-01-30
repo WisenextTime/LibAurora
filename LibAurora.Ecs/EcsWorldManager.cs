@@ -1,4 +1,6 @@
-﻿using LibAurora.Framework;
+﻿using System.Collections.Generic;
+using System.Linq;
+using LibAurora.Framework;
 namespace LibAurora.Ecs;
 
 public class EcsWorldManager : IMainLoop
@@ -27,9 +29,9 @@ public class EcsWorldManager : IMainLoop
 	public Scene? PopScene(bool unpauseActiveScene = true)
 	{
 		if (Scenes.Count == 0) return null;
-		if(unpauseActiveScene) Scenes[-1].Pause = false;
 		var poppedScene = Scenes[^1];
 		Scenes.RemoveAt(Scenes.Count - 1);
+		if(unpauseActiveScene) Scenes[^1].Pause = false;
 		poppedScene.OnPopped?.Invoke();
 		return poppedScene;
 	}
