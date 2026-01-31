@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 namespace LibAurora.Event;
 
-public class EventServices
+public class EventServices : IDisposable
 {
 	/// <summary>
 	/// Get the EventService singleton
@@ -50,11 +50,15 @@ public class EventServices
 		}
 	}
 	
-	internal EventServices()
+	public EventServices()
 	{
 		if(_instance != null) throw new InvalidOperationException("Event service already been created");
 		_instance = this;
 	}
 	private static EventServices? _instance;
 	private readonly ConcurrentDictionary<Type,List<Delegate>>  _events = new();
+	public void Dispose()
+	{
+		_instance = null;
+	}
 }

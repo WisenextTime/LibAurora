@@ -4,7 +4,7 @@ using LibAurora.Framework;
 using Raylib_cs;
 namespace LibAurora.Graphics.Rendering;
 
-public sealed class RenderingServices
+public sealed class RenderingServices : IDisposable
 {
 	/// <summary>
 	/// The size of the application window.
@@ -74,5 +74,10 @@ public sealed class RenderingServices
 		{
 			renderable.Draw();
 		}
+	}
+	public void Dispose()
+	{
+		_running = false;
+		_instance = null;
 	}
 }

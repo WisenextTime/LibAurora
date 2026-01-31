@@ -7,7 +7,7 @@ using LibAurora.Utils;
 namespace LibAurora.Framework;
 
 [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
-public sealed class LogicService
+public sealed class LogicService : IDisposable
 {
 	/// <summary>
 	/// The target ups(Update times per second) of logic loop.<br/>
@@ -160,5 +160,10 @@ public sealed class LogicService
 		{
 			updatable.Update(deltaTime);
 		}
+	}
+	public void Dispose()
+	{
+		Stop();
+		_instance = null;
 	}
 }

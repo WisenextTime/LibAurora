@@ -6,14 +6,14 @@ using LibAurora.Framework;
 using Raylib_cs;
 namespace LibAurora.Input;
 
-public sealed class InputService : IUpdatable
+public sealed class InputService : IUpdatable, IDisposable
 {
 	/// <summary>
 	/// Get the InputService singleton
 	/// </summary>
 	/// <exception cref="InvalidOperationException">InputService is not initialized.</exception>
 	public static InputService Instance => _instance ?? throw new InvalidOperationException("Input service is not initialized.");
-	internal InputService()
+	public InputService()
 	{
 		if(_instance != null) throw new InvalidOperationException("Input service already been created");
 		_instance = this;
@@ -166,4 +166,8 @@ public sealed class InputService : IUpdatable
 	
 	public bool RegisterGamePadId(GamepadInputs.GamepadConfig pad) => GamepadInputs.Register(pad);
 	public bool UnregisterGamePadId(GamepadInputs.GamepadConfig pad) => GamepadInputs.Unregister(pad);
+	public void Dispose()
+	{
+		_instance = null;
+	}
 }

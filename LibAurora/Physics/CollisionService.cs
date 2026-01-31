@@ -5,7 +5,7 @@ using Rectangle = Raylib_cs.Rectangle;
 using LibAurora.Framework;
 namespace LibAurora.Physics;
 
-public class CollisionService : IUpdatable
+public class CollisionService : IUpdatable, IInitializable, IDisposable
 {
 	/// <summary>
 	/// Get the CollisionService singleton
@@ -21,7 +21,7 @@ public class CollisionService : IUpdatable
 	}
 	public ISpaceQuery? CustomSpaceQuery;
 	public SpaceQueryType EnableSpaceQuery = SpaceQueryType.QuadTree;
-	internal CollisionService()
+	public CollisionService()
 	{
 		if(_instance != null) throw new InvalidOperationException("Collision service already been created");
 		_instance = this;
@@ -81,5 +81,9 @@ public class CollisionService : IUpdatable
 	public void DebugDraw()
 	{
 		_spaceQuery.DebugDraw();
+	}
+	public void Dispose()
+	{
+		_instance = null;
 	}
 }

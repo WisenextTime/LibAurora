@@ -23,7 +23,7 @@ The following are list of features. Some of them might be still under developmen
 
 The folowing are of optional features. You can reference extra project of this sovlution.
 - [x] ECS Management Based on [Arch](https://github.com/genaray/Arch)
-- [ ] Simple UI Widgets
+- [ ] GUI Service Based on [ImGui.NET](https://github.com/ImGuiNET/ImGui.NET)
 - [ ] Resource Management (Async Loading)
 - [ ] Simple Physics
 - [ ] Audio Bus
