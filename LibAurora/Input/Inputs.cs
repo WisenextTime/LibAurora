@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using LibAurora.Event;
 using Raylib_cs;
 namespace LibAurora.Input;
 
@@ -29,6 +31,10 @@ public static class KeyboardInputs
 	public static bool IsKeyReleased(KeyboardKey key) => !_currentKeyStates[key];
 	public static bool IsKeyJustPressed(KeyboardKey key) => _currentKeyStates[key] && !_previousKeyStates[key];
 	public static bool IsKeyJustReleased(KeyboardKey key) => !_currentKeyStates[key] && _previousKeyStates[key];
+
+	public static IEnumerable<KeyboardKey> GetPressedKeys()
+		=> _currentKeyStates.ToList().Where(pair => pair.Value).Select(key => key.Key);
+
 }
 
 public static class MouseButtonInputs
@@ -125,12 +131,14 @@ public static class GamepadInputs
 		if (_pads.Contains(pad.Id) || _pads.Count >= 4) return false;
 		_pads.Add(pad.Id);
 		_states.Add(pad.Id, new GamepadState(pad));
+		EventServices.Instance.Publish(new GamepadRegisterEvent(pad.Id));
 		return true;
 	}
 	public static bool Unregister(GamepadConfig pad)
 	{
 		if (!_pads.Remove(pad.Id)) return false;
 		_states.Remove(pad.Id);
+		EventServices.Instance.Publish(new GamepadUnregisterEvent(pad.Id));
 		return true;
 	}
 

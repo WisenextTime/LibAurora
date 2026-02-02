@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using LibAurora.Event;
 using LibAurora.Framework;
 using Raylib_cs;
 namespace LibAurora.Input;
 
-public sealed class InputService : IUpdatable, IDisposable
+public sealed class InputService : IUpdatable, IDisposable, IInitializable
 {
 	/// <summary>
 	/// Get the InputService singleton
@@ -169,5 +170,10 @@ public sealed class InputService : IUpdatable, IDisposable
 	public void Dispose()
 	{
 		_instance = null;
+	}
+	public void Initialize()
+	{
+		EventServices.Instance.RegisterEvent<GamepadRegisterEvent>();
+		EventServices.Instance.RegisterEvent<GamepadUnregisterEvent>();
 	}
 }

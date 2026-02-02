@@ -23,11 +23,11 @@ public partial class GuiService
 			return new Vertex
 			{
 				Position = new Vector2(vert.pos.X, vert.pos.Y),
-				UV = new Vector2(vert.uv.X, vert.uv.Y),
+				UV = new Vector2(vert.uv.X,vert.uv.Y),
 				Color = new Color(
 					(byte)(col & 0xFF),
-					(byte)((col >> 8) & 0xFF),
-					(byte)((col >> 16) & 0xFF),
+					(byte)(col >> 8 & 0xFF),
+					(byte)(col >> 16 & 0xFF),
 					(byte)(col >> 24)
 				),
 			};
@@ -36,7 +36,7 @@ public partial class GuiService
         
 	private struct RenderCommand
 	{
-		public Texture2D Texture;
+		public nint Texture;
 		public Rectangle ClipRect;
 		public int IndexOffset;
 		public long IndexCount;
@@ -49,6 +49,7 @@ public partial class GuiService
 		_io.DeltaTime = Raylib.GetFrameTime();
 		ImGui.NewFrame();
 		_frameStarted = true;
+		InputCheck();
 	}
     
 	public void EndFrame()
@@ -69,7 +70,7 @@ public partial class GuiService
 		{
 			ProcessDrawList(drawData.CmdLists[n]);
 		}
-		ExecuteRenderCommands();
+		ExecuteRenderCommands(drawData);
 	}
 	private unsafe void ProcessDrawList(ImDrawListPtr cmdList)
 	{
@@ -99,7 +100,7 @@ public partial class GuiService
 
 			_commands.Add(new RenderCommand
 			{
-				Texture = cmd.GetTexID() == (IntPtr)_fontTexture.Id ? _fontTexture : default,
+				Texture = cmd.GetTexID(),
 				ClipRect = new Rectangle(
 					cmd.ClipRect.X,
 					cmd.ClipRect.Y,
@@ -112,28 +113,39 @@ public partial class GuiService
 			currentIndexOffset += (int)cmd.ElemCount;
 		}
 	}
-	private void ExecuteRenderCommands()
+	private void ExecuteRenderCommands(ImDrawDataPtr drawData)
 	{
+		Rlgl.DisableDepthTest(); 
 		Rlgl.DisableBackfaceCulling();
 		Rlgl.SetBlendMode(BlendMode.Alpha);
+		Rlgl.SetBlendFactors(
+			Rlgl.SRC_ALPHA, 
+			Rlgl.ONE_MINUS_SRC_ALPHA,
+			Rlgl.BLEND_EQUATION_ALPHA
+		);
 		Rlgl.EnableColorBlend();
 		Rlgl.EnableScissorTest();
 		var prevMatrix = Rlgl.GetMatrixModelview();
 		try
 		{
-			SetupOrthographicProjection();
+			SetupOrthographicProjection(drawData);
 			foreach (var cmd in _commands)
 			{
-				Raylib.BeginScissorMode(
-					(int)cmd.ClipRect.X,
-					(int)cmd.ClipRect.Y,
-					(int)cmd.ClipRect.Width,
-					(int)cmd.ClipRect.Height
+				var clipRect = new Rectangle(
+					cmd.ClipRect.X * drawData.FramebufferScale.X,
+					cmd.ClipRect.Y * drawData.FramebufferScale.Y,
+					cmd.ClipRect.Width * drawData.FramebufferScale.X,
+					cmd.ClipRect.Height * drawData.FramebufferScale.Y
 				);
-				Rlgl.SetTexture(cmd.Texture.Id != 0 ? cmd.Texture.Id : 1);
+				Raylib.BeginScissorMode(
+					(int)clipRect.X,
+					(int)clipRect.Y,
+					(int)clipRect.Width,
+					(int)clipRect.Height
+				);
+				Rlgl.ActiveTextureSlot(0);
 				DrawTriangles(cmd);
-				Rlgl.SetTexture(0);
-				Raylib.EndScissorMode();
+				Raylib.EndScissorMode(); 
 			}
 		}
 		finally
@@ -145,14 +157,21 @@ public partial class GuiService
 			RestoreProjection();
 		}
 	}
-	private void SetupOrthographicProjection()
+	private void SetupOrthographicProjection(ImDrawDataPtr drawData)
 	{
 		Rlgl.MatrixMode(MatrixMode.Projection);
 		Rlgl.PushMatrix();
-		Rlgl.LoadIdentity();
-		Rlgl.Ortho(0, _io.DisplaySize.X, _io.DisplaySize.Y, 0, -1, 1);
 		Rlgl.MatrixMode(MatrixMode.ModelView);
 		Rlgl.PushMatrix();
+		
+		Rlgl.MatrixMode(MatrixMode.Projection);
+		Rlgl.LoadIdentity();
+		var l = drawData.DisplayPos.X;
+		var r = drawData.DisplayPos.X + drawData.DisplaySize.X;
+		var t = drawData.DisplayPos.Y;
+		var b = drawData.DisplayPos.Y + drawData.DisplaySize.Y;
+		Rlgl.Ortho(l, r, b, t, -1.0f, 1.0f);
+		Rlgl.MatrixMode(MatrixMode.ModelView);
 		Rlgl.LoadIdentity();
 	}
 	private void RestoreProjection()
@@ -166,7 +185,7 @@ public partial class GuiService
 	private void DrawTriangles(RenderCommand cmd)
 	{
 		Rlgl.Begin(DrawMode.Triangles);
-    
+		Rlgl.SetTexture((uint)cmd.Texture);
 		for (var i = 0; i < cmd.IndexCount; i++)
 		{
 			int idx = _indices[cmd.IndexOffset + i];
@@ -175,6 +194,28 @@ public partial class GuiService
 			Rlgl.TexCoord2f(vertex.UV.X, vertex.UV.Y);
 			Rlgl.Vertex2f(vertex.Position.X, vertex.Position.Y);
 		}
+		Rlgl.SetTexture(0);
 		Rlgl.End();
+	}
+	
+	private void InitRender()
+	{
+		_io.DisplaySize = new Vector2(Raylib.GetScreenWidth(), Raylib.GetScreenHeight());
+		_io.DisplayFramebufferScale = Vector2.One;
+		CreateFontTexture();
+	}
+	
+	private unsafe void CreateFontTexture()
+	{
+		_io.Fonts.AddFontDefault();
+		_io.Fonts.GetTexDataAsRGBA32(out byte* pixels, out var width, out var height, out _);
+		var id = Rlgl.LoadTexture(pixels, width, height, PixelFormat.UncompressedR8G8B8A8, 1);
+		Rlgl.TextureParameters(id,Rlgl.TEXTURE_MIN_FILTER, Rlgl.TEXTURE_FILTER_LINEAR);
+		Rlgl.TextureParameters(id,Rlgl.TEXTURE_MAG_FILTER, Rlgl.TEXTURE_FILTER_LINEAR);
+		
+		Rlgl.TextureParameters(id, Rlgl.TEXTURE_WRAP_S, Rlgl.TEXTURE_WRAP_CLAMP);
+		Rlgl.TextureParameters(id, Rlgl.TEXTURE_WRAP_T, Rlgl.TEXTURE_WRAP_CLAMP);
+		_io.Fonts.SetTexID((nint)id);
+		_io.Fonts.ClearTexData();
 	}
 }

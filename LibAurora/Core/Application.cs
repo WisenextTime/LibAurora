@@ -52,4 +52,9 @@ public sealed class Application
 		if (service is IRenderable renderable) _renderingServices.Register(renderable);
 		return service;
 	}
+	public void Stop()
+	{
+		_logicService.Dispose();
+		_renderingServices.Dispose();
+	}
 }

@@ -5,6 +5,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <AssemblyName>LibAurora.UI</AssemblyName>
+        <RootNamespace>LibAurora.UI</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

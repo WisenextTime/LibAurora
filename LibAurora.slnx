@@ -1,6 +1,6 @@
 <Solution>
   <Project Path="LibAurora.Ecs/LibAurora.Ecs.csproj" />
-  <Project Path="LibAurora.Ui/LibAurora.Ui.csproj" />
+  <Project Path="LibAurora.UI/LibAurora.UI.csproj" />
   <Project Path="LibAurora/LibAurora.csproj" />
   <Project Path="Test/Test.csproj" />
 </Solution>
