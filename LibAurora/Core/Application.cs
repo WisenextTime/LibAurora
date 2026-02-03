@@ -4,7 +4,6 @@ using LibAurora.Framework;
 using LibAurora.Graphics;
 using LibAurora.Graphics.Rendering;
 using LibAurora.Input;
-using LibAurora.Physics;
 namespace LibAurora.Core;
 
 public sealed class Application
@@ -33,7 +32,6 @@ public sealed class Application
 
 		RegisterService<EventServices>();
 		RegisterService<InputService>();
-		RegisterService<CollisionService>();
 		
 		_renderingServices.Register(_mainLoop);
 		_logicService.Register(_mainLoop);

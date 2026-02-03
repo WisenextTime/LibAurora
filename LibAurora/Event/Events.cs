@@ -1,10 +1,4 @@
-﻿using LibAurora.Physics;
-namespace LibAurora.Event;
-
-public class CollisionShapeDirtEvent
-{
-	public CollisionShape? Shape;
-}
+﻿namespace LibAurora.Event;
 
 public class GamepadRegisterEvent(int id)
 {
