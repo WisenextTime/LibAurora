@@ -5,16 +5,21 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <AssemblyName>LibAurora.UI</AssemblyName>
-        <RootNamespace>LibAurora.UI</RootNamespace>
+        <Title>LibAurora.UI</Title>
+        <Authors>WisenextTime</Authors>
+        <Description>A simple engine base on Raylib_cs</Description>
+        <Copyright>WisenextTime</Copyright>
+        <PackageProjectUrl>https://github.com/WisenextTime/LibAurora</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/WisenextTime/LibAurora?tab=MIT-1-ov-file</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/WisenextTime/LibAurora</RepositoryUrl>
+        <RepositoryType>GitHub</RepositoryType>
+        <PackageTags>Engine, Raylib</PackageTags>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Version>1.0.1</Version>
     </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\LibAurora\LibAurora.csproj" />
-    </ItemGroup>
-
     <ItemGroup>
       <PackageReference Include="ImGui.NET" Version="1.91.6.1" />
+      <PackageReference Include="LibAurora" Version="1.0.1" />
     </ItemGroup>
 
 </Project>

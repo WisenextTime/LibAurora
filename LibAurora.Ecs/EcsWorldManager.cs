@@ -22,8 +22,11 @@ public class EcsWorldManager : IMainLoop
 	}
 	public void PushScene(Scene scene,bool pauseActiveScene = true)
 	{
-		if (pauseActiveScene && Scenes.Count > 0) Scenes[^1].Pause = true;
-		Scenes[^1].OnDeactivated?.Invoke();
+		if (pauseActiveScene && Scenes.Count > 0)
+		{
+			Scenes[^1].Pause = true;
+			Scenes[^1].OnDeactivated?.Invoke();
+		}
 		Scenes.Add(scene);
 		scene.OnPushed?.Invoke();
 	}

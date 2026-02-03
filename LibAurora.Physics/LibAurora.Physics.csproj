@@ -4,14 +4,22 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>LibAurora.Physics</Title>
+        <Authors>WisenextTime</Authors>
+        <Description>A simple engine base on Raylib_cs</Description>
+        <Copyright>WisenextTime</Copyright>
+        <PackageProjectUrl>https://github.com/WisenextTime/LibAurora</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/WisenextTime/LibAurora?tab=MIT-1-ov-file</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/WisenextTime/LibAurora</RepositoryUrl>
+        <RepositoryType>GitHub</RepositoryType>
+        <PackageTags>Engine, Raylib</PackageTags>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\LibAurora\LibAurora.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="Box2D.NetStandard" Version="2.4.7-alpha" />
+      <PackageReference Include="LibAurora" Version="1.0.1" />
     </ItemGroup>
 
 </Project>

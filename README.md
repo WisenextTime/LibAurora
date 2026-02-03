@@ -8,7 +8,7 @@ Then, you can just clone this repository and reference it in your project.
 
 You can also use nuget:
 ```shell
-dotnet add package LibAurora --version 1.0.0
+dotnet add package LibAurora --version 1.0.1
 ```
 
 ## What features dose it have? What should I implement by myself?
