@@ -9,29 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Audio/AudioUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Audio/BgmPlayer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Audio/IAudio.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Audio/SoundFx.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopAudio.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopGraphics.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Backends/Headless/HeadlessApplication.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Backends/Headless/MockAudio.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Backends/Headless/MockInput.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/ApplicationContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/Events.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Core/IApplication.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Debug/Exceptions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Debug/ILogger.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Debug/LogServer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Graphics/BackendCreateUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Graphics/IGraphics.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Input/IInput.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/UIScene.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LibAurora.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/UIScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/UIScene.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,9 +95,6 @@
     <setting file="file://$PROJECT_DIR$/src/Debug/ILogger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Debug/LogServer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/IGraphics.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/UI/UI.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/test/DebugLogger.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/test/Program.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -149,7 +125,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "aigit.settings",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -192,7 +168,7 @@
       <workItem from="1773581485391" duration="4058000" />
       <workItem from="1773644390208" duration="22339000" />
       <workItem from="1773740691503" duration="25625000" />
-      <workItem from="1773833377251" duration="523000" />
+      <workItem from="1773833377251" duration="2713000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -210,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773833166117</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat(core): add desktop application backend with audio, graphics, and input systems">
+      <option name="closed" value="true" />
+      <created>1773833927796</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1773833927796</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +207,8 @@
     <MESSAGE value="Init Co" />
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Update gitignore file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update gitignore file" />
+    <MESSAGE value="feat(core): add desktop application backend with audio, graphics, and input systems" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(core): add desktop application backend with audio, graphics, and input systems" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
