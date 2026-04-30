@@ -5,6 +5,10 @@ using Veldrid;
 using Veldrid.Sdl2;
 namespace LibAurora.Backends.Desktop;
 
+/// <summary>
+/// Desktop application implementation using SDL2 windowing.
+/// Creates window, graphics, input, and audio subsystems on <see cref="Run"/>.
+/// </summary>
 public class DesktopApplication : IApplication
 {
 	private DesktopAudio? _audio;
@@ -13,13 +17,23 @@ public class DesktopApplication : IApplication
 	private Sdl2Window? _window;
 	private Vector2 WindowSize => new(_window?.Width ?? 0, _window?.Height ?? 0);
 
+	/// <inheritdoc />
 	public string Name { get; init; } = "LibAuroraApplication";
+
+	/// <inheritdoc />
 	public bool IsRunning { get; private set; }
+
+	/// <inheritdoc />
 	public bool IsDisposed { get; private set; }
+
+	/// <inheritdoc />
 	public ApplicationType Type() => ApplicationType.Desktop;
 
+	/// <inheritdoc />
 	public ApplicationContext Run(WindowCreateArguments args, SDL_WindowFlags? customFlags = null)
 	{
+		if (IsRunning) throw new InvalidOperationException("Already running");
+		IsRunning = true;
 		var flags = ParseFlags(args, customFlags);
 		var graphics = new DesktopGraphics();
 		if (graphics.Backend is GraphicsBackend.OpenGL or GraphicsBackend.OpenGLES)
@@ -40,12 +54,16 @@ public class DesktopApplication : IApplication
 			Audio = _audio,
 		};
 	}
+
+	/// <inheritdoc />
 	public void Exit()
 	{
 		ObjectDisposedException.ThrowIf(IsDisposed, typeof(DesktopApplication));
 		IsRunning = false;
 		_window?.Close();
 	}
+
+	/// <inheritdoc />
 	public void Dispose()
 	{
 		ObjectDisposedException.ThrowIf(IsDisposed, typeof(DesktopApplication));
@@ -53,11 +71,14 @@ public class DesktopApplication : IApplication
 		Exit();
 		GC.SuppressFinalize(this);
 	}
+
+	/// <inheritdoc />
 	public void Update()
 	{
 		_window?.PumpEvents();
 		_audio?.Update();
 	}
+
 	private static SDL_WindowFlags ParseFlags(WindowCreateArguments args, SDL_WindowFlags? customFlags)
 	{
 		var flags = SDL_WindowFlags.Shown;
@@ -66,12 +87,14 @@ public class DesktopApplication : IApplication
 		if (customFlags.HasValue) flags |= customFlags.Value;
 		return flags;
 	}
+
 	private void OnResize()
 	{
 		if (WindowSize == _lastWindowSize) return;
 		_lastWindowSize = WindowSize;
 		Events.Raise(new Events.SurfaceResizeEvent(WindowSize));
 	}
+
 	private bool OnClosing()
 	{
 		Events.Raise(new Events.SurfaceCloseEvent());

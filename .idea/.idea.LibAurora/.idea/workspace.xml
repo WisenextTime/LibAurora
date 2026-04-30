@@ -9,8 +9,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Graphics/Renderer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/NugetPack.ps1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene/GUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/ButtonBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/LabelBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/PanelBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/ScrollableLayoutBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/Style.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/StyleRenderer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/TextBoxBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene/GuiElement.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene/Scene.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Scene/SceneManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/UIScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/UIScene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Audio/AudioUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Audio/AudioUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Audio/BgmPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Audio/BgmPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Audio/IAudio.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Audio/IAudio.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Audio/SoundFx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Audio/SoundFx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopAudio.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopAudio.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopGraphics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopGraphics.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backends/Headless/HeadlessApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Headless/HeadlessApplication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backends/Headless/MockAudio.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Headless/MockAudio.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backends/Headless/MockInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Headless/MockInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/ApplicationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/ApplicationContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Events.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Events.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/IApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/IApplication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Debug/Exceptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Debug/Exceptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Debug/ILogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Debug/ILogger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Debug/LogServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Debug/LogServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/BackendCreateUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/BackendCreateUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/IGraphics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/IGraphics.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Input/IInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Input/IInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LibAurora.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/UIScene.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +84,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/933eac658342425985ad4421ec85542712200/f9/533e2023/UIView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/05/0795e489/GraphicsDeviceOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/13/9394f9ec/GraphicsDevice.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/40/213a2f08/ResourceLayoutDescription.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/66/306159e3/D3D11DeviceOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/77/14ddae30/CommandList.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/81/48005a34/ResourceFactory.cs" root0="FORCE_HIGHLIGHTING" />
@@ -76,6 +112,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/764e343132b1083dece1d9c654c4ba79ccf433e684daa767a4e2b893477238c/UIView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8053c4b7ee716b5c3738267265d579dcbeebfc189eab955636c6160f4f12d0/ExecutionEngineException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8335e859f099ddb6e31f3144cac82a132f5ea4f884568b784ecf955d74e31/Sdl2.Version.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8b5729d19433e98acebe411d6f25b2711c5c987685ddaf228a119e9154eb/Sdl2Window.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9530ae24b7c627d44957f64654fdc5fff2fa36536beef481ce97617c682d93c/Stream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/971e33c46cf067cf5af3be5f53d53ccdc946f22949898bca8a493f3f2e86dec/Boolean.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a2177bdb5d3b5c3a47d4da573f2262f54494431df696d6721696c7169484c6c2/Queue.cs" root0="FORCE_HIGHLIGHTING" />
@@ -95,6 +132,11 @@
     <setting file="file://$PROJECT_DIR$/src/Debug/ILogger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Debug/LogServer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/IGraphics.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Graphics/Renderer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Scene/GUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Scene/GUIs/StyleRenderer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Scene/Scene.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Scene/SceneManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -111,46 +153,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET 项目.Test.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET 项目.Test.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;PowerShell.NugetPack.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Shell Script.NugetPack.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.statistic.project.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;发布到文件夹.Pack.executor&quot;: &quot;Run&quot;,
+    &quot;发布到文件夹.未命名.executor&quot;: &quot;Run&quot;
   }
-}]]></component>
-  <component name="RunManager">
-    <configuration name="Test" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="ENV_FILE_PATHS" value="" />
-      <option name="REDIRECT_INPUT_PATH" value="" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="AUTO_ATTACH_CHILDREN" value="0" />
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/test/Test.csproj" />
-      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
-      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
-      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
-      <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
+}</component>
+  <component name="RunManager" selected="PowerShell.NugetPack">
+    <configuration name="Pack" type="DotNetFolderPublish" factoryName="Publish to folder">
+      <riderPublish configuration="Release" platform="Any CPU" target_folder="$PROJECT_DIR$/src/bin/Release/net10.0/publish" target_framework="net10.0" uuid_high="-4234107620055938952" uuid_low="864308633904852032" />
       <method v="2">
-        <option name="Build" />
+        <option name="Build Solution" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NugetPack" type="PowerShellRunType" factoryName="PowerShell" scriptUrl="D:\WisenextTime\LibAurora\src\NugetPack.ps1" executablePath="C:/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe">
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="PowerShell.NugetPack" />
+      <item itemvalue="发布到文件夹.Pack" />
+    </list>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -168,7 +207,28 @@
       <workItem from="1773581485391" duration="4058000" />
       <workItem from="1773644390208" duration="22339000" />
       <workItem from="1773740691503" duration="25625000" />
-      <workItem from="1773833377251" duration="2713000" />
+      <workItem from="1773833377251" duration="3957000" />
+      <workItem from="1773890182411" duration="3277000" />
+      <workItem from="1774005365080" duration="7000" />
+      <workItem from="1774014465133" duration="599000" />
+      <workItem from="1774779781846" duration="1503000" />
+      <workItem from="1774781446806" duration="1506000" />
+      <workItem from="1774851457716" duration="8000" />
+      <workItem from="1774851555328" duration="566000" />
+      <workItem from="1774916724388" duration="144000" />
+      <workItem from="1774916964656" duration="31000" />
+      <workItem from="1776181960956" duration="3008000" />
+      <workItem from="1776333730984" duration="265000" />
+      <workItem from="1776396089233" duration="7256000" />
+      <workItem from="1776484334751" duration="1821000" />
+      <workItem from="1776587427014" duration="4423000" />
+      <workItem from="1777466379053" duration="271000" />
+      <workItem from="1777467654041" duration="193000" />
+      <workItem from="1777467917159" duration="100000" />
+      <workItem from="1777471939292" duration="619000" />
+      <workItem from="1777525094728" duration="108000" />
+      <workItem from="1777531946087" duration="6274000" />
+      <workItem from="1777548101218" duration="43000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -194,7 +254,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773833927796</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactor(ui): complete UI system overhaul with event handling and container support&#10;&#10;- Replace single root element with stack-based UI management (PushUI/PopUI/ClearUI)&#10;- Add mouse event handling (OnMouseDown/OnMouseUp/OnMouseMove) with hit testing&#10;- Implement UIContainer class with child management and layout invalidation&#10;- Add comprehensive UIElement properties (position, size, padding, margin, visibility)&#10;- Support nested container hierarchy with proper parent-child relationships">
+      <option name="closed" value="true" />
+      <created>1773836116829</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1773836116829</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,13 +270,17 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.bat" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Init Co" />
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Update gitignore file" />
     <MESSAGE value="feat(core): add desktop application backend with audio, graphics, and input systems" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(core): add desktop application backend with audio, graphics, and input systems" />
+    <MESSAGE value="refactor(ui): complete UI system overhaul with event handling and container support&#10;&#10;- Replace single root element with stack-based UI management (PushUI/PopUI/ClearUI)&#10;- Add mouse event handling (OnMouseDown/OnMouseUp/OnMouseMove) with hit testing&#10;- Implement UIContainer class with child management and layout invalidation&#10;- Add comprehensive UIElement properties (position, size, padding, margin, visibility)&#10;- Support nested container hierarchy with proper parent-child relationships" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(ui): complete UI system overhaul with event handling and container support&#10;&#10;- Replace single root element with stack-based UI management (PushUI/PopUI/ClearUI)&#10;- Add mouse event handling (OnMouseDown/OnMouseUp/OnMouseMove) with hit testing&#10;- Implement UIContainer class with child management and layout invalidation&#10;- Add comprehensive UIElement properties (position, size, padding, margin, visibility)&#10;- Support nested container hierarchy with proper parent-child relationships" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -235,5 +307,9 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

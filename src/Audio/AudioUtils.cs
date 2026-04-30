@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using CSCore;
 using CSCore.Codecs.OGG;
 using CSCore.Codecs.WAV;
@@ -6,8 +7,16 @@ using LibAurora.Debug;
 using Silk.NET.OpenAL;
 namespace LibAurora.Audio;
 
+/// <summary>
+/// Static utilities for detecting, decoding, and querying audio formats.
+/// </summary>
 public static class AudioUtils
 {
+	/// <summary>
+	/// Detects the audio format of a stream by reading its header.
+	/// Supports WAV, Ogg Vorbis, MP3, and FLAC. Returns <see cref="AudioFormat.Unknown"/> on failure.
+	/// The stream position is restored after detection.
+	/// </summary>
 	public static AudioFormat Detect(Stream audioStream)
 	{
 		StreamSeekException.ThrowIf(!audioStream.CanSeek);
@@ -24,8 +33,8 @@ public static class AudioUtils
 				return AudioFormat.Flac;
 			if (header[0] == 0x49 && header[1] == 0x44 && header[2] == 0x33)
 				return AudioFormat.Mp3;
-			if (header[0] == 0xFF && (header[1] & 0xFE) == 0xFA || // MPEG1
-			    header[0] == 0xFF && (header[1] & 0xFE) == 0xF2) // MPEG2
+			if (header[0] == 0xFF && (header[1] & 0xFE) == 0xFA ||
+			    header[0] == 0xFF && (header[1] & 0xFE) == 0xF2)
 				return AudioFormat.Mp3;
 			if (header[0] == 0x52 &&
 			    header[1] == 0x49 &&
@@ -39,7 +48,11 @@ public static class AudioUtils
 				return AudioFormat.Wav;
 			throw new InvalidDataException("Unknown audio file format.");
 		}
-		catch
+		catch (IOException)
+		{
+			return AudioFormat.Unknown;
+		}
+		catch (InvalidDataException)
 		{
 			return AudioFormat.Unknown;
 		}
@@ -48,6 +61,8 @@ public static class AudioUtils
 			audioStream.Position = originalPosition;
 		}
 	}
+
+	/// <summary>Decodes an audio stream into an <see cref="IWaveSource"/>. Supports WAV and Ogg Vorbis.</summary>
 	public static IWaveSource Decode(Stream audioStream)
 	{
 		var format = Detect(audioStream);
@@ -55,13 +70,11 @@ public static class AudioUtils
 		{
 			AudioFormat.Wav => new WaveFileReader(audioStream),
 			AudioFormat.Ogg => new OggSource(audioStream).ToWaveSource(16),
-			AudioFormat.Mp3 => throw new UnsupportedAudioFormat(format),
-			AudioFormat.Flac => throw new UnsupportedAudioFormat(format),
-			AudioFormat.Unknown => throw new UnsupportedAudioFormat(format),
 			_ => throw new UnsupportedAudioFormat(format),
 		};
 	}
 
+	/// <summary>Maps a CSCore <see cref="WaveFormat"/> to the corresponding OpenAL <see cref="BufferFormat"/>.</summary>
 	public static BufferFormat GetFormat(WaveFormat format)
 	{
 		return (format.Channels, format.BitsPerSample) switch
@@ -70,7 +83,7 @@ public static class AudioUtils
 			(1, 8) => BufferFormat.Mono8,
 			(2, 16) => BufferFormat.Stereo16,
 			(2, 8) => BufferFormat.Stereo8,
-			_ => throw new AudioException("Unsupported audio format")
+			_ => throw new UnsupportedAudioFormat(AudioFormat.Unknown)
 		};
 	}
 }

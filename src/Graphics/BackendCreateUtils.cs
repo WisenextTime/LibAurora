@@ -7,11 +7,17 @@ using Veldrid.OpenGL;
 using Veldrid.Sdl2;
 namespace LibAurora.Utils;
 
+/// <summary>
+/// Utility class for detecting the best available graphics backend
+/// and creating the corresponding <see cref="GraphicsDevice"/>.
+/// </summary>
 public static class BackendCreateUtils
 {
+	/// <summary>Returns the first backend that is supported on this platform from the given candidates.</summary>
 	public static GraphicsBackend? TestValidBackend(params GraphicsBackend[] backends)
 		=> backends.First(GraphicsDevice.IsBackendSupported);
 
+	/// <summary>Creates a platform-appropriate <see cref="SwapchainSource"/> from a native window handle.</summary>
 	public static unsafe SwapchainSource GetSwapchainSource(IntPtr windowHandle)
 	{
 		SDL_SysWMinfo sysWmInfo;
@@ -20,33 +26,28 @@ public static class BackendCreateUtils
 
 		switch (sysWmInfo.subsystem)
 		{
-			case SysWMType.Windows: // Win32 supported.
+			case SysWMType.Windows:
 				var w32Info = Unsafe.Read<Win32WindowInfo>(&sysWmInfo.info);
 				return SwapchainSource.CreateWin32(w32Info.Sdl2Window, w32Info.hinstance);
-			case SysWMType.X11: // Linux X11 supported.
+			case SysWMType.X11:
 				var x11Info = Unsafe.Read<X11WindowInfo>(&sysWmInfo.info);
 				return SwapchainSource.CreateXlib(x11Info.display, x11Info.Sdl2Window);
-			case SysWMType.Wayland: // Linux Wayland supported.
+			case SysWMType.Wayland:
 				var wlInfo = Unsafe.Read<WaylandWindowInfo>(&sysWmInfo.info);
 				return SwapchainSource.CreateWayland(wlInfo.display, wlInfo.surface);
-			case SysWMType.Cocoa: // MacOS supported. Despite this, I dont have a Mac to compile the Mac version EOP.
+			case SysWMType.Cocoa:
 				var cocoaInfo = Unsafe.Read<CocoaWindowInfo>(&sysWmInfo.info);
 				return SwapchainSource.CreateNSWindow(cocoaInfo.Window);
-			case SysWMType.Android: // PART OF Android supported. Maybe I need more code to adapt to it in future.
+			case SysWMType.Android:
 				var androidInfo = Unsafe.Read<AndroidWindowInfo>(&sysWmInfo.info);
 				return SwapchainSource.CreateAndroidSurface(androidInfo.surface, androidInfo.window);
-			case SysWMType.UIKit: // I dont know why, but it seems that Veldrid does not support iOS.
-			case SysWMType.DirectFB: // Linux DirectFB. Why would you play games on an embedded device?
-			case SysWMType.Mir: // Ubuntu Mir, BUT WHY?
-			case SysWMType.WinRT: // UWP Application.
-			case SysWMType.Vivante: // I dont think you would enjoy playing games on an enbedded GPU device.
-			case SysWMType.Unknown: // Your device is living off thr grid.
 			default:
 				throw new UnsupportedPlatformException(sysWmInfo.subsystem);
 		}
 	}
 
-	public static GraphicsDevice CreateGraphicDevice(GraphicsBackend? backed,
+	/// <summary>Creates a <see cref="GraphicsDevice"/> for the specified backend and window.</summary>
+	public static GraphicsDevice CreateGraphicDevice(GraphicsBackend? backend,
 		Sdl2Window window, SwapchainSource swapchainSource, GraphicsDeviceOptions option)
 	{
 		var swapchainDesc = new SwapchainDescription(
@@ -56,7 +57,7 @@ public static class BackendCreateUtils
 			depthFormat: option.SwapchainDepthFormat,
 			syncToVerticalBlank: option.SyncToVerticalBlank,
 			colorSrgb: true);
-		return backed switch
+		return backend switch
 		{
 			GraphicsBackend.Direct3D11 => GraphicsDevice.CreateD3D11(option, swapchainDesc),
 			GraphicsBackend.Vulkan => GraphicsDevice.CreateVulkan(option, swapchainDesc),
@@ -68,7 +69,6 @@ public static class BackendCreateUtils
 			_ => throw new UnknownRenderBackendException(),
 		};
 	}
-
 
 	private static OpenGLPlatformInfo CreateOpenGlPlatformInfo(Sdl2Window window)
 	{

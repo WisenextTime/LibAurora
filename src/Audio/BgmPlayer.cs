@@ -4,6 +4,10 @@ using CSCore;
 using Silk.NET.OpenAL;
 namespace LibAurora.Audio;
 
+/// <summary>
+/// Streamed background music player using OpenAL buffer queuing.
+/// Supports multiple tracks, play/pause/resume/stop, volume control, and track management.
+/// </summary>
 public class BgmPlayer : IDisposable
 {
 	private const int BufferCount = 4;
@@ -14,8 +18,11 @@ public class BgmPlayer : IDisposable
 	private readonly byte[] _pcmBuffer = new byte[BufferSize];
 	private readonly uint _source;
 	private int _currentIndex;
-
+	private bool _isPaused;
 	private float _volume = 1.0f;
+
+	/// <summary>Creates a new BGM player from one or more audio streams.</summary>
+	/// <exception cref="ArgumentException">Thrown when no audio streams are provided.</exception>
 	public BgmPlayer(AL al, params IWaveSource[] audioStreams)
 	{
 		_al = al;
@@ -31,8 +38,14 @@ public class BgmPlayer : IDisposable
 		_buffers = new uint[BufferCount];
 		for (var i = 0; i < BufferCount; i++) _buffers[i] = _al.GenBuffer();
 	}
+
+	/// <summary>True while audio is actively playing (not paused or stopped).</summary>
 	public bool IsPlaying { get; private set; }
 
+	/// <summary>True while playback is paused. Use <see cref="Resume"/> to continue.</summary>
+	public bool IsPaused => _isPaused;
+
+	/// <summary>Volume level between 0.0 and 1.0.</summary>
 	public float Volume
 	{
 		get => _volume;
@@ -43,6 +56,7 @@ public class BgmPlayer : IDisposable
 		}
 	}
 
+	/// <summary>Releases all OpenAL buffers and the source.</summary>
 	public void Dispose()
 	{
 		Stop();
@@ -53,6 +67,8 @@ public class BgmPlayer : IDisposable
 		if (_source != 0) _al.DeleteSource(_source);
 		GC.SuppressFinalize(this);
 	}
+
+	/// <summary>Starts or restarts playback from the beginning of the current track.</summary>
 	public unsafe void Play()
 	{
 		if (IsPlaying) return;
@@ -73,12 +89,16 @@ public class BgmPlayer : IDisposable
 		}
 		fixed (uint* ptr = _buffers) _al.SourceQueueBuffers(_source, filledBuffers, ptr);
 		_al.SourcePlay(_source);
+		_isPaused = false;
 		IsPlaying = true;
 	}
+
+	/// <summary>Stops playback and resets the track position.</summary>
 	public unsafe void Stop()
 	{
 		if (!IsPlaying) return;
 		_al.SourceStop(_source);
+		_isPaused = false;
 		_al.GetSourceProperty(_source, GetSourceInteger.BuffersQueued, out var queued);
 		if (queued > 0)
 		{
@@ -88,16 +108,24 @@ public class BgmPlayer : IDisposable
 		IsPlaying = false;
 		_audios[_currentIndex].Position = 0;
 	}
+
+	/// <summary>Pauses playback. <see cref="IsPlaying"/> remains true; use <see cref="Resume"/> to continue.</summary>
 	public void Pause()
 	{
-		if (IsPlaying) _al.SourcePause(_source);
+		if (!IsPlaying || _isPaused) return;
+		_al.SourcePause(_source);
+		_isPaused = true;
 	}
+
+	/// <summary>Resumes playback after a pause. Has no effect if not paused or if stopped.</summary>
 	public void Resume()
 	{
-		if (IsPlaying) return;
+		if (!_isPaused || IsPlaying) return;
 		_al.SourcePlay(_source);
-		IsPlaying = true;
+		_isPaused = false;
 	}
+
+	/// <summary>Called each frame to refill processed buffers and advance to the next track if needed.</summary>
 	public unsafe void Update()
 	{
 		if (!IsPlaying) return;
@@ -119,13 +147,17 @@ public class BgmPlayer : IDisposable
 			}
 		}
 		_al.GetSourceProperty(_source, GetSourceInteger.SourceState, out var state);
-		if (IsPlaying && (SourceState)state != SourceState.Playing)
+		if (IsPlaying && !_isPaused && (SourceState)state != SourceState.Playing)
 		{
 			_al.SourcePlay(_source);
 		}
 	}
+
+	/// <summary>Adds a new track to the end of the playlist.</summary>
 	public void AddAudio(IWaveSource stream)
 		=> _audios.Add(stream);
+
+	/// <summary>Removes a track from the playlist. Adjusts current index if necessary.</summary>
 	public void RemoveAudio(IWaveSource stream)
 	{
 		var index = _audios.IndexOf(stream);
@@ -141,6 +173,7 @@ public class BgmPlayer : IDisposable
 			_currentIndex = (_currentIndex - 1 + _audios.Count) % _audios.Count;
 		}
 	}
+
 	private unsafe bool FillBuffer(uint buffer, IWaveSource stream)
 	{
 		var bytesRead = stream.Read(_pcmBuffer, 0, BufferSize);
@@ -152,6 +185,7 @@ public class BgmPlayer : IDisposable
 		}
 		return true;
 	}
+
 	private void NextTrack()
 	{
 		_currentIndex = (_currentIndex + 1) % _audios.Count;

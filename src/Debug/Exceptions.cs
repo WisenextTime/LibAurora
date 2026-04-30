@@ -1,6 +1,5 @@
 ﻿using System;
 using LibAurora.Audio;
-using Silk.NET.OpenAL;
 using Veldrid;
 using Veldrid.Sdl2;
 namespace LibAurora.Debug;
