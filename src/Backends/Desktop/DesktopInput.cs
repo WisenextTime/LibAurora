@@ -23,6 +23,7 @@ public class DesktopInput : IInput
 	private static bool _watchRegistered;
 	private readonly Dictionary<MouseButton, MouseEvent> _buttonStates = new();
 	private readonly Dictionary<Key, KeyEvent> _keyStates = new();
+	private readonly HashSet<Key> _pressedKeys = [];
 	private float _accumulatedWheelDelta;
 	private Vector2 _mousePosition = Vector2.Zero;
 	private Sdl2Window _window;
@@ -44,8 +45,9 @@ public class DesktopInput : IInput
 		=> _keyStates.TryGetValue(key, out var keyEvent) && keyEvent is { Down: true };
 
 	/// <inheritdoc />
+	/// <remarks>Consumed on read; returns true only once per press.</remarks>
 	public bool IsKeyPressed(Key key)
-		=> _keyStates.TryGetValue(key, out var keyEvent) && keyEvent is { Down: true, Repeat: false };
+		=> _pressedKeys.Remove(key);
 
 	/// <inheritdoc />
 	public bool IsMouseButtonDown(MouseButton button)
@@ -62,9 +64,18 @@ public class DesktopInput : IInput
 		return delta;
 	}
 
+	/// <summary>Sets the text input rectangle for IME candidate window positioning.</summary>
+	public void SetTextInputRect(uint x, uint y, uint w, uint h)
+	{
+		var rect = new SDL_Rect { x = (int)x, y = (int)y, w = (int)w, h = (int)h };
+		SDL_SetTextInputRect(ref rect);
+	}
+
 	[DllImport("SDL2")] private static extern void SDL_StartTextInput();
 
 	[DllImport("SDL2")] private static extern void SDL_AddEventWatch(SDL_EventFilter filter, IntPtr userdata);
+
+	[DllImport("SDL2")] private static extern void SDL_SetTextInputRect(ref SDL_Rect rect);
 
 	/// <summary>Enables SDL2 text input and registers the global event watch. Call once after window creation.</summary>
 	public static void EnableTextInput()
@@ -88,8 +99,16 @@ public class DesktopInput : IInput
 		return 1;
 	}
 
-	private void OnKeyDown(KeyEvent keyEvent) => _keyStates[keyEvent.Key] = keyEvent;
-	private void OnKeyUp(KeyEvent keyEvent) => _keyStates[keyEvent.Key] = keyEvent;
+	private void OnKeyDown(KeyEvent keyEvent)
+	{
+		_keyStates[keyEvent.Key] = keyEvent;
+		if (!keyEvent.Repeat) _pressedKeys.Add(keyEvent.Key);
+	}
+	private void OnKeyUp(KeyEvent keyEvent)
+	{
+		_keyStates[keyEvent.Key] = keyEvent;
+		_pressedKeys.Remove(keyEvent.Key);
+	}
 	private void OnMouseUp(MouseEvent mouseEvent) => _buttonStates.Remove(mouseEvent.MouseButton);
 	private void OnMouseMove(MouseMoveEventArgs mouseMoveEvent) => _mousePosition = mouseMoveEvent.MousePosition;
 	private void OnMouseDown(MouseEvent mouseEvent) => _buttonStates[mouseEvent.MouseButton] = mouseEvent;
@@ -97,6 +116,15 @@ public class DesktopInput : IInput
 	{
 		_accumulatedWheelDelta += wheelEvent.WheelDelta;
 		Events.Raise(new Events.MouseWheelEvent(wheelEvent.WheelDelta < 0));
+	}
+
+	[StructLayout(LayoutKind.Sequential)]
+	private struct SDL_Rect
+	{
+		public int x;
+		public int y;
+		public int w;
+		public int h;
 	}
 
 	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate int SDL_EventFilter(IntPtr userdata, IntPtr sdlevent);

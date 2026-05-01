@@ -40,6 +40,8 @@ public class Gui(StyleRenderer renderer) : Scene
 			if (input.IsKeyPressed(key))
 				tb.HandleKeyInput(key);
 		}
+		var (cX, cY) = tb.AbsolutePosition;
+		input.SetTextInputRect(cX, cY, tb.Size.X, tb.Size.Y);
 	}
 
 	/// <inheritdoc />

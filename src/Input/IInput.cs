@@ -22,4 +22,7 @@ public interface IInput
 
 	/// <summary>Returns the accumulated mouse wheel delta since the last call, then resets to zero.</summary>
 	public float GetMouseWheelDelta();
+
+	/// <summary>Sets the text input rectangle for IME candidate window positioning. No-op on platforms without IME.</summary>
+	public void SetTextInputRect(uint x, uint y, uint w, uint h) { }
 }

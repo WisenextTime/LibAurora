@@ -8,14 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LibAurora.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/GUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GUIs/ScrollableLayoutBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/GUIs/ScrollableLayoutBase.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -199,7 +192,7 @@
       <workItem from="1777531946087" duration="6274000" />
       <workItem from="1777548101218" duration="43000" />
       <workItem from="1777562472140" duration="45000" />
-      <workItem from="1777596208302" duration="1103000" />
+      <workItem from="1777596208302" duration="1141000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -241,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777562497563</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="refactor(input): centralize text input handling using SDL event watch&#10;&#10;Move character input processing from GUI to DesktopInput, utilizing SDL_AddEventWatch for reliable text events. Remove deprecated input polling from GUI, update ScrollableLayoutBase, and bump project version to 0.2.0.">
+      <option name="closed" value="true" />
+      <created>1777597386914</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1777597386914</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,7 +261,8 @@
     <MESSAGE value="feat(core): add desktop application backend with audio, graphics, and input systems" />
     <MESSAGE value="refactor(ui): complete UI system overhaul with event handling and container support&#10;&#10;- Replace single root element with stack-based UI management (PushUI/PopUI/ClearUI)&#10;- Add mouse event handling (OnMouseDown/OnMouseUp/OnMouseMove) with hit testing&#10;- Implement UIContainer class with child management and layout invalidation&#10;- Add comprehensive UIElement properties (position, size, padding, margin, visibility)&#10;- Support nested container hierarchy with proper parent-child relationships" />
     <MESSAGE value="feat(core): add GUI system, scene management, and renderer implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(core): add GUI system, scene management, and renderer implementation" />
+    <MESSAGE value="refactor(input): centralize text input handling using SDL event watch&#10;&#10;Move character input processing from GUI to DesktopInput, utilizing SDL_AddEventWatch for reliable text events. Remove deprecated input polling from GUI, update ScrollableLayoutBase, and bump project version to 0.2.0." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(input): centralize text input handling using SDL event watch&#10;&#10;Move character input processing from GUI to DesktopInput, utilizing SDL_AddEventWatch for reliable text events. Remove deprecated input polling from GUI, update ScrollableLayoutBase, and bump project version to 0.2.0." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
