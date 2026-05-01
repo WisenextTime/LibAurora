@@ -14,13 +14,13 @@ namespace LibAurora.Scene;
 public class Gui(StyleRenderer renderer) : Scene
 {
 	private const double RepeatDelay = 0.4;
-	private const double RepeatInterval = 0.2;
-	private static readonly Key[] _editingKeys =
+	private const double RepeatInterval = 0.1;
+	private readonly static Key[] _editingKeys =
 	[
 		Key.BackSpace, Key.Delete, Key.Left, Key.Right, Key.Home, Key.End,
 		Key.Enter, Key.Up, Key.Down
 	];
-	private static readonly Dictionary<Key, (double PressTime, double LastRepeat)> _keyRepeat = [];
+	private readonly static Dictionary<Key, (double PressTime, double LastRepeat)> _keyRepeat = [];
 	private double _totalTime;
 
 	/// <summary>The root element of the GUI tree.</summary>

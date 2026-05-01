@@ -9,12 +9,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/MultilineTextBoxBase.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LibAurora.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Scene/GUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/GUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GUIs/TextBoxBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/GUIs/TextBoxBase.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +198,8 @@
       <workItem from="1777562472140" duration="45000" />
       <workItem from="1777596208302" duration="1141000" />
       <workItem from="1777597770441" duration="43000" />
-      <workItem from="1777598049663" duration="341000" />
+      <workItem from="1777598049663" duration="448000" />
+      <workItem from="1777598555713" duration="299000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -259,7 +257,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777597791034</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat(core): add multiline text input base and key repeat support&#10;&#10;- Add MultilineTextBoxBase class extending TextBoxBase with line-aware navigation (Enter, Up/Down, Home/End)&#10;- Update GUI.cs to support key repeat for edit keys (BackSpace, Delete, arrows) after hold delay&#10;- Bump project version from 0.2.0 to 0.2.2&#10;- Minor whitespace/line-ending normalization in DesktopInput.cs, TextBoxBase.cs, and project file">
+      <option name="closed" value="true" />
+      <created>1777598404242</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1777598404242</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +286,8 @@
     <MESSAGE value="feat(core): add GUI system, scene management, and renderer implementation" />
     <MESSAGE value="refactor(input): centralize text input handling using SDL event watch&#10;&#10;Move character input processing from GUI to DesktopInput, utilizing SDL_AddEventWatch for reliable text events. Remove deprecated input polling from GUI, update ScrollableLayoutBase, and bump project version to 0.2.0." />
     <MESSAGE value="refactor(core): normalize line endings in input and GUI files" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(core): normalize line endings in input and GUI files" />
+    <MESSAGE value="feat(core): add multiline text input base and key repeat support&#10;&#10;- Add MultilineTextBoxBase class extending TextBoxBase with line-aware navigation (Enter, Up/Down, Home/End)&#10;- Update GUI.cs to support key repeat for edit keys (BackSpace, Delete, arrows) after hold delay&#10;- Bump project version from 0.2.0 to 0.2.2&#10;- Minor whitespace/line-ending normalization in DesktopInput.cs, TextBoxBase.cs, and project file" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(core): add multiline text input base and key repeat support&#10;&#10;- Add MultilineTextBoxBase class extending TextBoxBase with line-aware navigation (Enter, Up/Down, Home/End)&#10;- Update GUI.cs to support key repeat for edit keys (BackSpace, Delete, arrows) after hold delay&#10;- Bump project version from 0.2.0 to 0.2.2&#10;- Minor whitespace/line-ending normalization in DesktopInput.cs, TextBoxBase.cs, and project file" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
