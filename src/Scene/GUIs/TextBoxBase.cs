@@ -92,7 +92,7 @@ public abstract class TextBoxBase : GuiElement
 	}
 
 	/// <summary>Handles keyboard navigation and editing keys (backspace, delete, arrows, home, end).</summary>
-	public void HandleKeyInput(Key key)
+	public virtual void HandleKeyInput(Key key)
 	{
 		if (!Focused) return;
 		var old = _text;

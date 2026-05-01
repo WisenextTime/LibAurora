@@ -19,7 +19,7 @@ public class DesktopInput : IInput
 {
 
 	private const uint SdlTextInputEventType = 0x303;
-	private static readonly SDL_EventFilter _textInputFilter = OnTextInputEvent;
+	private static readonly SdlEventFilter _textInputFilter = OnTextInputEvent;
 	private static bool _watchRegistered;
 	private readonly Dictionary<MouseButton, MouseEvent> _buttonStates = new();
 	private readonly Dictionary<Key, KeyEvent> _keyStates = new();
@@ -67,15 +67,15 @@ public class DesktopInput : IInput
 	/// <summary>Sets the text input rectangle for IME candidate window positioning.</summary>
 	public void SetTextInputRect(uint x, uint y, uint w, uint h)
 	{
-		var rect = new SDL_Rect { x = (int)x, y = (int)y, w = (int)w, h = (int)h };
+		var rect = new SdlRect { x = (int)x, y = (int)y, w = (int)w, h = (int)h };
 		SDL_SetTextInputRect(ref rect);
 	}
 
 	[DllImport("SDL2")] private static extern void SDL_StartTextInput();
 
-	[DllImport("SDL2")] private static extern void SDL_AddEventWatch(SDL_EventFilter filter, IntPtr userdata);
+	[DllImport("SDL2")] private static extern void SDL_AddEventWatch(SdlEventFilter filter, IntPtr userdata);
 
-	[DllImport("SDL2")] private static extern void SDL_SetTextInputRect(ref SDL_Rect rect);
+	[DllImport("SDL2")] private static extern void SDL_SetTextInputRect(ref SdlRect rect);
 
 	/// <summary>Enables SDL2 text input and registers the global event watch. Call once after window creation.</summary>
 	public static void EnableTextInput()
@@ -119,7 +119,7 @@ public class DesktopInput : IInput
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
-	private struct SDL_Rect
+	private struct SdlRect
 	{
 		public int x;
 		public int y;
@@ -127,7 +127,7 @@ public class DesktopInput : IInput
 		public int h;
 	}
 
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate int SDL_EventFilter(IntPtr userdata, IntPtr sdlevent);
+	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate int SdlEventFilter(IntPtr userdata, IntPtr sdlevent);
 
 	[StructLayout(LayoutKind.Sequential)]
 	private struct RawTextInputEvent
