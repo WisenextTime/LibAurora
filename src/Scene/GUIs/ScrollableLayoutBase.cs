@@ -35,10 +35,15 @@ public abstract class ScrollableLayoutBase : GuiContainer
 	public override bool HandleInput()
 	{
 		if (!Visible || !Enabled || Input == null) return false;
+		var handled = false;
+		if (!IsPointInside(Input.GetMousePosition())) return base.HandleInput() || handled;
 		var wheelDelta = Input.GetMouseWheelDelta();
 		if (wheelDelta != 0)
+		{
 			ScrollBy(new Vector2(0, -wheelDelta * ScrollSpeed));
-		return base.HandleInput() || wheelDelta != 0;
+			handled = true;
+		}
+		return base.HandleInput() || handled;
 	}
 
 	/// <summary>Scrolls the content by the given delta in pixels.</summary>

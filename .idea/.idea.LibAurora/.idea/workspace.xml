@@ -9,43 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Graphics/Renderer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/NugetPack.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/GUI.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/ButtonBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/LabelBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/PanelBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/ScrollableLayoutBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/Style.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/StyleRenderer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/GUIs/TextBoxBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/GuiElement.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/Scene.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/SceneManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Audio/AudioUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Audio/AudioUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Audio/BgmPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Audio/BgmPlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Audio/IAudio.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Audio/IAudio.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Audio/SoundFx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Audio/SoundFx.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopAudio.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopAudio.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopGraphics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopGraphics.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Headless/HeadlessApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Headless/HeadlessApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Headless/MockAudio.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Headless/MockAudio.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Headless/MockInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Headless/MockInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/ApplicationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/ApplicationContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Events.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Events.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/IApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/IApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Debug/Exceptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Debug/Exceptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Debug/ILogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Debug/ILogger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Debug/LogServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Debug/LogServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/BackendCreateUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/BackendCreateUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/IGraphics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/IGraphics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Input/IInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Input/IInput.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LibAurora.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/UIScene.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scene/GUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/GUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scene/GUIs/ScrollableLayoutBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/GUIs/ScrollableLayoutBase.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,6 +198,8 @@
       <workItem from="1777525094728" duration="108000" />
       <workItem from="1777531946087" duration="6274000" />
       <workItem from="1777548101218" duration="43000" />
+      <workItem from="1777562472140" duration="45000" />
+      <workItem from="1777596208302" duration="1103000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -262,7 +233,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773836116829</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat(core): add GUI system, scene management, and renderer implementation">
+      <option name="closed" value="true" />
+      <created>1777562497563</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1777562497563</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +259,8 @@
     <MESSAGE value="Update gitignore file" />
     <MESSAGE value="feat(core): add desktop application backend with audio, graphics, and input systems" />
     <MESSAGE value="refactor(ui): complete UI system overhaul with event handling and container support&#10;&#10;- Replace single root element with stack-based UI management (PushUI/PopUI/ClearUI)&#10;- Add mouse event handling (OnMouseDown/OnMouseUp/OnMouseMove) with hit testing&#10;- Implement UIContainer class with child management and layout invalidation&#10;- Add comprehensive UIElement properties (position, size, padding, margin, visibility)&#10;- Support nested container hierarchy with proper parent-child relationships" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(ui): complete UI system overhaul with event handling and container support&#10;&#10;- Replace single root element with stack-based UI management (PushUI/PopUI/ClearUI)&#10;- Add mouse event handling (OnMouseDown/OnMouseUp/OnMouseMove) with hit testing&#10;- Implement UIContainer class with child management and layout invalidation&#10;- Add comprehensive UIElement properties (position, size, padding, margin, visibility)&#10;- Support nested container hierarchy with proper parent-child relationships" />
+    <MESSAGE value="feat(core): add GUI system, scene management, and renderer implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(core): add GUI system, scene management, and renderer implementation" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
