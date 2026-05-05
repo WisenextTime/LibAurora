@@ -29,6 +29,8 @@ public interface IApplication : IDisposable
 
 	/// <summary>Pumps OS events and updates subsystems once per frame.</summary>
 	public void Update();
+	/// <summary>Raise when the application received a closing event. </summary>
+	public event Func<bool> OnCloseEventHandler;
 }
 /// <summary>Identifies the target platform / backend type.</summary>
 public enum ApplicationType

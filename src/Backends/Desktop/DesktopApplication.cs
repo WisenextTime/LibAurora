@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Numerics;
 using LibAurora.Core;
+using LibAurora.Resources;
 using Veldrid;
 using Veldrid.Sdl2;
 namespace LibAurora.Backends.Desktop;
@@ -32,7 +33,7 @@ public class DesktopApplication : IApplication
 	/// <inheritdoc />
 	public ApplicationContext Run(WindowCreateArguments args, SDL_WindowFlags? customFlags = null)
 	{
-		if (IsRunning) throw new InvalidOperationException("Already running");
+		if (IsRunning) throw new InvalidOperationException("Application already running");
 		IsRunning = true;
 		var flags = ParseFlags(args, customFlags);
 		var graphics = new DesktopGraphics();
@@ -53,6 +54,7 @@ public class DesktopApplication : IApplication
 			Graphics = graphics,
 			Input = _input,
 			Audio = _audio,
+			Resources = new DesktopResources(Name),
 		};
 	}
 
@@ -80,6 +82,9 @@ public class DesktopApplication : IApplication
 		_audio?.Update();
 	}
 
+	/// <inheritdoc />
+	public event Func<bool>? OnCloseEventHandler;
+
 	private static SDL_WindowFlags ParseFlags(WindowCreateArguments args, SDL_WindowFlags? customFlags)
 	{
 		var flags = SDL_WindowFlags.Shown;
@@ -95,10 +100,10 @@ public class DesktopApplication : IApplication
 		_lastWindowSize = WindowSize;
 		Events.Raise(new Events.SurfaceResizeEvent(WindowSize));
 	}
-
 	private bool OnClosing()
 	{
-		Events.Raise(new Events.SurfaceCloseEvent());
-		return true;
+		var value = OnCloseEventHandler?.Invoke() ?? true;
+		if (!value) IsRunning = false;
+		return value;
 	}
 }

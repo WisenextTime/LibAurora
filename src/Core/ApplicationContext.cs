@@ -1,6 +1,7 @@
 ﻿using LibAurora.Audio;
 using LibAurora.Graphics;
 using LibAurora.Input;
+using LibAurora.Resources;
 namespace LibAurora.Core;
 
 /// <summary>
@@ -20,4 +21,7 @@ public class ApplicationContext
 
 	/// <summary>The audio provider.</summary>
 	public required IAudio Audio { get; init; }
+
+	/// <summary>The file-io provider.</summary>
+	public required IResources Resources { get; init; }
 }

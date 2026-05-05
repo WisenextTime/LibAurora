@@ -1,5 +1,6 @@
 ﻿using System;
 using LibAurora.Core;
+using LibAurora.Resources;
 using Veldrid.Sdl2;
 namespace LibAurora.Backends.Headless;
 
@@ -10,7 +11,7 @@ namespace LibAurora.Backends.Headless;
 public class HeadlessApplication : IApplication
 {
 	/// <inheritdoc />
-	public string Name { get; init; } = "Headless LibAurora Application";
+	public string Name { get; init; } = "LibAuroraApplication";
 
 	/// <inheritdoc />
 	public bool IsRunning { get; private set; }
@@ -24,19 +25,22 @@ public class HeadlessApplication : IApplication
 	/// <inheritdoc />
 	public ApplicationContext Run(WindowCreateArguments args, SDL_WindowFlags? customFlags = null)
 	{
-		if (IsRunning) throw new InvalidOperationException("Already running");
+		ObjectDisposedException.ThrowIf(IsDisposed, typeof(HeadlessApplication));
+		if (IsRunning) throw new InvalidOperationException("Application already running");
 		IsRunning = true;
 		return new ApplicationContext
 		{
 			Application = this,
 			Input = new MockInput(),
 			Audio = new MockAudio(),
+			Resources = new DesktopResources(Name),
 		};
 	}
 
 	/// <inheritdoc />
 	public void Exit()
 	{
+		ObjectDisposedException.ThrowIf(IsDisposed, typeof(HeadlessApplication));
 		IsRunning = false;
 	}
 
@@ -44,10 +48,14 @@ public class HeadlessApplication : IApplication
 	public void Update() { }
 
 	/// <inheritdoc />
+	public event Func<bool>? OnCloseEventHandler;
+
+	/// <inheritdoc />
 	public void Dispose()
 	{
 		ObjectDisposedException.ThrowIf(IsDisposed, typeof(HeadlessApplication));
 		IsDisposed = true;
+		Exit();
 		GC.SuppressFinalize(this);
 	}
 }

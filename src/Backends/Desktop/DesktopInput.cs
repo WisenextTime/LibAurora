@@ -19,7 +19,7 @@ public class DesktopInput : IInput
 {
 
 	private const uint SdlTextInputEventType = 0x303;
-	private static readonly SdlEventFilter _textInputFilter = OnTextInputEvent;
+	private readonly static SdlEventFilter _textInputFilter = OnTextInputEvent;
 	private static bool _watchRegistered;
 	private readonly Dictionary<MouseButton, MouseEvent> _buttonStates = new();
 	private readonly Dictionary<Key, KeyEvent> _keyStates = new();

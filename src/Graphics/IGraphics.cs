@@ -30,5 +30,5 @@ public interface IGraphics
 	public void EndFrame();
 
 	/// <summary>Creates a renderer of type <typeparamref name="T"/> using the given factory function.</summary>
-	public T CreateRenderer<T>(Func<IGraphics, T> factory) where T : Renderer => factory(this);
+	public T CreateRenderer<T>(Func<IGraphics, T> factory) where T : IRenderer => factory(this);
 }

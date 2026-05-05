@@ -7,23 +7,23 @@ namespace LibAurora.Graphics;
 /// and provides convenient access to the Veldrid device, command list, and factory.
 /// Subclasses implement <see cref="Begin"/> and <see cref="End"/> to record draw commands.
 /// </summary>
-public abstract class Renderer(IGraphics graphics)
+public interface IRenderer
 {
 	/// <summary>The Veldrid graphics device.</summary>
-	public GraphicsDevice GraphicsDevice => graphics.Device;
+	public GraphicsDevice GraphicsDevice { get; }
 
 	/// <summary>The command list for recording draw commands.</summary>
-	public CommandList CommandList => graphics.CommandList;
+	public CommandList CommandList { get; }
 
 	/// <summary>The resource factory for creating GPU resources.</summary>
-	public ResourceFactory Factory => graphics.Factory;
+	public ResourceFactory Factory { get; }
 
 	/// <summary>The current window size as a <see cref="Vector2"/>.</summary>
-	public Vector2 WindowSize => new(graphics.ViewportWidth, graphics.ViewportHeight);
+	public Vector2 WindowSize { get; }
 
 	/// <summary>Called at the start of a render pass to set up state.</summary>
-	public abstract void Begin();
+	public void Begin();
 
 	/// <summary>Called at the end of a render pass to finalize and submit commands.</summary>
-	public abstract void End();
+	public void End();
 }

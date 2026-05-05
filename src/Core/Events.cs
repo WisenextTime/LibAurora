@@ -10,7 +10,7 @@ namespace LibAurora.Core;
 /// </summary>
 public static class Events
 {
-	private static readonly Dictionary<Type, Delegate?> _eventHandlers = new();
+	private readonly static Dictionary<Type, Delegate?> _eventHandlers = new();
 
 	/// <summary>
 	/// Subscribes a handler to events of type <typeparamref name="T"/>.
@@ -48,9 +48,6 @@ public static class Events
 		public readonly Vector2 Size = size;
 	}
 
-	/// <summary>Raised when the window/surface is requested to close.</summary>
-	public readonly struct SurfaceCloseEvent;
-
 	/// <summary>Raised when the mouse wheel is scrolled. <c>IsDown</c> is true for scroll-down.</summary>
 	public readonly struct MouseWheelEvent(bool isDown)
 	{
@@ -58,12 +55,9 @@ public static class Events
 		public bool IsUp => !isDown;
 	}
 
-	/// <summary>Raised when a GUI element is clicked.</summary>
-	public readonly record struct ClickEvent(GuiElement Source, Vector2 Position);
-
 	/// <summary>Raised when a character is typed via keyboard.</summary>
-	public readonly record struct TextInputEvent(char Character);
-
-	/// <summary>Raised when a value on a GUI element changes.</summary>
-	public readonly record struct ValueChangedEvent<T>(GuiElement Source, T OldValue, T NewValue);
+	public readonly struct TextInputEvent(char character)
+	{
+		public readonly char Character = character;
+	}
 }

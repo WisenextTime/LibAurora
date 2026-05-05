@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Numerics;
-using LibAurora.Input;
-using LibAurora.Scene.GUIs;
+using LibAurora.Scene.Gui;
 namespace LibAurora.Scene;
 
 /// <summary>
@@ -12,29 +12,23 @@ namespace LibAurora.Scene;
 /// </summary>
 public abstract class GuiElement
 {
-
 	/// <summary>Position of the element relative to its parent.</summary>
-	public (uint X, uint Y) Position = (0, 0);
+	public virtual (uint X, uint Y) Position { get; set; } = (0, 0);
 
 	/// <summary>Size of the element in pixels.</summary>
-	public (uint X, uint Y) Size = (0, 0);
-	/// <summary>Static input source shared across all GUI elements.</summary>
-	public static IInput? Input { get; set; }
-
-	/// <summary>The currently focused element, or null if none.</summary>
-	public static GuiElement? FocusedElement { get; private set; }
+	public virtual (uint X, uint Y) Size { get; set; } = (0, 0);
 
 	/// <summary>The parent container, or null if this is the root element.</summary>
-	public GuiContainer? Parent { get; internal set; }
+	public GuiElement? Parent { get; set; }
 
 	/// <summary>When false, the element is invisible and skips drawing.</summary>
 	public bool Visible { get; set; } = true;
 
-	/// <summary>When false, the element ignores all input.</summary>
+	/// <summary>When false, the element ignores all input and update.</summary>
 	public bool Enabled { get; set; } = true;
 
-	/// <summary>True if this element currently holds focus.</summary>
-	public bool Focused => FocusedElement == this;
+	/// <summary>When true, the element has unique behavior.</summary>
+	public bool Focused { get; set; } = false;
 
 	/// <summary>
 	/// The absolute position of this element in window coordinates,
@@ -44,16 +38,19 @@ public abstract class GuiElement
 	{
 		get
 		{
-			var x = Position.X;
-			var y = Position.Y;
-			var parent = Parent;
-			while (parent != null)
-			{
-				x += parent.Position.X;
-				y += parent.Position.Y;
-				parent = parent.Parent;
-			}
+			var x = Position.X + Parent?.AbsolutePosition.X ?? 0;
+			var y = Position.Y + Parent?.AbsolutePosition.Y ?? 0;
 			return (x, y);
+		}
+	}
+
+	/// <summary>Get the bounds of this element </summary>
+	public RectangleF Bounds
+	{
+		get
+		{
+			var (x, y) = AbsolutePosition;
+			return new RectangleF(x, y, Size.X, Size.Y);
 		}
 	}
 
@@ -75,30 +72,6 @@ public abstract class GuiElement
 		       point.Y >= ay &&
 		       point.Y <= ay + Size.Y;
 	}
-
-	/// <summary>Requests focus for the specified element, notifying previous and new holder.</summary>
-	public static void RequestFocus(GuiElement element)
-	{
-		if (FocusedElement == element) return;
-		var previous = FocusedElement;
-		FocusedElement = element;
-		previous?.OnFocusLost();
-		element.OnFocusGained();
-	}
-
-	/// <summary>Releases focus from the currently focused element.</summary>
-	public static void ReleaseFocus()
-	{
-		if (FocusedElement == null) return;
-		FocusedElement.OnFocusLost();
-		FocusedElement = null;
-	}
-
-	/// <summary>Called when this element gains focus.</summary>
-	protected virtual void OnFocusGained() { }
-
-	/// <summary>Called when this element loses focus.</summary>
-	protected virtual void OnFocusLost() { }
 }
 /// <summary>
 /// A GUI element that contains and manages child elements.
@@ -107,6 +80,16 @@ public abstract class GuiElement
 public abstract class GuiContainer : GuiElement
 {
 	private readonly List<GuiElement> _elements = [];
+
+	public override (uint X, uint Y) Size
+	{
+		get;
+		set
+		{
+			field = value;
+			UpdateLayout();
+		}
+	}
 
 	/// <summary>Read-only view of child elements.</summary>
 	public IReadOnlyList<GuiElement> Children => _elements;
@@ -118,6 +101,7 @@ public abstract class GuiContainer : GuiElement
 			throw new InvalidOperationException("Element already belongs to another container.");
 		element.Parent = this;
 		_elements.Add(element);
+		UpdateLayout();
 	}
 
 	/// <summary>Removes a child element. Releases focus if the removed element was focused.</summary>
@@ -125,13 +109,12 @@ public abstract class GuiContainer : GuiElement
 	{
 		_elements.Remove(element);
 		element.Parent = null;
-		if (FocusedElement == element) ReleaseFocus();
+		UpdateLayout();
 	}
 
 	/// <inheritdoc />
 	public override void Update(double delta)
 	{
-		UpdateLayout();
 		foreach (var element in _elements)
 			element.Update(delta);
 	}
@@ -147,7 +130,6 @@ public abstract class GuiContainer : GuiElement
 		foreach (var element in _elements)
 			element.Draw(renderer);
 		DrawAfterChildren(renderer);
-		renderer.ResetClip();
 	}
 
 	/// <summary>Called before drawing children. Default pushes a clip region matching this container.</summary>
