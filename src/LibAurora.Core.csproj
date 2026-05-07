@@ -26,12 +26,4 @@
         <EmbeddedResource Include="Shaders\**"/>
     </ItemGroup>
 
-    <PropertyGroup>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <None Include="..\LICENSE" Pack="true" PackagePath=""/>
-    </ItemGroup>
-
 </Project>
