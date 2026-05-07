@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="src/LibAurora.csproj" />
-    <Project Path="Test/Test.csproj"/>
+  <Project Path="src/LibAurora.Core.csproj"/>
+  <Project Path="Test/Test.csproj"/>
 </Solution>
