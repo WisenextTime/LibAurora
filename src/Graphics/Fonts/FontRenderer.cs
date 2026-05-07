@@ -66,7 +66,7 @@ public unsafe class FontRenderer : IRenderer, IFontStashRenderer2, IDisposable
 			new VertexElementDescription("LayerIndex", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float1),
 			new VertexElementDescription("Color", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float4));
 
-		var fb = device.SwapchainFramebuffer;
+		var fb = _graphics.Device.SwapchainFramebuffer;
 		var outputDesc = fb?.OutputDescription ??
 		                 new OutputDescription(null,
 			                 new OutputAttachmentDescription(PixelFormat.B8_G8_R8_A8_UNorm_SRgb));

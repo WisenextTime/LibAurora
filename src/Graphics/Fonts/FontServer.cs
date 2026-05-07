@@ -15,7 +15,7 @@ namespace LibAurora.Graphics.Fonts;
 /// </summary>
 public static class FontServer
 {
-	private static readonly Dictionary<int, SpriteFontBase> _fonts = [];
+	private readonly static Dictionary<int, SpriteFontBase> _fonts = [];
 	private static FontSystem? _system;
 	private static FontRenderer? _renderer;
 
@@ -64,7 +64,7 @@ public static class FontServer
 	/// <param name="origin">Rotation origin point relative to the text.</param>
 	/// <param name="scale">Scale factor applied to the text.</param>
 	public static void DrawText(string text, Vector2 position, int fontSize, RgbaFloat color,
-		float rotation = 0f, Vector2 origin = default, Vector2 scale = default)
+		float rotation = 0f, Vector2 origin = default, Vector2? scale = null)
 	{
 		if (!_fonts.TryGetValue(fontSize, out var font))
 		{

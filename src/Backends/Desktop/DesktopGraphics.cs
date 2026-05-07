@@ -55,14 +55,26 @@ public class DesktopGraphics : IGraphics
 	public ResourceFactory Factory => Device.ResourceFactory;
 
 	/// <inheritdoc />
+	public PixelFormat? SwapchainColorFormat
+	{
+		get
+		{
+			var fb = _device?.SwapchainFramebuffer;
+			var attachments = fb?.OutputDescription.ColorAttachments;
+			return attachments is { Length: > 0 } ? attachments[0].Format : null;
+		}
+	}
+
+	/// <inheritdoc />
+	public PixelFormat? SwapchainDepthFormat
+		=> _device?.SwapchainFramebuffer?.OutputDescription.DepthAttachment?.Format;
+
+	/// <inheritdoc />
 	public void BeginFrame()
 	{
 		if (_isRendering) throw new InvalidOperationException("Rendering already begun.");
 		_isRendering = true;
 		CommandList.Begin();
-		if (Device.SwapchainFramebuffer == null) return;
-		CommandList.SetFramebuffer(Device.SwapchainFramebuffer);
-		CommandList.ClearColorTarget(0, RgbaFloat.Black);
 	}
 
 	/// <inheritdoc />
@@ -73,6 +85,30 @@ public class DesktopGraphics : IGraphics
 		CommandList.End();
 		Device.SubmitCommands(CommandList);
 		Device.SwapBuffers();
+	}
+
+	/// <inheritdoc />
+	public RenderTarget CreateRenderTarget(uint width, uint height, bool withDepth = false)
+	{
+		var colorFormat = SwapchainColorFormat ?? PixelFormat.B8_G8_R8_A8_UNorm_SRgb;
+		PixelFormat? depthFormat = withDepth ? SwapchainDepthFormat ?? PixelFormat.D24_UNorm_S8_UInt : null;
+
+		var colorDesc = TextureDescription.Texture2D(width, height, 1, 1, colorFormat,
+			TextureUsage.RenderTarget | TextureUsage.Sampled);
+		var colorTexture = Factory.CreateTexture(colorDesc);
+		var colorView = Factory.CreateTextureView(colorTexture);
+
+		Texture? depthTexture = null;
+		if (depthFormat.HasValue)
+		{
+			var depthDesc = TextureDescription.Texture2D(width, height, 1, 1, depthFormat.Value,
+				TextureUsage.DepthStencil);
+			depthTexture = Factory.CreateTexture(depthDesc);
+		}
+
+		var fb = Factory.CreateFramebuffer(new FramebufferDescription(depthTexture, colorTexture));
+
+		return new RenderTarget(fb, colorTexture, colorView, depthTexture, width, height);
 	}
 
 	/// <summary>Initializes the graphics device and command list for the given window.</summary>
