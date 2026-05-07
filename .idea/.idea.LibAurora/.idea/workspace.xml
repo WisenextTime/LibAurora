@@ -10,11 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Graphics/RenderTarget.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopGraphics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopGraphics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/IGraphics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/IGraphics.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LibAurora.slnx" beforeDir="false" afterPath="$PROJECT_DIR$/LibAurora.slnx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LibAurora.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.Core.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +160,7 @@
     "发布到文件夹.未命名.executor": "Run"
   }
 }]]></component>
-  <component name="RunManager" selected=".NET 项目.Test">
+  <component name="RunManager" selected="PowerShell.NugetPack">
     <configuration name="Pack" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" platform="Any CPU" target_folder="$PROJECT_DIR$/src/bin/Release/net10.0/publish" target_framework="net10.0" uuid_high="-4234107620055938952" uuid_low="864308633904852032" />
       <method v="2">
@@ -255,7 +254,7 @@
       <workItem from="1777978415319" duration="536000" />
       <workItem from="1778055476735" duration="5715000" />
       <workItem from="1778125420664" duration="1436000" />
-      <workItem from="1778143232659" duration="3398000" />
+      <workItem from="1778143232659" duration="5074000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -345,7 +344,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778146536196</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="feat(core): add off-screen RenderTarget support">
+      <option name="closed" value="true" />
+      <created>1778162647606</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1778162647606</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,7 +377,8 @@
     <MESSAGE value="chore(core): bump version to 0.2.3 and normalize line endings&#10;&#10;- Update LibAurora.csproj: increment version from 0.2.2 to 0.2.3&#10;- Normalize line endings in GUI.cs (CRLF to LF)&#10;- Update IDE workspace configuration with 7 new lines" />
     <MESSAGE value="feat(core): add GPU-based font rendering system with atlas and shader&#10;&#10;Implement a complete font rendering pipeline using FontStashSharp and Veldrid. New files include Font, FontAtlas, FontRenderer, FontServer classes and a GLSL shader for textured glyph rendering. ResourceManager is extended to support the new Shader[] resource type. This enables efficient text rendering with a 4096x4096 texture array atlas supporting up to 4 layers, with automatic layer recycling." />
     <MESSAGE value="chore(.idea/workspace): remove unused lines from workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore(.idea/workspace): remove unused lines from workspace.xml" />
+    <MESSAGE value="feat(core): add off-screen RenderTarget support" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(core): add off-screen RenderTarget support" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
