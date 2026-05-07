@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using CSCore;
 using CSCore.Codecs.OGG;
 using CSCore.Codecs.WAV;

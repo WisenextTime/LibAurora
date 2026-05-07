@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Reflection;
-using LibAurora.Graphics;
 namespace LibAurora.Resources;
 
 /// <summary>
@@ -29,15 +28,5 @@ public interface IResources
 			"ase" => GetAssemblyResource(paths[1]),
 			_ => throw new IOException("Invalid path")
 		};
-	}
-	/// <summary>
-	/// Initializes GPU resource processors. When <paramref name="graphics"/> is provided,
-	/// registers <see cref="ResourceProcesser{T}"/> for <see cref="Texture"/> and <see cref="Shader"/>[].
-	/// </summary>
-	public void Init(IGraphics? graphics, ResourceManager manager)
-	{
-		if (graphics is null) return;
-		manager.InitTextureProcessor(graphics);
-		manager.InitShaderProcessor(graphics);
 	}
 }

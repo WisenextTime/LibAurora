@@ -1,41 +1,68 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using LibAurora.Graphics;
 using Veldrid;
 using Veldrid.SPIRV;
 namespace LibAurora.Resources;
 
-public partial class ResourceManager
+public static partial class ResourceManager
 {
-	internal void InitShaderProcessor(IGraphics graphics) =>
-		RegisterProcesser(new ResourceProcesser<Shader[]>(this,
+	internal static void InitShaderProcessor(IGraphics graphics) =>
+		RegisterProcesser(new ResourceProcesser<Shader[]>(
 			load: stream =>
 			{
 				using var reader = new StreamReader(stream);
 				var source = reader.ReadToEnd();
 				var shaders = new List<Shader>();
+				var factory = graphics.Factory;
 				var compileOpts = GlslCompileOptions.Default;
+				var isD3D11 = graphics.Device.BackendType == GraphicsBackend.Direct3D11;
 
-				if (ExtractSection(source, "VERTEX") is { } vertSrc)
+				var vertSrc = ExtractSection(source, "VERTEX");
+				var fragSrc = ExtractSection(source, "FRAGMENT");
+
+				if (isD3D11 && vertSrc is not null && fragSrc is not null)
 				{
-					var spriv = SpirvCompilation.CompileGlslToSpirv(vertSrc, "shader.vert", ShaderStages.Vertex, compileOpts);
-					var desc = new ShaderDescription(ShaderStages.Vertex, spriv.SpirvBytes, "main");
-					shaders.Add(graphics.Factory.CreateShader(ref desc));
+					var result = SpirvCompilation.CompileVertexFragment(
+						Encoding.UTF8.GetBytes(vertSrc),
+						Encoding.UTF8.GetBytes(fragSrc),
+						CrossCompileTarget.HLSL);
+
+					var vertDesc = new ShaderDescription(ShaderStages.Vertex,
+						Encoding.UTF8.GetBytes(result.VertexShader), "main");
+					shaders.Add(factory.CreateShader(ref vertDesc));
+
+					var fragDesc = new ShaderDescription(ShaderStages.Fragment,
+						Encoding.UTF8.GetBytes(result.FragmentShader), "main");
+					shaders.Add(factory.CreateShader(ref fragDesc));
 				}
-
-				if (ExtractSection(source, "GEOMETRY") is { } geomSrc)
+				else
 				{
-					var spriv = SpirvCompilation.CompileGlslToSpirv(geomSrc, "shader.geom", ShaderStages.Geometry, compileOpts);
-					var desc = new ShaderDescription(ShaderStages.Geometry, spriv.SpirvBytes, "main");
-					shaders.Add(graphics.Factory.CreateShader(ref desc));
-				}
+					if (vertSrc is not null)
+					{
+						var spriv = SpirvCompilation.CompileGlslToSpirv(vertSrc,
+							"shader.vert", ShaderStages.Vertex, compileOpts);
+						var desc = new ShaderDescription(ShaderStages.Vertex, spriv.SpirvBytes, "main");
+						shaders.Add(factory.CreateShader(ref desc));
+					}
 
-				if (ExtractSection(source, "FRAGMENT") is { } fragSrc)
-				{
-					var spriv = SpirvCompilation.CompileGlslToSpirv(fragSrc, "shader.frag", ShaderStages.Fragment, compileOpts);
-					var desc = new ShaderDescription(ShaderStages.Fragment, spriv.SpirvBytes, "main");
-					shaders.Add(graphics.Factory.CreateShader(ref desc));
+					if (ExtractSection(source, "GEOMETRY") is { } geomSrc)
+					{
+						var spriv = SpirvCompilation.CompileGlslToSpirv(geomSrc,
+							"shader.geom", ShaderStages.Geometry, compileOpts);
+						var desc = new ShaderDescription(ShaderStages.Geometry, spriv.SpirvBytes, "main");
+						shaders.Add(factory.CreateShader(ref desc));
+					}
+
+					if (fragSrc is not null)
+					{
+						var spriv = SpirvCompilation.CompileGlslToSpirv(fragSrc,
+							"shader.frag", ShaderStages.Fragment, compileOpts);
+						var desc = new ShaderDescription(ShaderStages.Fragment, spriv.SpirvBytes, "main");
+						shaders.Add(factory.CreateShader(ref desc));
+					}
 				}
 
 				return shaders.Count == 0

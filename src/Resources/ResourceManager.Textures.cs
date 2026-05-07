@@ -5,10 +5,10 @@ using SixLabors.ImageSharp.PixelFormats;
 using Veldrid;
 namespace LibAurora.Resources;
 
-public partial class ResourceManager
+public static partial class ResourceManager
 {
-	internal void InitTextureProcessor(IGraphics graphics) =>
-		RegisterProcesser(new ResourceProcesser<Texture>(this,
+	internal static void InitTextureProcessor(IGraphics graphics) =>
+		RegisterProcesser(new ResourceProcesser<Texture>(
 			load: stream =>
 			{
 				using var image = Image.Load<Rgba32>(stream);

@@ -10,36 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Resources/DesktopResources.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resources/IResources.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resources/ResourceManager.Shaders.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resources/ResourceManager.Textures.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resources/ResourceManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/Gui/Panel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Scene/Gui/StyleRenderer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Graphics/Fonts/Font.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontAtlas.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Shaders/Font.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LibAurora.slnx" beforeDir="false" afterPath="$PROJECT_DIR$/LibAurora.slnx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Headless/HeadlessApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Headless/HeadlessApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/ApplicationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/ApplicationContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Audio/AudioUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Audio/AudioUtils.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core/Events.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Events.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/IApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/IApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Debug/Exceptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Debug/Exceptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Debug/ILogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Debug/ILogger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/IGraphics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/IGraphics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Renderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/IRenderer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LibAurora.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GUI.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GUIs/ButtonBase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GUIs/LabelBase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GUIs/MultilineTextBoxBase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GUIs/PanelBase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GUIs/ScrollableLayoutBase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GUIs/Style.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GUIs/StyleRenderer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GUIs/TextBoxBase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GuiElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scene/GuiElement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/DesktopResources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/DesktopResources.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/IResources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/IResources.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/ResourceManager.Shaders.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/ResourceManager.Shaders.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/ResourceManager.Textures.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/ResourceManager.Textures.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/ResourceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/ResourceManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +54,14 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1843f47f564646f9a7e13dbef8f04de881c00/96/b50ea256/IReadableAudioSource`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1843f47f564646f9a7e13dbef8f04de881c00/ec/e841e15d/WaveFileReader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3214244b18c6433e801183223381787f10710/e4/c668f828/AudioException.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/13/07256d6d/FontSystem.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/20/90c5c49c/SpriteFontBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/61/e25023a5/LayoutBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/65/168de842/TextLine.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/aa/e3800bb7/RichTextLayout.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/c7/9cf6d38c/ITexture2DManager.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/44e82f4c1ba44c28960d1ffef41f43334c00/10/f1fb8d4b/GlslCompileOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/44e82f4c1ba44c28960d1ffef41f43334c00/fb/a588fa3b/MacroDefinition.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6f2a153027fc4c55b517999fb66246871800/ba/6c503bca/OggSource.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/83996773253f4e25aa1735cfbbcf8dec13e00/25/81ab680b/IStreamDecoder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/83996773253f4e25aa1735cfbbcf8dec13e00/63/96bc9a5a/StreamDecoder.cs" root0="SKIP_HIGHLIGHTING" />
@@ -78,6 +70,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/933eac658342425985ad4421ec85542712200/f9/533e2023/UIView.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/05/0795e489/GraphicsDeviceOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/13/9394f9ec/GraphicsDevice.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/34/5d4a956b/D3D11Shader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/40/213a2f08/ResourceLayoutDescription.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/66/306159e3/D3D11DeviceOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/77/14ddae30/CommandList.cs" root0="SKIP_HIGHLIGHTING" />
@@ -104,6 +97,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3610d2d363e1cbb898d6c2c1c632dd3bca14a887e603bbd8161af27886883/SharpGen.Bindings.g.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/499997d4b5f06d22ed69e314f59ff5407f822562b6922c66cd6453405bb0229c/ThrowHelpers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/60787fbcd8895b164e6c8de1fd76afdbecd9688022e5b453376c4e45cba2cec/PlatformNotSupportedException.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/732483795b351f8a22129a6ef128f9cd2469613f51e57fdc3f8fa2861a62c/Void.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/764e343132b1083dece1d9c654c4ba79ccf433e684daa767a4e2b893477238c/UIView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8053c4b7ee716b5c3738267265d579dcbeebfc189eab955636c6160f4f12d0/ExecutionEngineException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8335e859f099ddb6e31f3144cac82a132f5ea4f884568b784ecf955d74e31/Sdl2.Version.cs" root0="SKIP_HIGHLIGHTING" />
@@ -111,6 +105,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9530ae24b7c627d44957f64654fdc5fff2fa36536beef481ce97617c682d93c/Stream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/971e33c46cf067cf5af3be5f53d53ccdc946f22949898bca8a493f3f2e86dec/Boolean.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a2177bdb5d3b5c3a47d4da573f2262f54494431df696d6721696c7169484c6c2/Queue.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b5bb23405816459d453ea2ca3b4740c966f0db6e149bddfd75ffebcfd935aa52/ShaderDescription.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bf9b376bc5e5d2e87814d4ad8cc64c7baae926c9a5c65346cf5073433ba2b7d4/OpenGLPlatformInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Test/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Audio/BgmPlayer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -127,6 +122,9 @@
     <setting file="file://$PROJECT_DIR$/src/Core/IApplication.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Debug/ILogger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Debug/LogServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Graphics/Fonts/Font.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/IGraphics.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Resources/IResources.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Resources/ResourceManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -166,7 +164,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.mcpserver.settings&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
     &quot;发布到文件夹.Pack.executor&quot;: &quot;Run&quot;,
     &quot;发布到文件夹.未命名.executor&quot;: &quot;Run&quot;
@@ -264,6 +262,7 @@
       <workItem from="1777907623362" duration="7863000" />
       <workItem from="1777966038858" duration="9000000" />
       <workItem from="1777978415319" duration="536000" />
+      <workItem from="1778055476735" duration="5715000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
