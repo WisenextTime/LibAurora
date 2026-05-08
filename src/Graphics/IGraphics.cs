@@ -30,7 +30,7 @@ public interface IGraphics
 	public PixelFormat? SwapchainDepthFormat { get; }
 
 	/// <summary>Starts recording a new command list. Must be paired with <see cref="EndFrame"/>.</summary>
-	public void BeginFrame();
+	public void BeginFrame(bool bindDefaultSwapchain = true);
 
 	/// <summary>Submits the recorded command list and swaps the backbuffer.</summary>
 	public void EndFrame();

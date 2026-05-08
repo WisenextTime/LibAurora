@@ -70,11 +70,14 @@ public class DesktopGraphics : IGraphics
 		=> _device?.SwapchainFramebuffer?.OutputDescription.DepthAttachment?.Format;
 
 	/// <inheritdoc />
-	public void BeginFrame()
+	public void BeginFrame(bool bindDefaultSwapchain = true)
 	{
 		if (_isRendering) throw new InvalidOperationException("Rendering already begun.");
 		_isRendering = true;
 		CommandList.Begin();
+		if (!bindDefaultSwapchain) return;
+		CommandList.SetFramebuffer(Device.SwapchainFramebuffer);
+		CommandList.ClearColorTarget(0, RgbaFloat.Black);
 	}
 
 	/// <inheritdoc />
