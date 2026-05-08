@@ -25,4 +25,10 @@ public interface IInput
 
 	/// <summary>Sets the text input rectangle for IME candidate window positioning. No-op on platforms without IME.</summary>
 	public void SetTextInputRect(uint x, uint y, uint w, uint h) { }
+
+	/// <summary>Starts text input mode, enabling IME composition and character events.</summary>
+	public void StartTextInput() { }
+
+	/// <summary>Stops text input mode, disabling IME composition and character events.</summary>
+	public void EndTextInput() { }
 }

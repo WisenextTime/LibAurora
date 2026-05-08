@@ -1,26 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Numerics;
-using System.Runtime.InteropServices;
-using System.Text;
 using LibAurora.Core;
 using LibAurora.Input;
 using Veldrid;
 using Veldrid.Sdl2;
 namespace LibAurora.Backends.Desktop;
 
-/// <summary>
-/// Desktop input implementation using SDL2 window events.
-/// Polls keyboard, mouse button, mouse position, and mouse wheel state.
-/// Uses SDL2's <c>SDL_AddEventWatch</c> to intercept text input events
-/// for proper Unicode / IME character input.
-/// </summary>
 public class DesktopInput : IInput
 {
-
-	private const uint SdlTextInputEventType = 0x303;
-	private readonly static SdlEventFilter _textInputFilter = OnTextInputEvent;
-	private static bool _watchRegistered;
 	private readonly Dictionary<MouseButton, MouseEvent> _buttonStates = new();
 	private readonly Dictionary<Key, KeyEvent> _keyStates = new();
 	private readonly HashSet<Key> _pressedKeys = [];
@@ -64,40 +52,14 @@ public class DesktopInput : IInput
 		return delta;
 	}
 
-	/// <summary>Sets the text input rectangle for IME candidate window positioning.</summary>
 	public void SetTextInputRect(uint x, uint y, uint w, uint h)
-	{
-		var rect = new SdlRect { x = (int)x, y = (int)y, w = (int)w, h = (int)h };
-		SDL_SetTextInputRect(ref rect);
-	}
+		=> Sdl2TextInput.SetRect(x, y, w, h);
 
-	[DllImport("SDL2")] private static extern void SDL_StartTextInput();
+	public void StartTextInput()
+		=> Sdl2TextInput.Start();
 
-	[DllImport("SDL2")] private static extern void SDL_AddEventWatch(SdlEventFilter filter, IntPtr userdata);
-
-	[DllImport("SDL2")] private static extern void SDL_SetTextInputRect(ref SdlRect rect);
-
-	/// <summary>Enables SDL2 text input and registers the global event watch. Call once after window creation.</summary>
-	public static void EnableTextInput()
-	{
-		SDL_StartTextInput();
-		if (_watchRegistered) return;
-		SDL_AddEventWatch(_textInputFilter, IntPtr.Zero);
-		_watchRegistered = true;
-	}
-
-	private static unsafe int OnTextInputEvent(IntPtr userdata, IntPtr sdlevent)
-	{
-		var ev = (RawTextInputEvent*)sdlevent;
-		if (ev->type != SdlTextInputEventType) return 1;
-		var len = 0;
-		while (len < 32 && ev->text[len] != 0) len++;
-		if (len == 0) return 1;
-		var str = Encoding.UTF8.GetString(ev->text, len);
-		foreach (var c in str)
-			Events.Raise(new Events.TextInputEvent(c));
-		return 1;
-	}
+	public void EndTextInput()
+		=> Sdl2TextInput.Stop();
 
 	private void OnKeyDown(KeyEvent keyEvent)
 	{
@@ -116,25 +78,5 @@ public class DesktopInput : IInput
 	{
 		_accumulatedWheelDelta += wheelEvent.WheelDelta;
 		Events.Raise(new Events.MouseWheelEvent(wheelEvent.WheelDelta < 0));
-	}
-
-	[StructLayout(LayoutKind.Sequential)]
-	private struct SdlRect
-	{
-		public int x;
-		public int y;
-		public int w;
-		public int h;
-	}
-
-	[UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate int SdlEventFilter(IntPtr userdata, IntPtr sdlevent);
-
-	[StructLayout(LayoutKind.Sequential)]
-	private struct RawTextInputEvent
-	{
-		public uint type;
-		public uint timestamp;
-		public uint windowID;
-		public unsafe fixed byte text[32];
 	}
 }

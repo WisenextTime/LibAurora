@@ -55,8 +55,8 @@ public static class Events
 	}
 
 	/// <summary>Raised when a character is typed via keyboard.</summary>
-	public readonly struct TextInputEvent(char character)
+	public readonly struct TextInputEvent(string text)
 	{
-		public readonly char Character = character;
+		public readonly string Text = text;
 	}
 }

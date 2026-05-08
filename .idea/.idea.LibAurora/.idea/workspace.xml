@@ -10,7 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/src/LibAurora.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.Core.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Backends/Desktop/Sdl2TextInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/Events.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Events.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Input/IInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Input/IInput.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +104,7 @@
     <setting file="file://$PROJECT_DIR$/src/Audio/IAudio.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Backends/Desktop/DesktopAudio.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Backends/Desktop/DesktopGraphics.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Backends/Desktop/DesktopGraphics.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Backends/Headless/HeadlessApplication.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Backends/Headless/MockAudio.cs" root0="FORCE_HIGHLIGHTING" />
@@ -245,6 +250,7 @@
       <workItem from="1778055476735" duration="5715000" />
       <workItem from="1778125420664" duration="1436000" />
       <workItem from="1778143232659" duration="5280000" />
+      <workItem from="1778244283527" duration="595000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -350,7 +356,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778164158258</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="feat(graphics): add bindDefaultSwapchain parameter to BeginFrame">
+      <option name="closed" value="true" />
+      <created>1778225290011</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1778225290011</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -377,7 +391,10 @@
     <MESSAGE value="chore(.idea/workspace): remove unused lines from workspace.xml" />
     <MESSAGE value="feat(core): add off-screen RenderTarget support" />
     <MESSAGE value="refactor(core): rename project file to LibAurora.Core&#10;&#10;Rename `src/LibAurora.csproj` to `src/LibAurora.Core.csproj` to better reflect the library's core nature. Update solution file `LibAurora.slnx` to reference the new path, and add project documentation to `README.md`. No breaking changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(core): rename project file to LibAurora.Core&#10;&#10;Rename `src/LibAurora.csproj` to `src/LibAurora.Core.csproj` to better reflect the library's core nature. Update solution file `LibAurora.slnx` to reference the new path, and add project documentation to `README.md`. No breaking changes." />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/.idea.LibAurora/.idea/workspace.xml&#10;#&#9;src/LibAurora.Core.csproj" />
+    <MESSAGE value="refactor(core): normalize line endings and clean up IDE workspace" />
+    <MESSAGE value="feat(graphics): add bindDefaultSwapchain parameter to BeginFrame" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(graphics): add bindDefaultSwapchain parameter to BeginFrame" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
