@@ -1,4 +1,5 @@
 ﻿using System;
+using LibAurora.Core;
 using LibAurora.Debug;
 using LibAurora.Graphics;
 using LibAurora.Utils;
@@ -133,5 +134,11 @@ public class DesktopGraphics : IGraphics
 		};
 		var swapchainSource = BackendCreateUtils.GetSwapchainSource(window.SdlWindowHandle);
 		_device = BackendCreateUtils.CreateGraphicDevice(Backend, window, swapchainSource, option);
+		Events.Subscribe<Events.SurfaceResizeEvent>(OnResize);
+	}
+
+	private void OnResize(Events.SurfaceResizeEvent e)
+	{
+		Device.MainSwapchain.Resize((uint)e.Size.X, (uint)e.Size.Y);
 	}
 }

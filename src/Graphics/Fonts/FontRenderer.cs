@@ -2,8 +2,9 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using FontStashSharp;
 using FontStashSharp.Interfaces;
+using LibAurora.Core;
+using LibAurora.MathUtils;
 using Veldrid;
 
 namespace LibAurora.Graphics.Fonts;
@@ -29,6 +30,7 @@ public unsafe class FontRenderer : IRenderer, IFontStashRenderer2, IDisposable
 	private readonly DeviceBuffer _vertexBuffer;
 	private readonly FontVertex[] _vertices = new FontVertex[MaxVertices];
 	private bool _disposed;
+	private Matrix4x4 _projection;
 	private int _quadCount;
 
 	/// <summary>
@@ -101,6 +103,9 @@ public unsafe class FontRenderer : IRenderer, IFontStashRenderer2, IDisposable
 		_indexBuffer = factory.CreateBuffer(new BufferDescription(
 			(uint)(indices.Length * sizeof(ushort)), BufferUsage.IndexBuffer));
 		device.UpdateBuffer(_indexBuffer, 0, indices);
+
+		Events.Subscribe<Events.SurfaceResizeEvent>(OnResize);
+		OnResize(WindowSize);
 	}
 
 	/// <summary>Releases all GPU resources allocated by this renderer.</summary>
@@ -129,8 +134,7 @@ public unsafe class FontRenderer : IRenderer, IFontStashRenderer2, IDisposable
 	public void DrawQuad(object texture, ref VertexPositionColorTexture topLeft, ref VertexPositionColorTexture topRight,
 		ref VertexPositionColorTexture bottomLeft, ref VertexPositionColorTexture bottomRight)
 	{
-		if (_quadCount >= MaxQuads)
-			End();
+		if (_quadCount >= MaxQuads) return;
 
 		var h = (PageHandle)texture;
 		var layer = (float)h.Layer;
@@ -138,31 +142,31 @@ public unsafe class FontRenderer : IRenderer, IFontStashRenderer2, IDisposable
 
 		_vertices[baseIdx + 0] = new FontVertex
 		{
-			Position = ToVector2(topLeft.Position),
+			Position = topLeft.Position.ToVector2(),
 			TexCoord = topLeft.TextureCoordinate,
 			LayerIndex = layer,
-			Color = ToRgbaFloat(topLeft.Color)
+			Color = topLeft.Color.ToRgbaFloat()
 		};
 		_vertices[baseIdx + 1] = new FontVertex
 		{
-			Position = ToVector2(topRight.Position),
+			Position = topRight.Position.ToVector2(),
 			TexCoord = topRight.TextureCoordinate,
 			LayerIndex = layer,
-			Color = ToRgbaFloat(topRight.Color)
+			Color = topRight.Color.ToRgbaFloat(),
 		};
 		_vertices[baseIdx + 2] = new FontVertex
 		{
-			Position = ToVector2(bottomLeft.Position),
+			Position = bottomLeft.Position.ToVector2(),
 			TexCoord = bottomLeft.TextureCoordinate,
 			LayerIndex = layer,
-			Color = ToRgbaFloat(bottomLeft.Color)
+			Color = bottomLeft.Color.ToRgbaFloat(),
 		};
 		_vertices[baseIdx + 3] = new FontVertex
 		{
-			Position = ToVector2(bottomRight.Position),
+			Position = bottomRight.Position.ToVector2(),
 			TexCoord = bottomRight.TextureCoordinate,
 			LayerIndex = layer,
-			Color = ToRgbaFloat(bottomRight.Color)
+			Color = bottomRight.Color.ToRgbaFloat(),
 		};
 
 		_quadCount++;
@@ -198,12 +202,7 @@ public unsafe class FontRenderer : IRenderer, IFontStashRenderer2, IDisposable
 		var cl = _graphics.CommandList;
 		var device = _graphics.Device;
 
-		var projection = Matrix4x4.CreateOrthographicOffCenter(
-			0, _graphics.ViewportWidth,
-			_graphics.ViewportHeight, 0,
-			-1, 1);
-
-		device.UpdateBuffer(_projectionBuffer, 0, ref projection);
+		device.UpdateBuffer(_projectionBuffer, 0, ref _projection);
 
 		fixed (FontVertex* ptr = _vertices)
 			device.UpdateBuffer(_vertexBuffer, 0, (nint)ptr, (uint)(_quadCount * 4 * sizeof(FontVertex)));
@@ -216,11 +215,14 @@ public unsafe class FontRenderer : IRenderer, IFontStashRenderer2, IDisposable
 
 		_quadCount = 0;
 	}
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)] private static Vector2 ToVector2(Vector3 v) => new(v.X, v.Y);
-
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static RgbaFloat ToRgbaFloat(FSColor c) => new(c.R / 255f, c.G / 255f, c.B / 255f, c.A / 255f);
+	private void OnResize(Vector2 windowSize)
+	{
+		_projection = Matrix4x4.CreateOrthographicOffCenter(
+			0, windowSize.X,
+			windowSize.Y, 0,
+			-1, 1);
+	}
+	private void OnResize(Events.SurfaceResizeEvent e) => OnResize(e.Size);
 
 	[StructLayout(LayoutKind.Sequential)]
 	private struct FontVertex

@@ -37,7 +37,7 @@ public class FontAtlas : ITexture2DManager, IDisposable
 
 		_atlas = factory.CreateTexture(new TextureDescription(
 			PageWidth, PageHeight, 1, PageCount, 1,
-			PixelFormat.R8_G8_B8_A8_UNorm,
+			PixelFormat.R8_G8_B8_A8_UNorm_SRgb,
 			TextureUsage.Sampled,
 			TextureType.Texture2D));
 

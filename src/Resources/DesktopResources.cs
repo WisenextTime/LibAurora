@@ -59,11 +59,14 @@ public class DesktopResources : IResources
 	}
 
 	/// <inheritdoc/>
-	public Stream GetAssemblyResource(string path) =>
-		(_assemblyResources.TryGetValue(string.Join('.', GetPath(path)), out var stream)
-			? _assemblies[stream].GetManifestResourceStream(path)
-			: throw new FileNotFoundException($"Assembly resource not found: {path}")) ??
-		throw new InvalidOperationException($"Invalid resource {path}");
+	public Stream GetAssemblyResource(string path)
+	{
+		var standardPath = string.Join('.', GetPath(path));
+		return (_assemblyResources.TryGetValue(standardPath, out var stream)
+			       ? _assemblies[stream].GetManifestResourceStream(standardPath)
+			       : throw new FileNotFoundException($"Assembly resource not found: {path}")) ??
+		       throw new InvalidOperationException($"Invalid resource {path}");
+	}
 
 	private static string[] GetPath(string path) => path.Split(['/', '\\'], StringSplitOptions.RemoveEmptyEntries);
 }

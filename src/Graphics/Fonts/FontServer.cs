@@ -38,7 +38,7 @@ public static class FontServer
 	{
 		ArgumentNullException.ThrowIfNull(graphics);
 
-		var shaders = ResourceManager.LoadResource<Shader[]>("ase://LibAurora.Shaders.Font.glsl");
+		var shaders = ResourceManager.LoadResource<Shader[]>("ase://LibAurora/Shaders/Font.glsl");
 		_system = new FontSystem(new FontSystemSettings
 		{
 			TextureWidth = FontAtlas.PageWidth,

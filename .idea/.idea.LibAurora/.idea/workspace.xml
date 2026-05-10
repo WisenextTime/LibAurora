@@ -10,12 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Backends/Desktop/Sdl2TextInput.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Graphics/Myra/GuiServer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraPlatform.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraRenderer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraTexture.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraTextureManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Input/MyraKeyMapUtils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MathUtils/ColorExtension.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MathUtils/VectorExtension.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Shaders/Myra.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/Events.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/Events.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Input/IInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Input/IInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontAtlas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontAtlas.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LibAurora.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/DesktopResources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/DesktopResources.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scene/Gui/Panel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scene/Gui/StyleRenderer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scene/GuiElement.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +36,13 @@
   </component>
   <component name="DpaMonitoringSettings">
     <option name="firstShow" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="shader-template" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,8 +67,10 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3214244b18c6433e801183223381787f10710/e4/c668f828/AudioException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/13/07256d6d/FontSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/20/90c5c49c/SpriteFontBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/38/16c0e590/VertexPositionColorTexture.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/61/e25023a5/LayoutBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/65/168de842/TextLine.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/9e/92dd7eb3/FSColor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/aa/e3800bb7/RichTextLayout.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/356d9176366e438794f673a2d5c6ae8319400/c7/9cf6d38c/ITexture2DManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/44e82f4c1ba44c28960d1ffef41f43334c00/10/f1fb8d4b/GlslCompileOptions.cs" root0="FORCE_HIGHLIGHTING" />
@@ -60,6 +81,15 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/83996773253f4e25aa1735cfbbcf8dec13e00/6f/5e7c4c00/VorbisReader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8f12745d0fb3466ea77e27e290a6d14227400/32/50c65d9e/MP3Stream.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/933eac658342425985ad4421ec85542712200/f9/533e2023/UIView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9432ac3bbfa243899b7151e50807377bd4200/15/225d0d72/Label.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9432ac3bbfa243899b7151e50807377bd4200/48/d0c3fb40/Desktop.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9432ac3bbfa243899b7151e50807377bd4200/4b/d2f8b8e9/MyraEnvironment.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9432ac3bbfa243899b7151e50807377bd4200/60/147c3673/TextureFiltering.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9432ac3bbfa243899b7151e50807377bd4200/6a/2cde0a07/MouseInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9432ac3bbfa243899b7151e50807377bd4200/80/86afd22b/IMyraPlatform.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9432ac3bbfa243899b7151e50807377bd4200/a1/e5017018/IMyraRenderer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9432ac3bbfa243899b7151e50807377bd4200/c9/f5f645eb/Keys.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9432ac3bbfa243899b7151e50807377bd4200/d2/60b7ea21/TouchCollection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/05/0795e489/GraphicsDeviceOptions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/13/9394f9ec/GraphicsDevice.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cd6e501ecf7943ce9a1f90bdd3c0605f6c800/34/5d4a956b/D3D11Shader.cs" root0="FORCE_HIGHLIGHTING" />
@@ -80,13 +110,16 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e16775ee43374a1d9e37d351895445e715000/2e/fe1b7372/SDL_version.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e16775ee43374a1d9e37d351895445e715000/3b/1e16bbb1/Sdl2Window.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e16775ee43374a1d9e37d351895445e715000/86/65789276/MouseWheelEventArgs.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e16775ee43374a1d9e37d351895445e715000/86/81f34a9c/Point.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e16775ee43374a1d9e37d351895445e715000/d6/8ffc46e9/SDL_SysWMinfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e16775ee43374a1d9e37d351895445e715000/d9/d46f4aa7/Sdl2Native.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e16775ee43374a1d9e37d351895445e715000/dc/153c9213/SDL_WindowFlags.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e16775ee43374a1d9e37d351895445e715000/fc/cefceb34/MouseButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ff1b512f606a410388f38a0725d0113712200/f6/5e618dca/Result.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/226b8d808586c847ede6c812ce3eb942483c9dffa04b81863060472b9c3459/Sdl2.SysWMInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/228bff957d5b9f32cfbedd8bf82a5d3e862ec3e051593a67913b95ae288287/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3610d2d363e1cbb898d6c2c1c632dd3bca14a887e603bbd8161af27886883/SharpGen.Bindings.g.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/48bda2f54d8beeb3f49bdb802ae812438f57a8b5085eb8287c0994862587dd9/CommandList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/499997d4b5f06d22ed69e314f59ff5407f822562b6922c66cd6453405bb0229c/ThrowHelpers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/60787fbcd8895b164e6c8de1fd76afdbecd9688022e5b453376c4e45cba2cec/PlatformNotSupportedException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/732483795b351f8a22129a6ef128f9cd2469613f51e57fdc3f8fa2861a62c/Void.cs" root0="FORCE_HIGHLIGHTING" />
@@ -99,6 +132,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a2177bdb5d3b5c3a47d4da573f2262f54494431df696d6721696c7169484c6c2/Queue.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b5bb23405816459d453ea2ca3b4740c966f0db6e149bddfd75ffebcfd935aa52/ShaderDescription.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bf9b376bc5e5d2e87814d4ad8cc64c7baae926c9a5c65346cf5073433ba2b7d4/OpenGLPlatformInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ddfecee215e1b827883f419f3d5d4496eac66ad02540c568de9c5345964eb09e/TextureViewDescription.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f93b49631c2dd676292ffdee5de5eed5dcc457db88f98f5ff95b45dcc869a47/ResourceFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Test/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Audio/BgmPlayer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Audio/IAudio.cs" root0="FORCE_HIGHLIGHTING" />
@@ -116,12 +151,17 @@
     <setting file="file://$PROJECT_DIR$/src/Debug/LogServer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/Fonts/Font.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/IGraphics.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/GuiServer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/MyraPlatform.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/MyraRenderer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/MyraTexture.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/MyraTextureManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Input/MyraKeyMapUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/MathUtils/ColorExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Resources/IResources.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Resources/ResourceManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Scene/Gui/Panel.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Scene/Gui/StyleRenderer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Scene/Scene.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Scene/SceneManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -140,28 +180,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET 项目.Test.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;PowerShell.NugetPack.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Shell Script.NugetPack.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.spelling&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;发布到文件夹.Pack.executor&quot;: &quot;Run&quot;,
-    &quot;发布到文件夹.未命名.executor&quot;: &quot;Run&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET 项目.Test.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "PowerShell.NugetPack.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Shell Script.NugetPack.executor": "Run",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.spelling",
+    "vue.rearranger.settings.migration": "true",
+    "发布到文件夹.Pack.executor": "Run",
+    "发布到文件夹.未命名.executor": "Run"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET 项目.Test">
     <configuration name="Test" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -250,7 +290,8 @@
       <workItem from="1778055476735" duration="5715000" />
       <workItem from="1778125420664" duration="1436000" />
       <workItem from="1778143232659" duration="5280000" />
-      <workItem from="1778244283527" duration="595000" />
+      <workItem from="1778244283527" duration="14485000" />
+      <workItem from="1778370472474" duration="8673000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -364,7 +405,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778225290011</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="feat(core): extract SDL2 text input to dedicated Sdl2TextInput class">
+      <option name="closed" value="true" />
+      <created>1778244898261</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1778244898261</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,7 +443,8 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/.idea.LibAurora/.idea/workspace.xml&#10;#&#9;src/LibAurora.Core.csproj" />
     <MESSAGE value="refactor(core): normalize line endings and clean up IDE workspace" />
     <MESSAGE value="feat(graphics): add bindDefaultSwapchain parameter to BeginFrame" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(graphics): add bindDefaultSwapchain parameter to BeginFrame" />
+    <MESSAGE value="feat(core): extract SDL2 text input to dedicated Sdl2TextInput class" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(core): extract SDL2 text input to dedicated Sdl2TextInput class" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
