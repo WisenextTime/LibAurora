@@ -1,7 +1,6 @@
 using System;
 using LibAurora.Graphics;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
+using StbImageSharp;
 using Veldrid;
 namespace LibAurora.Resources;
 
@@ -11,14 +10,14 @@ public static partial class ResourceManager
 		RegisterProcesser(new ResourceProcesser<Texture>(
 			load: stream =>
 			{
-				using var image = Image.Load<Rgba32>(stream);
+				var image = ImageResult.FromStream(stream, ColorComponents.RedGreenBlueAlpha);
 				var tex = graphics.Factory.CreateTexture(new TextureDescription(
 					(uint)image.Width, (uint)image.Height, 1, 1, 1,
 					PixelFormat.R8_G8_B8_A8_UNorm,
 					TextureUsage.Sampled,
 					TextureType.Texture2D));
 				var pixels = new byte[image.Width * image.Height * 4];
-				image.CopyPixelDataTo(pixels);
+				image.Data.CopyTo(pixels);
 				unsafe
 				{
 					fixed (byte* ptr = pixels)

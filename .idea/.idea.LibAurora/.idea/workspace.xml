@@ -10,14 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Graphics/Myra/GuiServer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraPlatform.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraRenderer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraTexture.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraTextureManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Input/MyraKeyMapUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Shaders/Myra.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NugetPack.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/src/NugetPack.ps1" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,11 +186,11 @@
     "发布到文件夹.未命名.executor": "Run"
   }
 }]]></component>
-  <component name="RunManager" selected=".NET 项目.Test">
+  <component name="RunManager" selected="PowerShell.NugetPack">
     <configuration name="Test" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Test/bin/Debug/net10.0/Test.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test/bin/Debug/net10.0" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
@@ -209,9 +203,10 @@
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
       <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
+      <option name="PROJECT_TFM" value="net10.0" />
       <method v="2">
-        <option name="Build" />
+        <option name="CleanSolution" enabled="true" />
+        <option name="Build Solution" enabled="true" />
       </method>
     </configuration>
     <configuration name="NugetPack" type="PowerShellRunType" factoryName="PowerShell" scriptUrl="D:\WisenextTime\LibAurora\src\NugetPack.ps1" executablePath="C:/WINDOWS/System32/WindowsPowerShell/v1.0/powershell.exe">
@@ -281,7 +276,7 @@
       <workItem from="1778125420664" duration="1436000" />
       <workItem from="1778143232659" duration="5280000" />
       <workItem from="1778244283527" duration="14485000" />
-      <workItem from="1778370472474" duration="11262000" />
+      <workItem from="1778370472474" duration="12183000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -411,7 +406,23 @@
       <option name="project" value="LOCAL" />
       <updated>1778379906512</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="feat(myra): add Myra UI integration with Veldrid backend&#10;&#10;Add the core infrastructure for Myra retained-mode GUI rendering using Veldrid. &#10;Includes a dynamic vertex-batched renderer (MyraRenderer), platform abstraction (MyraPlatform), &#10;key mapping (MyraKeyMapUtils), texture manager (MyraTextureManager), custom shader (Myra.glsl), &#10;and static entry point (GuiServer). All files are new additions totaling 518 lines.">
+      <option name="closed" value="true" />
+      <created>1778384222263</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1778384222263</updated>
+    </task>
+    <task id="LOCAL-00018" summary="refactor(core): migrate texture loading to StbImageSharp">
+      <option name="closed" value="true" />
+      <created>1778384791991</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1778384791991</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,7 +454,9 @@
     <MESSAGE value="feat(graphics): add bindDefaultSwapchain parameter to BeginFrame" />
     <MESSAGE value="feat(core): extract SDL2 text input to dedicated Sdl2TextInput class" />
     <MESSAGE value="feat(core): restructure GUI system and add math utility extensions&#10;&#10;Remove obsolete GUI classes (GuiElement, Panel, StyleRenderer) and introduce new extension methods for color and vector conversions in MathUtils. Update graphics and resource files to align with the refactored architecture." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(core): restructure GUI system and add math utility extensions&#10;&#10;Remove obsolete GUI classes (GuiElement, Panel, StyleRenderer) and introduce new extension methods for color and vector conversions in MathUtils. Update graphics and resource files to align with the refactored architecture." />
+    <MESSAGE value="feat(myra): add Myra UI integration with Veldrid backend&#10;&#10;Add the core infrastructure for Myra retained-mode GUI rendering using Veldrid. &#10;Includes a dynamic vertex-batched renderer (MyraRenderer), platform abstraction (MyraPlatform), &#10;key mapping (MyraKeyMapUtils), texture manager (MyraTextureManager), custom shader (Myra.glsl), &#10;and static entry point (GuiServer). All files are new additions totaling 518 lines." />
+    <MESSAGE value="refactor(core): migrate texture loading to StbImageSharp" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(core): migrate texture loading to StbImageSharp" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
