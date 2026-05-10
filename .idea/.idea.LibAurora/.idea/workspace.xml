@@ -16,18 +16,8 @@
       <change afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraTexture.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraTextureManager.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Input/MyraKeyMapUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MathUtils/ColorExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MathUtils/VectorExtension.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/Shaders/Myra.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontAtlas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontAtlas.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LibAurora.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/DesktopResources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/DesktopResources.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/Gui/Panel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/Gui/StyleRenderer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scene/GuiElement.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +281,7 @@
       <workItem from="1778125420664" duration="1436000" />
       <workItem from="1778143232659" duration="5280000" />
       <workItem from="1778244283527" duration="14485000" />
-      <workItem from="1778370472474" duration="8673000" />
+      <workItem from="1778370472474" duration="11262000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -413,7 +403,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778244898261</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat(core): restructure GUI system and add math utility extensions&#10;&#10;Remove obsolete GUI classes (GuiElement, Panel, StyleRenderer) and introduce new extension methods for color and vector conversions in MathUtils. Update graphics and resource files to align with the refactored architecture.">
+      <option name="closed" value="true" />
+      <created>1778379906512</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1778379906512</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,7 +442,8 @@
     <MESSAGE value="refactor(core): normalize line endings and clean up IDE workspace" />
     <MESSAGE value="feat(graphics): add bindDefaultSwapchain parameter to BeginFrame" />
     <MESSAGE value="feat(core): extract SDL2 text input to dedicated Sdl2TextInput class" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(core): extract SDL2 text input to dedicated Sdl2TextInput class" />
+    <MESSAGE value="feat(core): restructure GUI system and add math utility extensions&#10;&#10;Remove obsolete GUI classes (GuiElement, Panel, StyleRenderer) and introduce new extension methods for color and vector conversions in MathUtils. Update graphics and resource files to align with the refactored architecture." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(core): restructure GUI system and add math utility extensions&#10;&#10;Remove obsolete GUI classes (GuiElement, Panel, StyleRenderer) and introduce new extension methods for color and vector conversions in MathUtils. Update graphics and resource files to align with the refactored architecture." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
