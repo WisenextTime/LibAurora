@@ -13,7 +13,7 @@ public static partial class ResourceManager
 				var image = ImageResult.FromStream(stream, ColorComponents.RedGreenBlueAlpha);
 				var tex = graphics.Factory.CreateTexture(new TextureDescription(
 					(uint)image.Width, (uint)image.Height, 1, 1, 1,
-					PixelFormat.R8_G8_B8_A8_UNorm,
+					PixelFormat.R8_G8_B8_A8_UNorm_SRgb,
 					TextureUsage.Sampled,
 					TextureType.Texture2D));
 				var pixels = new byte[image.Width * image.Height * 4];

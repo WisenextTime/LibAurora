@@ -9,15 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Resources/ResourceManager.WaveSource.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/MyraRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraRenderer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/QuadBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/QuadBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/TextureHandle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/TextureHandle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LibAurora.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/ResourceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/ResourceManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -290,7 +282,8 @@
       <workItem from="1778400759360" duration="5501000" />
       <workItem from="1778413013140" duration="2265000" />
       <workItem from="1778427718132" duration="4883000" />
-      <workItem from="1778497478062" duration="1407000" />
+      <workItem from="1778497478062" duration="1727000" />
+      <workItem from="1778500100959" duration="30000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -460,7 +453,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778488733029</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="feat(core): add wave source resource processing&#10;&#10;Introduce ResourceManager.WaveSource.cs which registers a processor for IWaveSource using AudioUtils.Decode. Also normalize line endings (CRLF to LF) across multiple source files, update .csproj to version 1.1.1 with RepositoryUrl, and adjust IDE workspace configuration.">
+      <option name="closed" value="true" />
+      <created>1778498927487</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1778498927487</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,7 +497,8 @@
     <MESSAGE value="refactor(core): migrate texture loading to StbImageSharp" />
     <MESSAGE value="style(core): normalize line endings to LF" />
     <MESSAGE value="feat(core): introduce unified QuadBatch and TextureHandle for GPU batching" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(core): introduce unified QuadBatch and TextureHandle for GPU batching" />
+    <MESSAGE value="feat(core): add wave source resource processing&#10;&#10;Introduce ResourceManager.WaveSource.cs which registers a processor for IWaveSource using AudioUtils.Decode. Also normalize line endings (CRLF to LF) across multiple source files, update .csproj to version 1.1.1 with RepositoryUrl, and adjust IDE workspace configuration." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(core): add wave source resource processing&#10;&#10;Introduce ResourceManager.WaveSource.cs which registers a processor for IWaveSource using AudioUtils.Decode. Also normalize line endings (CRLF to LF) across multiple source files, update .csproj to version 1.1.1 with RepositoryUrl, and adjust IDE workspace configuration." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
