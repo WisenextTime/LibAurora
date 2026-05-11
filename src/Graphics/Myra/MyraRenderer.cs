@@ -23,18 +23,19 @@ public class MyraRenderer : IMyraRenderer
 	private const int MaxQuads = 4096;
 	private const int MaxVertices = MaxQuads * 4;
 	private const int MaxIndices = MaxQuads * 6;
-
 	private readonly IGraphics _graphics;
 	private readonly Pipeline _pipeline;
 	private readonly VertexData[] _vertices = new VertexData[MaxVertices];
+
+	private bool _beginCalled;
 	private MyraTexture? _currentTexture;
 	private TextureFiltering _filtering = TextureFiltering.Linear;
 	private DeviceBuffer _indexBuffer;
 	private Matrix4x4 _projection;
 	private DeviceBuffer _projectionBuffer;
-
 	private int _quadCount;
 	private ResourceLayout _resourceLayout;
+	private Rectangle _scissor;
 	private DeviceBuffer _vertexBuffer;
 
 	/// <summary>Creates a new Myra renderer, allocates GPU buffers, and initializes the rendering pipeline.</summary>
@@ -63,7 +64,7 @@ public class MyraRenderer : IMyraRenderer
 		var pipelineDesc = new GraphicsPipelineDescription(
 			BlendStateDescription.SingleAlphaBlend,
 			DepthStencilStateDescription.Disabled,
-			new RasterizerStateDescription(FaceCullMode.None, PolygonFillMode.Solid, FrontFace.Clockwise, true, false),
+			new RasterizerStateDescription(FaceCullMode.None, PolygonFillMode.Solid, FrontFace.Clockwise, true, true),
 			PrimitiveTopology.TriangleList,
 			new ShaderSetDescription([vertexLayout], shaders),
 			[_resourceLayout],
@@ -109,26 +110,14 @@ public class MyraRenderer : IMyraRenderer
 	public void Begin(TextureFiltering textureFiltering)
 	{
 		_quadCount = 0;
-		CommandList.SetFullScissorRect(0);
 		_filtering = textureFiltering;
+		_beginCalled = true;
 	}
 	/// <summary>Flushes the current quad batch to the GPU if any quads are queued and a texture is bound.</summary>
-	public unsafe void End()
+	public void End()
 	{
-		if (_quadCount == 0 || !_currentTexture.HasValue) return;
-
-		var cl = _graphics.CommandList;
-
-		fixed (VertexData* ptr = _vertices)
-			GraphicsDevice.UpdateBuffer(_vertexBuffer, 0, (nint)ptr, (uint)(_quadCount * 4 * sizeof(VertexData)));
-
-		cl.SetPipeline(_pipeline);
-		cl.SetGraphicsResourceSet(0, _currentTexture.Value.ResourceSets[_filtering]);
-		cl.SetVertexBuffer(0, _vertexBuffer);
-		cl.SetIndexBuffer(_indexBuffer, IndexFormat.UInt16);
-		cl.DrawIndexed((uint)(_quadCount * 6), 1, 0, 0, 0);
-
-		_quadCount = 0;
+		FlushBatch();
+		_beginCalled = false;
 	}
 	/// <summary>Sprite drawing is not supported in Quad renderer mode.</summary>
 	public void DrawSprite(object texture, Vector2 pos, Rectangle? src,
@@ -140,10 +129,10 @@ public class MyraRenderer : IMyraRenderer
 	public void DrawQuad(object texture, ref VertexPositionColorTexture topLeft, ref VertexPositionColorTexture topRight,
 		ref VertexPositionColorTexture bottomLeft, ref VertexPositionColorTexture bottomRight)
 	{
-		if (_quadCount >= MaxQuads) End();
+		if (_quadCount >= MaxQuads) FlushBatch();
 		var myraTexture = (MyraTexture)texture;
 
-		if (_currentTexture.HasValue && _currentTexture.Value.Id != myraTexture.Id) End();
+		if (_currentTexture.HasValue && _currentTexture.Value.Id != myraTexture.Id) FlushBatch();
 		_currentTexture = myraTexture;
 
 		var baseIdx = _quadCount * 4;
@@ -177,20 +166,72 @@ public class MyraRenderer : IMyraRenderer
 	/// <summary>The texture manager used by FontStashSharp for font atlas textures.</summary>
 	public ITexture2DManager TextureManager { get; }
 
-	/// <summary>Always returns <see cref="Myra.Graphics2D.RendererType.Quad"/>.</summary>
+	/// <summary>Always returns <see cref="Myra.Platform.RendererType.Quad"/>.</summary>
 	public RendererType RendererType => RendererType.Quad;
 
 	/// <summary>The scissor rectangle for clipping draw output. Setting this updates the GPU scissor rect.</summary>
 	public Rectangle Scissor
 	{
-		get;
+		get => _scissor;
 		set
 		{
-			if (field == value) return;
-			//End(); Myra will End by itself before scissor change.
-			CommandList.SetScissorRect(0, (uint)value.X, (uint)value.Y, (uint)value.Width, (uint)value.Height);
-			field = value;
+			if (_scissor == value) return;
+			Flush();
+			ApplyScissor(value);
+			_scissor = value;
 		}
+	}
+
+	private unsafe void FlushBatch()
+	{
+		if (_quadCount == 0 || !_currentTexture.HasValue) return;
+
+		var cl = _graphics.CommandList;
+
+		fixed (VertexData* ptr = _vertices)
+			cl.UpdateBuffer(_vertexBuffer, 0, (nint)ptr, (uint)(_quadCount * 4 * sizeof(VertexData)));
+
+		cl.SetPipeline(_pipeline);
+		ApplyScissor(_scissor);
+		cl.SetGraphicsResourceSet(0, _currentTexture.Value.ResourceSets[_filtering]);
+		cl.SetVertexBuffer(0, _vertexBuffer);
+		cl.SetIndexBuffer(_indexBuffer, IndexFormat.UInt16);
+		cl.DrawIndexed((uint)(_quadCount * 6), 1, 0, 0, 0);
+
+		_quadCount = 0;
+	}
+	private void Flush()
+	{
+		if (!_beginCalled) return;
+
+		End();
+		Begin(_filtering);
+	}
+	private void ApplyScissor(Rectangle value)
+	{
+		if (value == Rectangle.Empty)
+		{
+			CommandList.SetFullScissorRect(0);
+			return;
+		}
+
+		var framebufferWidth = (int)_graphics.ViewportWidth;
+		var framebufferHeight = (int)_graphics.ViewportHeight;
+		var left = int.Clamp(value.Left, 0, framebufferWidth);
+		var top = int.Clamp(value.Top, 0, framebufferHeight);
+		var right = int.Clamp(value.Right, left, framebufferWidth);
+		var bottom = int.Clamp(value.Bottom, top, framebufferHeight);
+
+		var width = right - left;
+		var height = bottom - top;
+
+		if (width == 0 || height == 0)
+		{
+			CommandList.SetScissorRect(0, 0, 0, 1, 1);
+			return;
+		}
+
+		CommandList.SetScissorRect(0, (uint)left, (uint)top, (uint)width, (uint)height);
 	}
 
 	/// <summary>Creates a <see cref="ResourceSet"/> for the given texture view and filtering mode.</summary>

@@ -12,7 +12,6 @@ namespace LibAurora.Graphics.Myra;
 /// </summary>
 public class MyraPlatform(IGraphics graphics, IInput input, Shader[] shaders) : IMyraPlatform
 {
-
 	/// <summary>Builds a Myra <see cref="MouseInfo"/> from the current <see cref="IInput"/> state.</summary>
 	public MouseInfo GetMouseInfo()
 	{

@@ -76,7 +76,7 @@ public unsafe class FontRenderer : IRenderer, IFontStashRenderer2, IDisposable
 		var pipelineDesc = new GraphicsPipelineDescription(
 			BlendStateDescription.SingleAlphaBlend,
 			DepthStencilStateDescription.Disabled,
-			new RasterizerStateDescription(FaceCullMode.None, PolygonFillMode.Solid, FrontFace.Clockwise, true, false),
+			new RasterizerStateDescription(FaceCullMode.None, PolygonFillMode.Solid, FrontFace.Clockwise, true, true),
 			PrimitiveTopology.TriangleList,
 			new ShaderSetDescription([vertexLayout], shaders),
 			[_resourceLayout],
@@ -134,7 +134,7 @@ public unsafe class FontRenderer : IRenderer, IFontStashRenderer2, IDisposable
 	public void DrawQuad(object texture, ref VertexPositionColorTexture topLeft, ref VertexPositionColorTexture topRight,
 		ref VertexPositionColorTexture bottomLeft, ref VertexPositionColorTexture bottomRight)
 	{
-		if (_quadCount >= MaxQuads) return;
+		if (_quadCount >= MaxQuads) End();
 
 		var h = (PageHandle)texture;
 		var layer = (float)h.Layer;
@@ -202,7 +202,7 @@ public unsafe class FontRenderer : IRenderer, IFontStashRenderer2, IDisposable
 		var cl = _graphics.CommandList;
 		var device = _graphics.Device;
 
-		device.UpdateBuffer(_projectionBuffer, 0, ref _projection);
+		cl.UpdateBuffer(_projectionBuffer, 0, ref _projection);
 
 		fixed (FontVertex* ptr = _vertices)
 			device.UpdateBuffer(_vertexBuffer, 0, (nint)ptr, (uint)(_quadCount * 4 * sizeof(FontVertex)));

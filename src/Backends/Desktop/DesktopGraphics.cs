@@ -78,6 +78,8 @@ public class DesktopGraphics : IGraphics
 		CommandList.Begin();
 		if (!bindDefaultSwapchain) return;
 		CommandList.SetFramebuffer(Device.SwapchainFramebuffer);
+		CommandList.SetFullViewports();
+		CommandList.SetFullScissorRect(0);
 		CommandList.ClearColorTarget(0, RgbaFloat.Black);
 	}
 
