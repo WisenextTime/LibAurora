@@ -2,7 +2,6 @@
 using LibAurora.Input;
 using LibAurora.Resources;
 using Myra;
-using Myra.Graphics2D.UI;
 using Veldrid;
 namespace LibAurora.Graphics.Myra;
 
@@ -13,19 +12,15 @@ namespace LibAurora.Graphics.Myra;
 /// </summary>
 public static class GuiServer
 {
-	private static Desktop? _root;
-
-	/// <summary>The root Myra <see cref="Desktop"/> widget. Throws if not initialized via <see cref="Init"/>.</summary>
-	public static Desktop Desktop => _root ?? throw new InvalidOperationException("GuiServer has not been initialized.");
+	private static MyraPlatform? _platform;
+	public static MyraRenderer Renderer
+		=> (MyraRenderer)(_platform?.Renderer ?? throw new InvalidOperationException("GuiServer has not been initialized."));
 
 	/// <summary>Initializes the GUI server with the given input and graphics contexts. Loads shaders and creates the Myra platform.</summary>
 	public static void Init(IInput input, IGraphics graphics)
 	{
 		var shaders = ResourceManager.LoadResource<Shader[]>("ase://LibAurora/Shaders/Myra.glsl");
-		MyraEnvironment.Platform = new MyraPlatform(graphics, input, shaders);
-		_root = new Desktop();
+		_platform = new MyraPlatform(graphics, input, shaders);
+		MyraEnvironment.Platform = _platform;
 	}
-
-	/// <summary>Renders one frame of the Myra UI.</summary>
-	public static void Render() => Desktop.Render();
 }

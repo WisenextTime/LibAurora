@@ -4,7 +4,8 @@ using System.IO;
 using System.Numerics;
 using FontStashSharp;
 using FontStashSharp.RichText;
-using LibAurora.Resources;
+using LibAurora.Graphics.Myra;
+using Myra.Graphics2D;
 using Veldrid;
 
 namespace LibAurora.Graphics.Fonts;
@@ -17,40 +18,27 @@ public static class FontServer
 {
 	private readonly static Dictionary<int, SpriteFontBase> _fonts = [];
 	private static FontSystem? _system;
-	private static FontRenderer? _renderer;
 
 	/// <summary>The underlying <see cref="FontSystem"/> instance. Throws if <see cref="Init"/> has not been called.</summary>
 	public static FontSystem System =>
 		_system ?? throw new InvalidOperationException("FontServer not initialized");
 
-	/// <summary>The underlying <see cref="FontRenderer"/> instance. Throws if <see cref="Init"/> has not been called.</summary>
-	public static FontRenderer Renderer =>
-		_renderer ?? throw new InvalidOperationException("FontServer not initialized");
+	/// <summary>The Myra renderer used by FontStashSharp. Throws if <see cref="GuiServer.Init"/> has not been called.</summary>
+	public static MyraRenderer Renderer => GuiServer.Renderer;
 
-	/// <summary>
-	/// Initializes the font server with the specified graphics device and optional default font stream.
-	/// Must be called before any drawing operations.
-	/// </summary>
-	/// <param name="graphics">The graphics context to use for rendering.</param>
-	/// <param name="fontStream">Optional stream of a default font to load on initialization.</param>
-	/// <exception cref="ArgumentNullException">Thrown when <paramref name="graphics"/> is null.</exception>
-	public static void Init(IGraphics graphics, Stream? fontStream = null)
+	/// <summary>Initializes the font server with an optional default font stream. Call <see cref="GuiServer.Init"/> first.</summary>
+	public static void Init(Stream? fontStream = null)
 	{
-		ArgumentNullException.ThrowIfNull(graphics);
-
-		var shaders = ResourceManager.LoadResource<Shader[]>("ase://LibAurora/Shaders/Font.glsl");
 		_system = new FontSystem(new FontSystemSettings
 		{
-			TextureWidth = FontAtlas.PageWidth,
-			TextureHeight = FontAtlas.PageHeight,
+			TextureWidth = 4096,
+			TextureHeight = 4096,
 		});
-		_renderer = new FontRenderer(graphics, shaders);
-		if (fontStream is not null)
-			CreateFont(fontStream);
+		if (fontStream is not null) CreateFont(fontStream);
 	}
 
 	/// <summary>Begins a font rendering batch. Must be paired with <see cref="End"/>.</summary>
-	public static void Begin() => Renderer.Begin();
+	public static void Begin() => Renderer.Begin(TextureFiltering.Linear);
 
 	/// <summary>Ends the current font rendering batch and submits draw commands to the GPU.</summary>
 	public static void End() => Renderer.End();
@@ -107,10 +95,18 @@ public static class FontServer
 	}
 
 	/// <summary>Creates and registers a font from a stream. Returns the created <see cref="Font"/> instance.</summary>
-	public static Font CreateFont(Stream fontStream) => new(System, fontStream);
+	public static Font CreateFont(Stream fontStream)
+	{
+		AddFont(ReadAllBytes(fontStream));
+		return new Font(System);
+	}
 
 	/// <summary>Adds raw font data to the font system.</summary>
-	public static void AddFont(byte[] data) => System.AddFont(data);
+	public static void AddFont(byte[] data)
+	{
+		System.AddFont(data);
+		_fonts.Clear();
+	}
 
 	/// <summary>Loads a font file from the specified path and adds it to the font system.</summary>
 	public static void AddFont(string path) => AddFont(File.ReadAllBytes(path));
@@ -118,13 +114,20 @@ public static class FontServer
 	/// <summary>Gets a sized font instance from the font system. The result is cached per font size.</summary>
 	public static SpriteFontBase GetFont(float size) => System.GetFont(size);
 
+	public static SpriteFontBase GetMyraFont(float size) => GetFont(size);
+
+	private static byte[] ReadAllBytes(Stream stream)
+	{
+		using var ms = new MemoryStream();
+		stream.CopyTo(ms);
+		return ms.ToArray();
+	}
+
 	/// <summary>Releases all font resources. After calling this, <see cref="Init"/> must be called again before reuse.</summary>
 	public static void Dispose()
 	{
 		_system?.Dispose();
-		_renderer?.Dispose();
 		_system = null;
-		_renderer = null;
 		_fonts.Clear();
 	}
 }

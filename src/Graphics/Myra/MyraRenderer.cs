@@ -1,11 +1,8 @@
 ﻿using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using FontStashSharp;
 using FontStashSharp.Interfaces;
 using LibAurora.Core;
 using LibAurora.MathUtils;
-using Myra;
 using Myra.Graphics2D;
 using Myra.Platform;
 using Veldrid;
@@ -18,82 +15,76 @@ namespace LibAurora.Graphics.Myra;
 /// Creates and caches <see cref="ResourceSet"/> per texture per filter mode via <see cref="CreateResourceSet"/>.
 /// Scissor is reset to full framebuffer on <see cref="Begin"/> and updated by Myra's layout system.
 /// </summary>
-public class MyraRenderer : IMyraRenderer
+public class MyraRenderer : IMyraRenderer, IRenderer, IFontStashRenderer2
 {
-	private const int MaxQuads = 4096;
-	private const int MaxVertices = MaxQuads * 4;
-	private const int MaxIndices = MaxQuads * 6;
+	private readonly QuadBatch _batch;
 	private readonly IGraphics _graphics;
-	private readonly Pipeline _pipeline;
-	private readonly VertexData[] _vertices = new VertexData[MaxVertices];
 
 	private bool _beginCalled;
-	private MyraTexture? _currentTexture;
 	private TextureFiltering _filtering = TextureFiltering.Linear;
-	private DeviceBuffer _indexBuffer;
 	private Matrix4x4 _projection;
-	private DeviceBuffer _projectionBuffer;
-	private int _quadCount;
-	private ResourceLayout _resourceLayout;
-	private Rectangle _scissor;
-	private DeviceBuffer _vertexBuffer;
 
 	/// <summary>Creates a new Myra renderer, allocates GPU buffers, and initializes the rendering pipeline.</summary>
 	public MyraRenderer(IGraphics graphics, Shader[] shaders)
 	{
 		_graphics = graphics;
+		_batch = new QuadBatch(graphics, shaders);
 		TextureManager = new MyraTextureManager(graphics, this);
-
-		_resourceLayout = Factory.CreateResourceLayout(new ResourceLayoutDescription(
-			new ResourceLayoutElementDescription("uTexture", ResourceKind.TextureReadOnly, ShaderStages.Fragment),
-			new ResourceLayoutElementDescription("uSampler", ResourceKind.Sampler, ShaderStages.Fragment),
-			new ResourceLayoutElementDescription("Projection", ResourceKind.UniformBuffer, ShaderStages.Vertex)));
-
-		_projectionBuffer = Factory.CreateBuffer(new BufferDescription(64, BufferUsage.UniformBuffer | BufferUsage.Dynamic));
-
-		var fb = _graphics.Device.SwapchainFramebuffer;
-		var outputDesc = fb?.OutputDescription ??
-		                 new OutputDescription(null,
-			                 new OutputAttachmentDescription(PixelFormat.B8_G8_R8_A8_UNorm_SRgb));
-
-		var vertexLayout = new VertexLayoutDescription(
-			new VertexElementDescription("Position", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2),
-			new VertexElementDescription("TexCoord", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float2),
-			new VertexElementDescription("Color", VertexElementSemantic.TextureCoordinate, VertexElementFormat.Float4));
-
-		var pipelineDesc = new GraphicsPipelineDescription(
-			BlendStateDescription.SingleAlphaBlend,
-			DepthStencilStateDescription.Disabled,
-			new RasterizerStateDescription(FaceCullMode.None, PolygonFillMode.Solid, FrontFace.Clockwise, true, true),
-			PrimitiveTopology.TriangleList,
-			new ShaderSetDescription([vertexLayout], shaders),
-			[_resourceLayout],
-			outputDesc);
-
-		_pipeline = Factory.CreateGraphicsPipeline(ref pipelineDesc);
-
-		_vertexBuffer = Factory.CreateBuffer(new BufferDescription(
-			(uint)(MaxVertices * Unsafe.SizeOf<VertexData>()), BufferUsage.VertexBuffer | BufferUsage.Dynamic));
-
-		var indices = new ushort[MaxIndices];
-		for (ushort i = 0; i < MaxQuads; i++)
-		{
-			var baseVertex = (ushort)(i * 4);
-			var idx = i * 6;
-			indices[idx + 0] = baseVertex;
-			indices[idx + 1] = (ushort)(baseVertex + 1);
-			indices[idx + 2] = (ushort)(baseVertex + 2);
-			indices[idx + 3] = (ushort)(baseVertex + 1);
-			indices[idx + 4] = (ushort)(baseVertex + 3);
-			indices[idx + 5] = (ushort)(baseVertex + 2);
-		}
-		_indexBuffer = Factory.CreateBuffer(new BufferDescription(
-			(uint)(indices.Length * sizeof(ushort)), BufferUsage.IndexBuffer));
-		GraphicsDevice.UpdateBuffer(_indexBuffer, 0, indices);
 
 		Events.Subscribe<Events.SurfaceResizeEvent>(OnResize);
 		OnResize(WindowSize);
 	}
+
+	public QuadBatch Batch => _batch;
+
+	/// <summary>Begins a new render batch, resets the quad counter, and sets the active texture filtering mode.</summary>
+	public void Begin(TextureFiltering textureFiltering)
+	{
+		_filtering = textureFiltering;
+		_batch.Begin(_projection, textureFiltering);
+		_beginCalled = true;
+	}
+	/// <summary>Flushes the current quad batch to the GPU if any quads are queued and a texture is bound.</summary>
+	public void End()
+	{
+		_batch.End();
+		_beginCalled = false;
+	}
+	public void DrawSprite(object texture, Vector2 pos, Rectangle? src,
+		FSColor color, float rotation, Vector2 scale, float depth)
+	{
+		_batch.DrawSprite((TextureHandle)texture, pos, src, color.ToRgbaFloat(), rotation, scale);
+	}
+
+	/// <summary>Queues a textured quad. Automatically flushes on batch overflow or texture change.</summary>
+	public void DrawQuad(object texture, ref VertexPositionColorTexture topLeft, ref VertexPositionColorTexture topRight,
+		ref VertexPositionColorTexture bottomLeft, ref VertexPositionColorTexture bottomRight)
+	{
+		_batch.DrawQuad((TextureHandle)texture,
+			topLeft.Position.ToVector2(), topRight.Position.ToVector2(),
+			bottomLeft.Position.ToVector2(), bottomRight.Position.ToVector2(),
+			topLeft.TextureCoordinate, topRight.TextureCoordinate,
+			bottomLeft.TextureCoordinate, bottomRight.TextureCoordinate,
+			topLeft.Color.ToRgbaFloat(), topRight.Color.ToRgbaFloat(),
+			bottomLeft.Color.ToRgbaFloat(), bottomRight.Color.ToRgbaFloat());
+	}
+	/// <summary>The texture manager used by FontStashSharp for font atlas textures.</summary>
+	public ITexture2DManager TextureManager { get; }
+
+	/// <summary>Always returns <see cref="Myra.Platform.RendererType.Quad"/>.</summary>
+	public RendererType RendererType => RendererType.Quad;
+
+	/// <summary>The scissor rectangle for clipping draw output. Setting this updates the GPU scissor rect.</summary>
+	public Rectangle Scissor
+	{
+		get => _batch.Scissor;
+		set
+		{
+			if (_batch.Scissor == value) return;
+			_batch.Scissor = value;
+		}
+	}
+
 	/// <summary>The underlying Veldrid <see cref="Veldrid.GraphicsDevice"/>.</summary>
 	public GraphicsDevice GraphicsDevice => _graphics.Device;
 
@@ -107,160 +98,25 @@ public class MyraRenderer : IMyraRenderer
 	public Vector2 WindowSize => new(_graphics.ViewportWidth, _graphics.ViewportHeight);
 
 	/// <summary>Begins a new render batch, resets the quad counter, and sets the active texture filtering mode.</summary>
-	public void Begin(TextureFiltering textureFiltering)
-	{
-		_quadCount = 0;
-		_filtering = textureFiltering;
-		_beginCalled = true;
-	}
-	/// <summary>Flushes the current quad batch to the GPU if any quads are queued and a texture is bound.</summary>
-	public void End()
-	{
-		FlushBatch();
-		_beginCalled = false;
-	}
-	/// <summary>Sprite drawing is not supported in Quad renderer mode.</summary>
-	public void DrawSprite(object texture, Vector2 pos, Rectangle? src,
-		FSColor color, float rotation, Vector2 scale, float depth)
-	{
-	}
-
-	/// <summary>Queues a textured quad. Automatically flushes on batch overflow or texture change.</summary>
-	public void DrawQuad(object texture, ref VertexPositionColorTexture topLeft, ref VertexPositionColorTexture topRight,
-		ref VertexPositionColorTexture bottomLeft, ref VertexPositionColorTexture bottomRight)
-	{
-		if (_quadCount >= MaxQuads) FlushBatch();
-		var myraTexture = (MyraTexture)texture;
-
-		if (_currentTexture.HasValue && _currentTexture.Value.Id != myraTexture.Id) FlushBatch();
-		_currentTexture = myraTexture;
-
-		var baseIdx = _quadCount * 4;
-
-		_vertices[baseIdx + 0] = new VertexData
-		{
-			Position = topLeft.Position.ToVector2(),
-			TexCoord = topLeft.TextureCoordinate,
-			Color = topLeft.Color.ToRgbaFloat(),
-		};
-		_vertices[baseIdx + 1] = new VertexData
-		{
-			Position = topRight.Position.ToVector2(),
-			TexCoord = topRight.TextureCoordinate,
-			Color = topRight.Color.ToRgbaFloat()
-		};
-		_vertices[baseIdx + 2] = new VertexData
-		{
-			Position = bottomLeft.Position.ToVector2(),
-			TexCoord = bottomLeft.TextureCoordinate,
-			Color = bottomLeft.Color.ToRgbaFloat()
-		};
-		_vertices[baseIdx + 3] = new VertexData
-		{
-			Position = bottomRight.Position.ToVector2(),
-			TexCoord = bottomRight.TextureCoordinate,
-			Color = bottomRight.Color.ToRgbaFloat(),
-		};
-		_quadCount++;
-	}
-	/// <summary>The texture manager used by FontStashSharp for font atlas textures.</summary>
-	public ITexture2DManager TextureManager { get; }
-
-	/// <summary>Always returns <see cref="Myra.Platform.RendererType.Quad"/>.</summary>
-	public RendererType RendererType => RendererType.Quad;
-
-	/// <summary>The scissor rectangle for clipping draw output. Setting this updates the GPU scissor rect.</summary>
-	public Rectangle Scissor
-	{
-		get => _scissor;
-		set
-		{
-			if (_scissor == value) return;
-			Flush();
-			ApplyScissor(value);
-			_scissor = value;
-		}
-	}
-
-	private unsafe void FlushBatch()
-	{
-		if (_quadCount == 0 || !_currentTexture.HasValue) return;
-
-		var cl = _graphics.CommandList;
-
-		fixed (VertexData* ptr = _vertices)
-			cl.UpdateBuffer(_vertexBuffer, 0, (nint)ptr, (uint)(_quadCount * 4 * sizeof(VertexData)));
-
-		cl.SetPipeline(_pipeline);
-		ApplyScissor(_scissor);
-		cl.SetGraphicsResourceSet(0, _currentTexture.Value.ResourceSets[_filtering]);
-		cl.SetVertexBuffer(0, _vertexBuffer);
-		cl.SetIndexBuffer(_indexBuffer, IndexFormat.UInt16);
-		cl.DrawIndexed((uint)(_quadCount * 6), 1, 0, 0, 0);
-
-		_quadCount = 0;
-	}
-	private void Flush()
-	{
-		if (!_beginCalled) return;
-
-		End();
-		Begin(_filtering);
-	}
-	private void ApplyScissor(Rectangle value)
-	{
-		if (value == Rectangle.Empty)
-		{
-			CommandList.SetFullScissorRect(0);
-			return;
-		}
-
-		var framebufferWidth = (int)_graphics.ViewportWidth;
-		var framebufferHeight = (int)_graphics.ViewportHeight;
-		var left = int.Clamp(value.Left, 0, framebufferWidth);
-		var top = int.Clamp(value.Top, 0, framebufferHeight);
-		var right = int.Clamp(value.Right, left, framebufferWidth);
-		var bottom = int.Clamp(value.Bottom, top, framebufferHeight);
-
-		var width = right - left;
-		var height = bottom - top;
-
-		if (width == 0 || height == 0)
-		{
-			CommandList.SetScissorRect(0, 0, 0, 1, 1);
-			return;
-		}
-
-		CommandList.SetScissorRect(0, (uint)left, (uint)top, (uint)width, (uint)height);
-	}
+	public void Begin() => Begin(TextureFiltering.Linear);
 
 	/// <summary>Creates a <see cref="ResourceSet"/> for the given texture view and filtering mode.</summary>
-	public ResourceSet CreateResourceSet(TextureView textureView, TextureFiltering filtering)
-	{
-		var sampler = filtering switch
-		{
-			TextureFiltering.Nearest => Factory.CreateSampler(SamplerDescription.Point),
-			TextureFiltering.Anisotropic => Factory.CreateSampler(SamplerDescription.Aniso4x),
-			_ => Factory.CreateSampler(SamplerDescription.Linear),
-		};
-		return Factory.CreateResourceSet(new ResourceSetDescription(_resourceLayout, textureView, sampler, _projectionBuffer));
-	}
+	public ResourceSet CreateResourceSet(TextureView textureView, TextureFiltering filtering) =>
+		_batch.CreateResourceSet(textureView, filtering);
+
+	public void Dispose() => _batch.Dispose();
+
 	private void OnResize(Vector2 windowSize)
 	{
 		_projection = Matrix4x4.CreateOrthographicOffCenter(
 			0, windowSize.X,
 			windowSize.Y, 0,
 			-1, 1);
-		GraphicsDevice.UpdateBuffer(_projectionBuffer, 0, ref _projection);
-		MyraEnvironment.Reset();
+		if (_beginCalled)
+		{
+			End();
+			Begin(_filtering);
+		}
 	}
 	private void OnResize(Events.SurfaceResizeEvent e) => OnResize(e.Size);
-
-	[StructLayout(LayoutKind.Sequential)]
-	private struct VertexData(Vector2 position, Vector2 texCoord, RgbaFloat color)
-	{
-		public Vector2 Position = position;
-		public Vector2 TexCoord = texCoord;
-		public RgbaFloat Color = color;
-	}
 }

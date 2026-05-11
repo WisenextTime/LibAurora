@@ -13,6 +13,11 @@ public class Font : IDisposable
 	private readonly FontSystem _system;
 	private bool _disposed;
 
+	internal Font(FontSystem system)
+	{
+		_system = system;
+	}
+
 	/// <summary>
 	/// Creates a font from raw byte data and registers it with the specified font system.
 	/// </summary>
@@ -25,14 +30,10 @@ public class Font : IDisposable
 	}
 
 	/// <summary>Loads a font from the specified file path.</summary>
-	public Font(FontSystem system, string path) : this(system, File.ReadAllBytes(path))
-	{
-	}
+	public Font(FontSystem system, string path) : this(system, File.ReadAllBytes(path)) { }
 
 	/// <summary>Loads a font from a stream by reading all bytes into memory first.</summary>
-	public Font(FontSystem system, Stream stream) : this(system, ReadAllBytes(stream))
-	{
-	}
+	public Font(FontSystem system, Stream stream) : this(system, ReadAllBytes(stream)) { }
 
 	/// <summary>
 	/// Disposes this font instance. The shared <see cref="FontSystem"/> is not affected.

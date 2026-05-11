@@ -8,7 +8,7 @@ namespace LibAurora.Graphics.Myra;
 
 /// <summary>
 /// Implements <see cref="ITexture2DManager"/> for FontStashSharp font atlas textures.
-/// Creates <see cref="MyraTexture"/> instances with pre-built <see cref="ResourceSet"/> entries
+/// Creates <see cref="TextureHandle"/> instances with pre-built <see cref="ResourceSet"/> entries
 /// for all three <see cref="TextureFiltering"/> modes via <see cref="MyraRenderer.CreateResourceSet"/>.
 /// </summary>
 public class MyraTextureManager(IGraphics graphics, MyraRenderer renderer) : ITexture2DManager
@@ -29,18 +29,18 @@ public class MyraTextureManager(IGraphics graphics, MyraRenderer renderer) : ITe
 			{ TextureFiltering.Linear, renderer.CreateResourceSet(view, TextureFiltering.Linear) },
 			{ TextureFiltering.Anisotropic, renderer.CreateResourceSet(view, TextureFiltering.Anisotropic) },
 		};
-		return new MyraTexture(texture, view, resourceSets);
+		return new TextureHandle(texture, view, resourceSets);
 	}
-	/// <summary>Returns the dimensions of the given <see cref="MyraTexture"/> in pixels.</summary>
+	/// <summary>Returns the dimensions of the given <see cref="TextureHandle"/> in pixels.</summary>
 	public Point GetTextureSize(object texture)
 	{
-		var myraTexture = (MyraTexture)texture;
-		return myraTexture.Size;
+		var textureHandle = (TextureHandle)texture;
+		return textureHandle.Size;
 	}
 	/// <summary>Uploads pixel data to a sub-region of the given texture.</summary>
 	public unsafe void SetTextureData(object texture, Rectangle bounds, byte[] data)
 	{
-		var h = (MyraTexture)texture;
+		var h = (TextureHandle)texture;
 		fixed (byte* ptr = data)
 		{
 			graphics.Device.UpdateTexture(h.Texture, (nint)ptr, (uint)data.Length,

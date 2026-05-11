@@ -10,12 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Graphics/QuadBatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Graphics/TextureHandle.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopGraphics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopGraphics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/MyraPlatform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraPlatform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/Font.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Fonts/Font.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontAtlas.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/GuiServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Myra/GuiServer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/MyraRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/MyraTexture.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/MyraTextureManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraTextureManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,13 +147,11 @@
     <setting file="file://$PROJECT_DIR$/src/Debug/ILogger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Debug/LogServer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/Fonts/Font.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Graphics/Fonts/FontRenderer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/IGraphics.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/GuiServer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/MyraPlatform.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/MyraRenderer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/MyraTexture.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/MyraTextureManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Input/MyraKeyMapUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/MathUtils/ColorExtension.cs" root0="FORCE_HIGHLIGHTING" />
@@ -173,28 +175,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET 项目.Test.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;PowerShell.NugetPack.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Shell Script.NugetPack.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;aigit.settings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;发布到文件夹.Pack.executor&quot;: &quot;Run&quot;,
-    &quot;发布到文件夹.未命名.executor&quot;: &quot;Run&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET 项目.Test.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "PowerShell.NugetPack.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Shell Script.NugetPack.executor": "Run",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "aigit.settings",
+    "vue.rearranger.settings.migration": "true",
+    "发布到文件夹.Pack.executor": "Run",
+    "发布到文件夹.未命名.executor": "Run"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET 项目.Test">
     <configuration name="Test" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Test/bin/Debug/net10.0/Test.exe" />
@@ -443,7 +445,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778385333348</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="style(core): normalize line endings to LF">
+      <option name="closed" value="true" />
+      <created>1778474753881</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1778474753881</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +487,8 @@
     <MESSAGE value="feat(core): restructure GUI system and add math utility extensions&#10;&#10;Remove obsolete GUI classes (GuiElement, Panel, StyleRenderer) and introduce new extension methods for color and vector conversions in MathUtils. Update graphics and resource files to align with the refactored architecture." />
     <MESSAGE value="feat(myra): add Myra UI integration with Veldrid backend&#10;&#10;Add the core infrastructure for Myra retained-mode GUI rendering using Veldrid. &#10;Includes a dynamic vertex-batched renderer (MyraRenderer), platform abstraction (MyraPlatform), &#10;key mapping (MyraKeyMapUtils), texture manager (MyraTextureManager), custom shader (Myra.glsl), &#10;and static entry point (GuiServer). All files are new additions totaling 518 lines." />
     <MESSAGE value="refactor(core): migrate texture loading to StbImageSharp" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(core): migrate texture loading to StbImageSharp" />
+    <MESSAGE value="style(core): normalize line endings to LF" />
+    <option name="LAST_COMMIT_MESSAGE" value="style(core): normalize line endings to LF" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
