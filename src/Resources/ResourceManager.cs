@@ -36,6 +36,7 @@ public static partial class ResourceManager
 			InitTextureProcessor(graphics);
 			InitShaderProcessor(graphics);
 		}
+		InitWaveSourceProcessor();
 	}
 }
 /// <summary>Internal interface for resource processor type-erasure.</summary>

@@ -112,11 +112,9 @@ public class MyraRenderer : IMyraRenderer, IRenderer, IFontStashRenderer2
 			0, windowSize.X,
 			windowSize.Y, 0,
 			-1, 1);
-		if (_beginCalled)
-		{
-			End();
-			Begin(_filtering);
-		}
+		if (!_beginCalled) return;
+		End();
+		Begin(_filtering);
 	}
 	private void OnResize(Events.SurfaceResizeEvent e) => OnResize(e.Size);
 }

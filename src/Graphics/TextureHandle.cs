@@ -27,4 +27,16 @@ public readonly struct TextureHandle(Texture texture, TextureView view, Dictiona
 
 	/// <summary>Texture dimensions in pixels.</summary>
 	public Point Size => new((int)Texture.Width, (int)Texture.Height);
+
+	public static TextureHandle Create(Texture texture, IGraphics graphics, QuadBatch renderer)
+	{
+		var view = graphics.Factory.CreateTextureView(new TextureViewDescription(texture));
+		var resourceSets = new Dictionary<TextureFiltering, ResourceSet>
+		{
+			{ TextureFiltering.Nearest, renderer.CreateResourceSet(view, TextureFiltering.Nearest) },
+			{ TextureFiltering.Linear, renderer.CreateResourceSet(view, TextureFiltering.Linear) },
+			{ TextureFiltering.Anisotropic, renderer.CreateResourceSet(view, TextureFiltering.Anisotropic) },
+		};
+		return new TextureHandle(texture, view, resourceSets);
+	}
 }
