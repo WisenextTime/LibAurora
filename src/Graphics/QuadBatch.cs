@@ -199,7 +199,7 @@ public sealed class QuadBatch : IDisposable
 			color);
 	}
 
-	private void DrawQuad(TextureHandle texture, VertexData topLeft, VertexData topRight, VertexData bottomLeft,
+	public void DrawQuad(TextureHandle texture, VertexData topLeft, VertexData topRight, VertexData bottomLeft,
 		VertexData bottomRight)
 	{
 		if (!_beginCalled) throw new InvalidOperationException("QuadBatch.Begin must be called before drawing.");
@@ -272,7 +272,7 @@ public sealed class QuadBatch : IDisposable
 		new(value.X * cos - value.Y * sin, value.X * sin + value.Y * cos);
 
 	[StructLayout(LayoutKind.Sequential)]
-	private readonly struct VertexData(Vector2 position, Vector2 texCoord, RgbaFloat color)
+	public readonly struct VertexData(Vector2 position, Vector2 texCoord, RgbaFloat color)
 	{
 		public readonly Vector2 Position = position;
 		public readonly Vector2 TexCoord = texCoord;
