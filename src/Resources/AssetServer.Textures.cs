@@ -4,7 +4,7 @@ using StbImageSharp;
 using Veldrid;
 namespace LibAurora.Resources;
 
-public static partial class ResourceManager
+public static partial class AssetServer
 {
 	internal static void InitTextureProcessor(IGraphics graphics) =>
 		RegisterProcesser(new ResourceProcesser<Texture>(

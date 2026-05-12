@@ -9,7 +9,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="" />
+    <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Core/StartupUtils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Graphics/UiRenderServer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Resources/AssemblyProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Resources/PhysicalProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Resources/ResourcesBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Shaders/Ui.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backends/Headless/HeadlessApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Headless/HeadlessApplication.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/ApplicationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/ApplicationContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/GuiServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Myra/GuiServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/MyraPlatform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraPlatform.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/MyraRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/UiRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/MyraTextureManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/UiTextureManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LibAurora.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.Core.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/DesktopResources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/DesktopResources.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/IResources.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/ResourceManager.Shaders.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/AssetServer.Shaders.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/ResourceManager.Textures.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/AssetServer.Textures.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/ResourceManager.WaveSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/AssetServer.WaveSource.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Resources/ResourceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/AssetServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shaders/Font.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shaders/Myra.glsl" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +51,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -93,6 +119,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d965b427610645219c622d7764a327cff49910/c4/65b82162/Func`3.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d965b427610645219c622d7764a327cff49910/c9/7081e984/Path.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d965b427610645219c622d7764a327cff49910/d4/036ae13e/Action`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d965b427610645219c622d7764a327cff49910/e9/b137d708/Directory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e16775ee43374a1d9e37d351895445e715000/28/c08e4b48/KeyEvent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e16775ee43374a1d9e37d351895445e715000/2e/fe1b7372/SDL_version.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e16775ee43374a1d9e37d351895445e715000/3b/1e16bbb1/Sdl2Window.cs" root0="SKIP_HIGHLIGHTING" />
@@ -120,6 +147,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b5bb23405816459d453ea2ca3b4740c966f0db6e149bddfd75ffebcfd935aa52/ShaderDescription.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bf9b376bc5e5d2e87814d4ad8cc64c7baae926c9a5c65346cf5073433ba2b7d4/OpenGLPlatformInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ddfecee215e1b827883f419f3d5d4496eac66ad02540c568de9c5345964eb09e/TextureViewDescription.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f87fe443c817f5c5221c89db6b9a7ac0d8923bb781cdf4aaffe1974f3b88eb2/Directory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f93b49631c2dd676292ffdee5de5eed5dcc457db88f98f5ff95b45dcc869a47/ResourceFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Test/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Audio/BgmPlayer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -134,6 +162,7 @@
     <setting file="file://$PROJECT_DIR$/src/Core/ApplicationContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Core/Events.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Core/IApplication.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Core/StartupUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Debug/ILogger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Debug/LogServer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/Fonts/Font.cs" root0="FORCE_HIGHLIGHTING" />
@@ -141,18 +170,14 @@
     <setting file="file://$PROJECT_DIR$/src/Graphics/IGraphics.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/GuiServer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/MyraPlatform.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/MyraRenderer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Graphics/Myra/MyraTextureManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Input/MyraKeyMapUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/MathUtils/ColorExtension.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Resources/IResources.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/Resources/ResourceManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Scene/Scene.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/Scene/SceneManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Toolset" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -165,29 +190,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET 项目.Test.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;PowerShell.NugetPack.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Shell Script.NugetPack.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;aigit.settings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
-    &quot;发布到文件夹.Pack.executor&quot;: &quot;Run&quot;,
-    &quot;发布到文件夹.未命名.executor&quot;: &quot;Run&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET 项目.Test.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "PowerShell.NugetPack.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Shell Script.NugetPack.executor": "Run",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "aigit.settings",
+    "vue.rearranger.settings.migration": "true",
+    "发布到文件夹.Pack.executor": "Run",
+    "发布到文件夹.未命名.executor": "Run"
   }
-}</component>
-  <component name="RunManager" selected="PowerShell.NugetPack">
+}]]></component>
+  <component name="RunManager" selected=".NET 项目.Test">
     <configuration name="Test" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Test/bin/Debug/net10.0/Test.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -284,6 +309,8 @@
       <workItem from="1778427718132" duration="4883000" />
       <workItem from="1778497478062" duration="1727000" />
       <workItem from="1778500100959" duration="30000" />
+      <workItem from="1778515076067" duration="537000" />
+      <workItem from="1778586332372" duration="8201000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -461,7 +488,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778498927487</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fix(textures): use sRGB pixel format for texture loading">
+      <option name="closed" value="true" />
+      <created>1778515222303</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1778515222303</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +533,8 @@
     <MESSAGE value="style(core): normalize line endings to LF" />
     <MESSAGE value="feat(core): introduce unified QuadBatch and TextureHandle for GPU batching" />
     <MESSAGE value="feat(core): add wave source resource processing&#10;&#10;Introduce ResourceManager.WaveSource.cs which registers a processor for IWaveSource using AudioUtils.Decode. Also normalize line endings (CRLF to LF) across multiple source files, update .csproj to version 1.1.1 with RepositoryUrl, and adjust IDE workspace configuration." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(core): add wave source resource processing&#10;&#10;Introduce ResourceManager.WaveSource.cs which registers a processor for IWaveSource using AudioUtils.Decode. Also normalize line endings (CRLF to LF) across multiple source files, update .csproj to version 1.1.1 with RepositoryUrl, and adjust IDE workspace configuration." />
+    <MESSAGE value="fix(textures): use sRGB pixel format for texture loading" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix(textures): use sRGB pixel format for texture loading" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

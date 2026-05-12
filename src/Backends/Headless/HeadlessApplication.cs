@@ -33,7 +33,7 @@ public class HeadlessApplication : IApplication
 			Application = this,
 			Input = new MockInput(),
 			Audio = new MockAudio(),
-			Resources = new DesktopResources(Name),
+			ResourcesBase = new DesktopResources(Name),
 		};
 	}
 

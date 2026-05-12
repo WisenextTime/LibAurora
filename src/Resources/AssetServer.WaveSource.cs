@@ -3,7 +3,7 @@ using CSCore;
 using LibAurora.Audio;
 namespace LibAurora.Resources;
 
-public static partial class ResourceManager
+public static partial class AssetServer
 {
 	internal static void InitWaveSourceProcessor() =>
 		RegisterProcesser(new ResourceProcesser<IWaveSource>(

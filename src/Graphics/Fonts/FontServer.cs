@@ -4,10 +4,8 @@ using System.IO;
 using System.Numerics;
 using FontStashSharp;
 using FontStashSharp.RichText;
-using LibAurora.Graphics.Myra;
 using Myra.Graphics2D;
 using Veldrid;
-
 namespace LibAurora.Graphics.Fonts;
 
 /// <summary>
@@ -23,12 +21,13 @@ public static class FontServer
 	public static FontSystem System =>
 		_system ?? throw new InvalidOperationException("FontServer not initialized");
 
-	/// <summary>The Myra renderer used by FontStashSharp. Throws if <see cref="GuiServer.Init"/> has not been called.</summary>
-	public static MyraRenderer Renderer => GuiServer.Renderer;
+	/// <summary>The shared UI renderer used by FontStashSharp.</summary>
+	public static UiRenderer Renderer => UiRenderServer.Renderer;
 
-	/// <summary>Initializes the font server with an optional default font stream. Call <see cref="GuiServer.Init"/> first.</summary>
-	public static void Init(Stream? fontStream = null)
+	/// <summary>Initializes the font server with an optional default font stream.</summary>
+	public static void Init(IGraphics graphics, Stream? fontStream = null)
 	{
+		UiRenderServer.Init(graphics);
 		_system = new FontSystem(new FontSystemSettings
 		{
 			TextureWidth = 4096,
@@ -113,8 +112,6 @@ public static class FontServer
 
 	/// <summary>Gets a sized font instance from the font system. The result is cached per font size.</summary>
 	public static SpriteFontBase GetFont(float size) => System.GetFont(size);
-
-	public static SpriteFontBase GetMyraFont(float size) => GetFont(size);
 
 	private static byte[] ReadAllBytes(Stream stream)
 	{

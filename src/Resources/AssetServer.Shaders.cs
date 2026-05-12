@@ -7,7 +7,7 @@ using Veldrid;
 using Veldrid.SPIRV;
 namespace LibAurora.Resources;
 
-public static partial class ResourceManager
+public static partial class AssetServer
 {
 	internal static void InitShaderProcessor(IGraphics graphics) =>
 		RegisterProcesser(new ResourceProcesser<Shader[]>(

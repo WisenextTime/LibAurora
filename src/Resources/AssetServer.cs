@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using LibAurora.Core;
+using LibAurora.Debug;
 namespace LibAurora.Resources;
 
-/// <summary>The low-level resource manager class. </summary>
-public static partial class ResourceManager
+/// <summary>The engine-level asset loading service. </summary>
+public static partial class AssetServer
 {
 	private readonly static Dictionary<Type, IResourceProcesser> _processers = new();
 	/// <summary>The resource service. </summary>
-	private static IResources? _services;
-	public static IResources Services => _services ?? throw new InvalidOperationException("ResourceManager is not initialized");
+	private static ResourcesBase? _services;
+	public static ResourcesBase Services => _services ?? throw new InvalidOperationException("AssetServer is not initialized");
 
 	/// <summary>Registers a resource processor for the specified type <typeparamref name="T"/>.</summary>
 	public static void RegisterProcesser<T>(ResourceProcesser<T> processer) => _processers[typeof(T)] = processer;
@@ -29,13 +31,15 @@ public static partial class ResourceManager
 	/// <summary> Initializes GPU resource processors. When <paramref name="graphics"/> is provided. </summary>
 	public static void Init(ApplicationContext context)
 	{
-		_services = context.Resources;
-		_services.RegisterAssembly(typeof(ResourceManager).Assembly);
+		_services = context.ResourcesBase;
+		_services.RegisterAssemblyResources(typeof(AssetServer).Assembly);
+		_services.RegisterAssemblyResources(Assembly.GetEntryAssembly());
 		if (context.Graphics is { } graphics)
 		{
 			InitTextureProcessor(graphics);
 			InitShaderProcessor(graphics);
 		}
+		else LogServer.Log("No graphics device enabled, skipping texture and shader processors.");
 		InitWaveSourceProcessor();
 	}
 }
@@ -50,14 +54,14 @@ public class ResourceProcesser<T>(Func<Stream, T> load, Action<T, Stream> save) 
 	/// <summary>Loads a resource from the specified path.</summary>
 	public T Load(string path)
 	{
-		using var fs = ResourceManager.Services.GetResource(path);
+		using var fs = AssetServer.Services.GetResource(path);
 		return load(fs);
 	}
 
 	/// <summary>Saves a resource to the specified path.</summary>
 	public void Save(T resource, string path)
 	{
-		using var fs = ResourceManager.Services.GetResource(path);
+		using var fs = AssetServer.Services.GetResource(path);
 		if (!fs.CanWrite) throw new IOException($"Resource {path} can't be written");
 		save(resource, fs);
 	}

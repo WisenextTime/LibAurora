@@ -2,15 +2,15 @@
 using LibAurora.MathUtils;
 using Myra.Graphics2D.UI;
 using Myra.Platform;
-using Veldrid;
+using MouseButton = Veldrid.MouseButton;
 using Point = System.Drawing.Point;
 namespace LibAurora.Graphics.Myra;
 
 /// <summary>
 /// Bridges <see cref="IInput"/> and viewport info to the <see cref="IMyraPlatform"/> interface.
-/// Creates the <see cref="MyraRenderer"/> internally and handles mouse/keyboard/touch input mapping.
+/// Handles mouse/keyboard/touch input mapping for Myra.
 /// </summary>
-public class MyraPlatform(IGraphics graphics, IInput input, Shader[] shaders) : IMyraPlatform
+public class MyraPlatform(IGraphics graphics, IInput input, UiRenderer renderer) : IMyraPlatform
 {
 	/// <summary>Builds a Myra <see cref="MouseInfo"/> from the current <see cref="IInput"/> state.</summary>
 	public MouseInfo GetMouseInfo()
@@ -47,6 +47,6 @@ public class MyraPlatform(IGraphics graphics, IInput input, Shader[] shaders) : 
 	/// <summary>The current viewport dimensions in pixels.</summary>
 	public Point ViewSize => new((int)graphics.ViewportWidth, (int)graphics.ViewportHeight);
 
-	/// <summary>The Veldrid-backed <see cref="MyraRenderer"/> instance.</summary>
-	public IMyraRenderer Renderer { get; } = new MyraRenderer(graphics, shaders);
+	/// <summary>The shared Veldrid-backed UI renderer.</summary>
+	public IMyraRenderer Renderer { get; } = renderer;
 }

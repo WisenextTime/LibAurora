@@ -54,7 +54,7 @@ public class DesktopApplication : IApplication
 			Graphics = graphics,
 			Input = _input,
 			Audio = _audio,
-			Resources = new DesktopResources(Name),
+			ResourcesBase = new DesktopResources(Name),
 		};
 	}
 

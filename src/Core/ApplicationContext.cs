@@ -23,5 +23,5 @@ public class ApplicationContext
 	public required IAudio Audio { get; init; }
 
 	/// <summary>The file-io provider.</summary>
-	public required IResources Resources { get; init; }
+	public required ResourcesBase ResourcesBase { get; init; }
 }

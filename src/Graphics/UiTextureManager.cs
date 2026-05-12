@@ -1,20 +1,16 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using FontStashSharp.Interfaces;
 using Myra.Graphics2D;
 using Veldrid;
 using Point = System.Drawing.Point;
 using Rectangle = System.Drawing.Rectangle;
-namespace LibAurora.Graphics.Myra;
 
-/// <summary>
-/// Implements <see cref="ITexture2DManager"/> for FontStashSharp font atlas textures.
-/// Creates <see cref="TextureHandle"/> instances with pre-built <see cref="ResourceSet"/> entries
-/// for all three <see cref="TextureFiltering"/> modes via <see cref="MyraRenderer.CreateResourceSet"/>.
-/// </summary>
-public class MyraTextureManager(IGraphics graphics, MyraRenderer renderer) : ITexture2DManager
+namespace LibAurora.Graphics;
+
+/// <summary>Creates and updates textures used by UI and FontStashSharp.</summary>
+public class UiTextureManager(IGraphics graphics, UiRenderer renderer) : ITexture2DManager
 {
-
-	/// <summary>Creates a new GPU texture with pre-built resource sets for all three filtering modes.</summary>
+	/// <summary>Creates a texture with resource sets for all supported filtering modes.</summary>
 	public object CreateTexture(int width, int height)
 	{
 		var texture = graphics.Factory.CreateTexture(new TextureDescription(
@@ -31,13 +27,15 @@ public class MyraTextureManager(IGraphics graphics, MyraRenderer renderer) : ITe
 		};
 		return new TextureHandle(texture, view, resourceSets);
 	}
-	/// <summary>Returns the dimensions of the given <see cref="TextureHandle"/> in pixels.</summary>
+
+	/// <summary>Gets the size of the specified texture.</summary>
 	public Point GetTextureSize(object texture)
 	{
 		var textureHandle = (TextureHandle)texture;
 		return textureHandle.Size;
 	}
-	/// <summary>Uploads pixel data to a sub-region of the given texture.</summary>
+
+	/// <summary>Uploads pixel data into the specified texture region.</summary>
 	public unsafe void SetTextureData(object texture, Rectangle bounds, byte[] data)
 	{
 		var h = (TextureHandle)texture;
