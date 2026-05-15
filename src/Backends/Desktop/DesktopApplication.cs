@@ -42,7 +42,6 @@ public class DesktopApplication : IApplication
 		_window = new Sdl2Window(args.Title, 100, 100, (int)args.Size.X, (int)args.Size.Y, flags, false);
 		graphics.Initialize(_window);
 		_input = new DesktopInput(_window);
-		_input.StartTextInput();
 		OnResize();
 		_window.Resized += OnResize;
 		_window.SetCloseRequestedHandler(OnClosing);
