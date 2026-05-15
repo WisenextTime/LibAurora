@@ -10,30 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7b5b32c-99d3-43ae-8eff-42f3a02ae82a" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Core/StartupUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Graphics/UiRenderServer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resources/AssemblyProvider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resources/PhysicalProvider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Resources/ResourcesBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Shaders/Ui.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LibAurora/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Desktop/DesktopApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backends/Headless/HeadlessApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backends/Headless/HeadlessApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Core/ApplicationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/ApplicationContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Fonts/FontServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/GuiServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Myra/GuiServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/MyraPlatform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/Myra/MyraPlatform.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/MyraRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/UiRenderer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Graphics/Myra/MyraTextureManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Graphics/UiTextureManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LibAurora.Core.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/LibAurora.Core.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/DesktopResources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/DesktopResources.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/IResources.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/ResourceManager.Shaders.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/AssetServer.Shaders.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/ResourceManager.Textures.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/AssetServer.Textures.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/ResourceManager.WaveSource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/AssetServer.WaveSource.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/ResourceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/AssetServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shaders/Font.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shaders/Myra.glsl" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +28,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="梦若月 &lt;141509640+wisenexttime@users.noreply.github.com&gt;" />
+      </list>
+    </option>
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -190,29 +172,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET 项目.Test.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "PowerShell.NugetPack.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Shell Script.NugetPack.executor": "Run",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "aigit.settings",
-    "vue.rearranger.settings.migration": "true",
-    "发布到文件夹.Pack.executor": "Run",
-    "发布到文件夹.未命名.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET 项目.Test.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;PowerShell.NugetPack.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Shell Script.NugetPack.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;aigit.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;发布到文件夹.Pack.executor&quot;: &quot;Run&quot;,
+    &quot;发布到文件夹.未命名.executor&quot;: &quot;Run&quot;
   }
-}]]></component>
-  <component name="RunManager" selected=".NET 项目.Test">
+}</component>
+  <component name="RunManager" selected="PowerShell.NugetPack">
     <configuration name="Test" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Test/bin/Debug/net10.0/Test.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -310,7 +292,8 @@
       <workItem from="1778497478062" duration="1727000" />
       <workItem from="1778500100959" duration="30000" />
       <workItem from="1778515076067" duration="537000" />
-      <workItem from="1778586332372" duration="8201000" />
+      <workItem from="1778586332372" duration="8345000" />
+      <workItem from="1778647829139" duration="81000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -496,7 +479,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778515222303</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="feat(core): add resource providers and UI rendering infrastructure&#10;&#10;Refactor resource management by introducing AssemblyProvider, PhysicalProvider, and ResourcesBase. Remove obsolete IResources and old shaders. Add UiRenderServer and Ui.glsl shader to support UI rendering. Improve modularity and prepare for future UI system.">
+      <option name="closed" value="true" />
+      <created>1778597967890</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1778597967890</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -508,8 +499,8 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.bat" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Init Co" />
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Update gitignore file" />
     <MESSAGE value="feat(core): add desktop application backend with audio, graphics, and input systems" />
@@ -534,7 +525,9 @@
     <MESSAGE value="feat(core): introduce unified QuadBatch and TextureHandle for GPU batching" />
     <MESSAGE value="feat(core): add wave source resource processing&#10;&#10;Introduce ResourceManager.WaveSource.cs which registers a processor for IWaveSource using AudioUtils.Decode. Also normalize line endings (CRLF to LF) across multiple source files, update .csproj to version 1.1.1 with RepositoryUrl, and adjust IDE workspace configuration." />
     <MESSAGE value="fix(textures): use sRGB pixel format for texture loading" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(textures): use sRGB pixel format for texture loading" />
+    <MESSAGE value="feat(core): add resource providers and UI rendering infrastructure&#10;&#10;Refactor resource management by introducing AssemblyProvider, PhysicalProvider, and ResourcesBase. Remove obsolete IResources and old shaders. Add UiRenderServer and Ui.glsl shader to support UI rendering. Improve modularity and prepare for future UI system." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(core): add resource providers and UI rendering infrastructure&#10;&#10;Refactor resource management by introducing AssemblyProvider, PhysicalProvider, and ResourcesBase. Remove obsolete IResources and old shaders. Add UiRenderServer and Ui.glsl shader to support UI rendering. Improve modularity and prepare for future UI system." />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

@@ -12,16 +12,19 @@ namespace LibAurora.Graphics.Myra;
 /// </summary>
 public class MyraPlatform(IGraphics graphics, IInput input, UiRenderer renderer) : IMyraPlatform
 {
+	private float _wheel;
+
 	/// <summary>Builds a Myra <see cref="MouseInfo"/> from the current <see cref="IInput"/> state.</summary>
 	public MouseInfo GetMouseInfo()
 	{
+		_wheel += input.GetMouseWheelDelta();
 		var info = new MouseInfo
 		{
 			Position = input.GetMousePosition().ToPoint(),
 			IsLeftButtonDown = input.IsMouseButtonDown(MouseButton.Left),
 			IsRightButtonDown = input.IsMouseButtonDown(MouseButton.Right),
 			IsMiddleButtonDown = input.IsMouseButtonDown(MouseButton.Middle),
-			Wheel = input.GetMouseWheelDelta(),
+			Wheel = _wheel,
 		};
 		return info;
 	}
